@@ -1,6 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"
+	pageEncoding="UTF-8" 
+	import="java.util.List, java.util.ArrayList, curso.java.tienda.pojo.Categoria, curso.java.tienda.dao.CategoriaDAOImpl"
 %>
+
+<%
+
+	ArrayList<Categoria> listaCategorias = (ArrayList<Categoria>) request.getAttribute("listaCategorias");
+
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,9 +52,18 @@
 					<div class="filter-menu">
 						<ul class="button-group sort-button-group">
 							<li class="button active" data-category="all">All<span>8</span></li>
-							<li class="button" data-category="cat-1">Dresses and Suits<span>2</span></li>
+							<!-- <li class="button" data-category="cat-1">Dresses and Suits<span>2</span></li>
 							<li class="button" data-category="cat-2">Accessories<span>2</span></li>
-							<li class="button" data-category="cat-3">Miscellaneous<span>4</span></li>
+							<li class="button" data-category="cat-3">Miscellaneous<span>4</span></li> -->
+							
+							<% for (Categoria categoria : listaCategorias) { %>
+							
+								<li class="button" data-category="cat-1"><%= categoria.getNombre() %><span>2</span></li>
+							
+							<% } %>
+							
+							
+							
 						</ul>
 					</div>
 				</div>
