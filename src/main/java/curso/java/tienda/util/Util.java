@@ -14,8 +14,8 @@ public class Util {
 	
 	public static String getResource(String name) {
 		ClassLoader loader = Thread.currentThread().getContextClassLoader();
-		URL appResourceURL = loader.getResource(name);
-		return appResourceURL.getPath();
+		URL resourceURL = loader.getResource(name);
+		return resourceURL.getFile();
 	}
 	
 }

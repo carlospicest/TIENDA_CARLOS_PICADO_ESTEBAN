@@ -1,13 +1,13 @@
-package curso.java.tienda.bd;
+package curso.java.tienda.util;
+
 
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
-
-import curso.java.tienda.util.Util;
 
 public class Conexion {
 
@@ -25,11 +25,10 @@ public class Conexion {
 	public static boolean crearConexion() {
 		try {
 			
-			String dbPropPath = Util.getResource("connection.properties");
-			
-			InputStream input = new FileInputStream(dbPropPath);
-			
+			String connectionPath = Util.getResource("connection.properties");
+			InputStream input = new FileInputStream(connectionPath);
 			Properties dbProp = new Properties();
+			
 			dbProp.load(input);
 			
 			Class.forName("com.mysql.cj.jdbc.Driver");

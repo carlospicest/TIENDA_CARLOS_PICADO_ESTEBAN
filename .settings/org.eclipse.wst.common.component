@@ -16,6 +16,7 @@
         
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/bd"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/config"/>
                                 
         
         

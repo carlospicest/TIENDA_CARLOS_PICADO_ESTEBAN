@@ -57,26 +57,4 @@ public class DateTime {
 
     }
 	
-	/**
-	 * Convierte un objeto Timestamp a long.
-	 * @param timestamp
-	 * @param pattern
-	 * @return
-	 */
-	
-	public static long parseTimestampDBToLong(Timestamp timestamp, String pattern) {
-		
-		DateFormat sdf = new SimpleDateFormat(pattern);
-		String timestampStr = sdf.format(timestamp);
-		long timestampLong = -1;
-		
-		if (timestampStr != null) {
-			timestampLong = Long.parseLong(timestampStr);
-		}
-		
-		return timestampLong;
-		
-	}
-	
-	
 }

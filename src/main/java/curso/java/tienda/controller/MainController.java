@@ -13,6 +13,7 @@ import curso.java.tienda.dao.CategoriaDAOImpl;
 import curso.java.tienda.dao.ProductoDAOImpl;
 import curso.java.tienda.pojo.Categoria;
 import curso.java.tienda.pojo.Producto;
+import mapping.WebPath;
 
 /**
  * Servlet implementation class MainController
@@ -36,15 +37,15 @@ public class MainController extends HttpServlet {
 		
 		// Obtenemos categorias.
 		
-		//ArrayList<Categoria> listaCategorias = new CategoriaDAOImpl().getCategorias();
-		//request.setAttribute("listaCategorias", listaCategorias);
+		ArrayList<Categoria> listaCategorias = new CategoriaDAOImpl().getCategorias();
+		request.setAttribute("listaCategorias", listaCategorias);
 		
 		// Obtenemos productos.
 		
-		/*ArrayList<Producto> listaProductos = new ProductoDAOImpl().getProductos();
-		request.setAttribute("listaProductos", listaProductos);*/
+		ArrayList<Producto> listaProductos = new ProductoDAOImpl().getProductos();
+		request.setAttribute("listaProductos", listaProductos);
 		
-		request.getRequestDispatcher("index.jsp").forward(request, response);
+		request.getRequestDispatcher(WebPath.URL.INDEX.toString()).forward(request, response);
 		
 	}
 
