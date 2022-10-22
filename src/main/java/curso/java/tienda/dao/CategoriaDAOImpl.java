@@ -6,8 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import curso.java.tienda.bd.Conexion;
 import curso.java.tienda.pojo.Categoria;
-import curso.java.tienda.util.Conexion;
 
 public class CategoriaDAOImpl implements CategoriaDAO {
 

@@ -6,8 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import curso.java.tienda.bd.Conexion;
 import curso.java.tienda.pojo.Producto;
-import curso.java.tienda.util.Conexion;
 import curso.java.tienda.util.Util;
 
 public class ProductoDAOImpl implements ProductoDAO {

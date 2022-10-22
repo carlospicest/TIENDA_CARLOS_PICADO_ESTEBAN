@@ -1,5 +1,7 @@
 package curso.java.tienda.util;
 
+import java.net.URL;
+
 public class Util {
 
 	public static boolean intToBoolean(int value) {	
@@ -8,6 +10,12 @@ public class Util {
 
 	public static int booleanToInt(boolean value) {
 		return (!value) ? 0 : 1;
+	}
+	
+	public static String getResource(String name) {
+		ClassLoader loader = Thread.currentThread().getContextClassLoader();
+		URL appResourceURL = loader.getResource(name);
+		return appResourceURL.getPath();
 	}
 	
 }
