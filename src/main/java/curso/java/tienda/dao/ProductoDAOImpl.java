@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import curso.java.tienda.bd.Conexion;
 import curso.java.tienda.pojo.Producto;
+import curso.java.tienda.util.DateTime;
 import curso.java.tienda.util.Util;
 
 public class ProductoDAOImpl implements ProductoDAO {
@@ -41,7 +42,8 @@ public class ProductoDAOImpl implements ProductoDAO {
 					producto.setImpuesto(rs.getFloat("impuesto"));
 					producto.setImagen(rs.getString("imagen"));
 					producto.setBaja(Util.intToBoolean(rs.getInt("baja")));
-					producto.setFecha_alta(rs.getLong("fecha_alta"));
+					producto.setFecha_alta(DateTime.parseTimestampDBToLong(rs.getTimestamp("fecha_alta"), "yyyy-MM-dd HH:mm:ss"));
+					
 					
 					listaProductos.add(producto);
 					

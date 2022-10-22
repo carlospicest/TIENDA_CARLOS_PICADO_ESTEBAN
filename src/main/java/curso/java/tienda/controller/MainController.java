@@ -36,13 +36,13 @@ public class MainController extends HttpServlet {
 		
 		// Obtenemos categorias.
 		
-		ArrayList<Categoria> listaCategorias = new CategoriaDAOImpl().getCategorias();
-		request.setAttribute("listaCategorias", listaCategorias);
+		//ArrayList<Categoria> listaCategorias = new CategoriaDAOImpl().getCategorias();
+		//request.setAttribute("listaCategorias", listaCategorias);
 		
 		// Obtenemos productos.
 		
-		ArrayList<Producto> listaProductos = new ProductoDAOImpl().getProductos();
-		request.setAttribute("listaProductos", listaProductos);
+		/*ArrayList<Producto> listaProductos = new ProductoDAOImpl().getProductos();
+		request.setAttribute("listaProductos", listaProductos);*/
 		
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 		

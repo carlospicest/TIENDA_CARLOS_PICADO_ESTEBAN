@@ -8,6 +8,14 @@ import java.util.Date;
 
 public class DateTime {
 
+	/**
+	 * Permite convertir una fecha Date con un determinado formato
+	 * a Timestamp.
+	 * @param date
+	 * @param pattern
+	 * @return
+	 */
+	
 	public static long parseDateToTimestamp(String date, String pattern) {
 
 		Date dateTransform = null;
@@ -30,6 +38,14 @@ public class DateTime {
 		
 	}
 
+	/**
+	 * Permite convertir una fecha Timestamp en Date con un formato
+	 * específico.
+	 * @param timestamp
+	 * @param pattern
+	 * @return
+	 */
+	
 	public static String parseTimestampToDate(long timestamp, String pattern) {
 
         //DateFormat sdf = new SimpleDateFormat("yyyy.MM.dd HH.mm.ss");
@@ -40,5 +56,27 @@ public class DateTime {
         return sdf.format(date);
 
     }
+	
+	/**
+	 * Convierte un objeto Timestamp a long.
+	 * @param timestamp
+	 * @param pattern
+	 * @return
+	 */
+	
+	public static long parseTimestampDBToLong(Timestamp timestamp, String pattern) {
+		
+		DateFormat sdf = new SimpleDateFormat(pattern);
+		String timestampStr = sdf.format(timestamp);
+		long timestampLong = -1;
+		
+		if (timestampStr != null) {
+			timestampLong = Long.parseLong(timestampStr);
+		}
+		
+		return timestampLong;
+		
+	}
+	
 	
 }
