@@ -6,7 +6,9 @@ public class WebPath {
 		
 		// Parte Pública.
 		
-	    INDEX("index/index.jsp");
+	    INDEX("index/index.jsp"),
+	    LOGIN("index/login.jsp"),
+	    ALTA_USUARIO("index/alta_usuario.jsp");
 
 		// Parte Dashboard (privada).
 		
