@@ -1,0 +1,7 @@
+package curso.java.tienda.dao;
+
+public interface IProducto {
+
+	public ArrayList<Producto> getProductos();
+	
+}

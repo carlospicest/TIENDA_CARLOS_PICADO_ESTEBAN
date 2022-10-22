@@ -1,0 +1,53 @@
+package curso.java.tienda.dao;
+
+import java.sql.Connection;
+import java.util.ArrayList;
+
+import curso.java.tienda.pojo.Producto;
+import curso.java.tienda.util.Conexion;
+
+public class ProductoDAOImpl implements IProducto {
+
+	@Override
+	public ArrayList<Producto> getProductos() {
+		
+		ArrayList<Producto> listaProductos = new ArrayList<>();
+		
+		Connection conexion = Conexion.getConexion();
+
+		if (conexion != null) {
+
+			try {
+
+				String sql = "SELECT * FROM usuario";
+
+				PreparedStatement ps = conexion.prepareStatement(sql);
+
+				ResultSet rs = ps.executeQuery();
+
+				while (rs.next()) {
+
+					Usuario usuario = new Usuario();
+					
+					usuario.setId(rs.getInt("id"));
+					usuario.setNombre(rs.getString("nombre"));
+					usuario.setPassword(rs.getString("password"));
+					usuario.setAdmin(Utiles.parseIntToBoolean(rs.getInt("isAdmin")));
+					
+					listaUsuarios.add(usuario);
+
+				}
+
+				Conexion.desconectar();
+
+			} catch (SQLException e) {
+				System.err.println("ERROR => [" + UsuarioDAO.class.getCanonicalName() + "] => " + e.getMessage());
+			}
+
+		}
+		
+		return null;
+		
+	}
+
+}

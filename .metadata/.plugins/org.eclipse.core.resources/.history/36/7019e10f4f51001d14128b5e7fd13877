@@ -1,0 +1,18 @@
+package curso.java.tienda.dao;
+
+import java.util.ArrayList;
+
+import curso.java.tienda.pojo.Producto;
+
+public class ProductoDAOImpl implements IProducto {
+
+	@Override
+	public ArrayList<Producto> getProductos() {
+		
+		
+		
+		return null;
+		
+	}
+
+}

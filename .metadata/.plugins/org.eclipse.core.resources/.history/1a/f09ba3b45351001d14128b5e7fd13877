@@ -1,0 +1,13 @@
+package curso.java.tienda.pojo;
+
+public class Pedido {
+
+	private int id;
+	private int id_usuario;
+	private long fecha;
+	private String metodo_pago;
+	private String estado;
+	private String num_factura;
+	private double total;
+	
+}

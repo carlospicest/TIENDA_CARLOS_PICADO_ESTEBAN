@@ -1,5 +1,12 @@
 package curso.java.tienda.pojo;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Pedido {
 
 	private int id;
@@ -9,48 +16,5 @@ public class Pedido {
 	private String estado;
 	private String num_factura;
 	private double total;
-	
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public int getId_usuario() {
-		return id_usuario;
-	}
-	public void setId_usuario(int id_usuario) {
-		this.id_usuario = id_usuario;
-	}
-	public long getFecha() {
-		return fecha;
-	}
-	public void setFecha(long fecha) {
-		this.fecha = fecha;
-	}
-	public String getMetodo_pago() {
-		return metodo_pago;
-	}
-	public void setMetodo_pago(String metodo_pago) {
-		this.metodo_pago = metodo_pago;
-	}
-	public String getEstado() {
-		return estado;
-	}
-	public void setEstado(String estado) {
-		this.estado = estado;
-	}
-	public String getNum_factura() {
-		return num_factura;
-	}
-	public void setNum_factura(String num_factura) {
-		this.num_factura = num_factura;
-	}
-	public double getTotal() {
-		return total;
-	}
-	public void setTotal(double total) {
-		this.total = total;
-	}
 	
 }

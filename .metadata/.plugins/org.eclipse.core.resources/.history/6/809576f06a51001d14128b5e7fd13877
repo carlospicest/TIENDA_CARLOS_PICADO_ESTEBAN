@@ -1,0 +1,62 @@
+package curso.java.tienda.util;
+
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+/**
+ * Clase que permite obtener la fecha y hora en diferentes formatos.
+ *
+ * @author Carlos Picado Esteban
+ */
+public class DateTime {
+    
+    /**
+     * M�todo que realiza la conversi�n de una fecha en formato ("yyyy.MM.dd
+     * HH.mm.ss") a TimeStamp en segundos.
+     *
+     * @param dateString.
+     * @return long
+     */
+    public static long transformDateToTimestamp(String dateString, String pattern) {
+
+        DateFormat sdf = new SimpleDateFormat(pattern);
+        Timestamp ts = null;
+        Date date = null;
+
+        try {
+            date = sdf.parse(dateString);
+            ts = new Timestamp(date.getTime() / 1000);
+        } catch (ParseException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        return ts.getTime();
+        
+    }
+    
+    public static String transformTimestampToDate(long timestampSeconds, String pattern) {
+
+        //DateFormat sdf = new SimpleDateFormat("yyyy.MM.dd HH.mm.ss");
+        DateFormat sdf = new SimpleDateFormat(pattern);
+        Timestamp ts = new Timestamp(timestampSeconds * 1000);
+        Date date = new Date(ts.getTime());
+
+        return sdf.format(date);
+
+    }
+    
+    public static void main(String[] args) {
+    	
+    	long ts = transformDateToTimestamp("2022-10-20 14:23:47", "yyyy-MM-dd HH:mm:ss");
+    	
+    	System.out.println(ts);
+    	
+    	System.out.println(transformTimestampToDate(ts, "yyyy-MM-dd HH:mm:ss"));
+    	
+    }
+
+}

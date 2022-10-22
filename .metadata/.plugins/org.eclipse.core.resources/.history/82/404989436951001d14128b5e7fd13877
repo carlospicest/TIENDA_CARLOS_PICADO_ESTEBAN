@@ -1,0 +1,4 @@
+bd.host=localhost
+bd.database=trivial
+bd.user=root
+bd.password=

@@ -1,0 +1,5 @@
+INDEX VERSION 1.131
+D:\curso_serbatic\Proyecto_Tienda_Carlos_Picado_Esteban\TIENDA_CARLOS_PICADO_ESTEBAN\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\600921452.index
+\TIENDA_CARLOS_PICADO_ESTEBAN\src\main\java
+D:\curso_serbatic\Proyecto_Tienda_Carlos_Picado_Esteban\TIENDA_CARLOS_PICADO_ESTEBAN\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1292917970.index
+\TIENDA_CARLOS_PICADO_ESTEBAN\src\main\java

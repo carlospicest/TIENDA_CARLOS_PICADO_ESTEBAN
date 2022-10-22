@@ -1,0 +1,194 @@
+package curso.java.tienda.util;
+
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+/**
+ * Clase que permite obtener la fecha y hora en diferentes formatos.
+ *
+ * @author Carlos Picado Esteban
+ */
+public class DateTime {
+
+    /**
+     * M�todo que devuelve la fecha y hora actual en el formato:
+     * ("yyyy.MM.dd'T'HH.mm.ss")
+     *
+     * @return String
+     */
+    public static String getCurrentDateTimeF1() {
+
+        DateFormat sdf = new SimpleDateFormat("yyyy.MM.dd'T'HH.mm.ss");
+        Date date = new Date();
+
+        return sdf.format(date);
+
+    }
+
+    /**
+     * M�todo que devuelve la fecha y hora actual en el formato: ("yyyy.MM.dd
+     * HH.mm.ss")
+     *
+     * @return String
+     */
+    public static String getCurrentDateTimeF2() {
+
+        DateFormat sdf = new SimpleDateFormat("yyyy.MM.dd HH.mm.ss");
+        Date date = new Date();
+
+        return sdf.format(date);
+
+    }
+
+    /**
+     * Método que devuelve la fecha y hora actual en el formato: ("dd.MM.yyyy
+     * HH:mm:ss")
+     */
+    public static String getCurrentDateTimeF3() {
+
+        DateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+        Date date = new Date();
+
+        return sdf.format(date);
+
+    }
+
+    /**
+     * M�todo que devuelve solo la fecha actual en el formato: ("yyyy-MM-dd")
+     *
+     * @return String
+     */
+    public static String getCurrentDate() {
+
+        DateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
+        Date date = new Date();
+
+        return sdf.format(date);
+
+    }
+
+    /**
+     * M�todo que devuelve solo la hora actual en el formato: ("HH:mm:ss")
+     *
+     * @return String
+     */
+    public static String getCurrentTime() {
+
+        DateFormat sdf = new SimpleDateFormat("HH.mm.ss");
+        Date date = new Date();
+
+        return sdf.format(date);
+
+    }
+
+    /**
+     * M�todo que devuelve la fecha y hora actual en el formato TimeStamp en
+     * milisegundos.
+     *
+     * @return Timestamp
+     */
+    public static long getCurrentTimeStamp() {
+
+        return System.currentTimeMillis() / 1000;
+
+    }
+
+    /**
+     * M�todo que realiza la conversi�n de una fecha y hora en formato TimeStamp
+     * a una fecha con el formato: ("yyyy.MM.dd HH.mm.ss").
+     *
+     * @param timestampSeconds (realizar previamente la conversi�n de
+     * milisegundos a segundos.)
+     * @return String
+     */
+    public static String transformTimestampToDate(long timestampSeconds) {
+
+        //DateFormat sdf = new SimpleDateFormat("yyyy.MM.dd HH.mm.ss");
+        DateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        Timestamp ts = new Timestamp(timestampSeconds * 1000);
+        Date date = new Date(ts.getTime());
+
+        return sdf.format(date);
+
+    }
+
+    /**
+     * M�todo que realiza la conversi�n de una fecha en formato ("yyyy.MM.dd
+     * HH.mm.ss") a TimeStamp en segundos.
+     *
+     * @param dateString.
+     * @return long
+     */
+    public static long transformDateToTimestamp(String dateString) {
+
+        //DateFormat sdf = new SimpleDateFormat("yyyy.MM.dd HH.mm.ss");
+        DateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        Timestamp ts = null;
+        Date date = null;
+
+        try {
+            date = sdf.parse(dateString);
+            ts = new Timestamp(date.getTime() / 1000);
+        } catch (ParseException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        return ts.getTime();
+    }
+    
+    /**
+     * M�todo que realiza la conversi�n de una fecha en formato ("yyyy.MM.dd
+     * HH.mm.ss") a TimeStamp en segundos.
+     *
+     * @param dateString.
+     * @return long
+     */
+    public static long transformDateToTimestamp(String dateString, String pattern) {
+
+        DateFormat sdf = new SimpleDateFormat(pattern);
+        Timestamp ts = null;
+        Date date = null;
+
+        try {
+            date = sdf.parse(dateString);
+            ts = new Timestamp(date.getTime() / 1000);
+        } catch (ParseException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        return ts.getTime();
+        
+    }
+
+    public static String getCustomFormatDate(String pattern) {
+
+        DateFormat sdf = new SimpleDateFormat(pattern);
+        Timestamp ts = new Timestamp(getCurrentTimeStamp() * 1000);
+        Date date = new Date(ts.getTime());
+
+        return sdf.format(date).toString();
+
+    }
+    
+    public static String getTimeFromTimeStamp(String pattern, long timestamp) {
+        
+        DateFormat sdf = new SimpleDateFormat(pattern);
+        Timestamp ts = new Timestamp(timestamp * 1000);
+        Date date = new Date(ts.getTime());
+
+        return sdf.format(date);
+        
+    }
+    
+    public static void main(String[] args) {
+    	
+    	System.out.println(transformDateToTimestamp("2022-10-20 14:23:47", "yyyy-MM-dd HH:mm:ss"));
+    	
+    }
+
+}

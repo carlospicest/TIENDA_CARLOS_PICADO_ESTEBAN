@@ -1,0 +1,55 @@
+package curso.java.tienda.util;
+
+import java.net.URL;
+import java.util.Scanner;
+
+public class Utiles {
+
+	public static boolean parseIntToBoolean(int value) {
+
+		return (value == 1) ? true : false;
+
+	}
+
+	public static int parseBooleanToInt(boolean value) {
+
+		return (value) ? 1 : 0;
+
+	}
+
+	public static String getKeyboardLine() {
+
+		Scanner keyboard = new Scanner(System.in);
+
+		String line = keyboard.nextLine();
+
+		return line;
+
+	}
+
+	public static int getKeyboardInt() {
+
+		Scanner keyboard = new Scanner(System.in);
+
+		int number = -1;
+		
+		try {
+			number = keyboard.nextInt();
+		} catch (NumberFormatException nfe) {
+			number = -1;
+		}
+
+		return number;
+
+	}
+
+	public static String getPathRecurso(String nombre) {
+		
+		ClassLoader loader = Thread.currentThread().getContextClassLoader();
+		URL appResourceURL = loader.getResource(nombre);
+		String fichero = appResourceURL.getPath();
+		
+		
+	}
+	
+}
