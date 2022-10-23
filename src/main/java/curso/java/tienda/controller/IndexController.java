@@ -21,13 +21,13 @@ import mapping.WebPath;
  * Servlet implementation class MainController
  */
 @WebServlet("")
-public class MainController extends HttpServlet {
+public class IndexController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MainController() {
+    public IndexController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -41,15 +41,15 @@ public class MainController extends HttpServlet {
 			
 		// Obtenemos categorias.
 		
-		ArrayList<Categoria> listaCategorias = new CategoriaDAOImpl().getCategorias();
-		request.setAttribute("listaCategorias", listaCategorias);
+		ArrayList<Categoria> categoriasList = new CategoriaDAOImpl().getCategorias();
+		request.setAttribute("categoriasList", categoriasList);
 		
 		// Obtenemos productos.
 		
-		ArrayList<Producto> listaProductos = new ProductoDAOImpl().getProductos();
-		request.setAttribute("listaProductos", listaProductos);
+		ArrayList<Producto> productosList = new ProductoDAOImpl().getProductos();
+		request.setAttribute("productosList", productosList);
 		
-		request.getRequestDispatcher(WebPath.URL.INDEX.toString()).forward(request, response);
+		request.getRequestDispatcher(WebPath.URL.INDEX_JSP.toString()).forward(request, response);
 		
 	}
 

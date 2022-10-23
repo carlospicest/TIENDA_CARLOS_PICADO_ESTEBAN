@@ -6,8 +6,10 @@ public class WebPath {
 		
 		// Parte P�blica.
 		
-	    INDEX("index/index.jsp"),
-	    LOGIN("index/login.jsp"),
+		INDEX_CONTROLLER(""),
+	    INDEX_JSP("index/index.jsp"),
+	    LOGIN_CONTROLLER("login"),
+	    LOGIN_JSP("index/login.jsp"),
 	    ALTA_USUARIO("index/alta_usuario.jsp"),
 	    RESULTADO("WEB-INF/resultado/index.jsp");
 

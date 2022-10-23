@@ -3,7 +3,7 @@
 	import="java.util.List, java.util.ArrayList, curso.java.tienda.pojo.Categoria, curso.java.tienda.dao.CategoriaDAOImpl,
 			curso.java.tienda.pojo.Producto, curso.java.tienda.dao.ProductoDAOImpl" %>
 <%
-	ArrayList<Producto> listaProductos = (ArrayList<Producto>) request.getAttribute("listaProductos");
+	ArrayList<Producto> productosList = (ArrayList<Producto>) request.getAttribute("productosList");
 %>
 
 <!DOCTYPE html>
@@ -92,7 +92,7 @@
 								<div class="tab-single">
 									<div class="row">
 									
-										<% for (Producto producto : listaProductos) { %>
+										<% for (Producto producto : productosList) { %>
 										<div class="col-xl-3 col-lg-4 col-md-4 col-12">
 											<div class="single-product">
 												<div class="product-img">

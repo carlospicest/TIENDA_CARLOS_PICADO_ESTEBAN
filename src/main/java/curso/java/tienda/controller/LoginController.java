@@ -29,7 +29,7 @@ public class LoginController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher(WebPath.URL.LOGIN.toString()).forward(request, response);
+		request.getRequestDispatcher(WebPath.URL.LOGIN_JSP.toString()).forward(request, response);
 	}
 
 	/**
@@ -41,10 +41,10 @@ public class LoginController extends HttpServlet {
 		String password = request.getParameter("password");
 		
 		if (LoginService.validarCredenciales(email, password)) {
-			request.getRequestDispatcher(WebPath.URL.INDEX.toString()).forward(request, response);
+			request.getRequestDispatcher(WebPath.URL.INDEX_CONTROLLER.toString()).forward(request, response);
 		} else {
 			request.setAttribute("errorLogin", "Los datos introducidos no son correctos, por favor, intente de nuevo.");
-			request.getRequestDispatcher(WebPath.URL.LOGIN.toString()).forward(request, response);
+			request.getRequestDispatcher(WebPath.URL.LOGIN_JSP.toString()).forward(request, response);
 		}
 		
 	}
