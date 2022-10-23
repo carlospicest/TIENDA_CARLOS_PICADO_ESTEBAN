@@ -7,7 +7,17 @@ import curso.java.tienda.pojo.Usuario;
 
 public class LoginService {
 
-	public static boolean validarCredenciales(String email, String password) {
+	/**
+	 * Comprueba los campos de email y password recibidos por formulario.
+	 * 
+	 * Si los datos son correctos, se devuelve un objeto de tipo Usuario pero
+	 * sin la información sensible del usuario.
+	 * @param email
+	 * @param password
+	 * @return
+	 */
+	
+	public static Usuario validarCredenciales(String email, String password) {
 		
 		Usuario user = new UsuarioDAOImpl().getUsuario(email);
 		
@@ -16,11 +26,20 @@ public class LoginService {
 			String saltStored = user.getSalt();
 			String passwordStored = user.getPassword();
 			
-			return HashCrypt.isSame(saltStored, passwordStored, email+password);
+			if (HashCrypt.isSame(saltStored, passwordStored, email+password)) {
+				
+				user.setPassword(null);
+				user.setSalt(null);
+				
+				return user; // Credenciales correcta.
+				
+			} else {
+				return null; // Credenciales incorrectas.
+			}
 			
 		}
 		
-		return false;
+		return null; // El usuario no existe.
 		
 	}
 	

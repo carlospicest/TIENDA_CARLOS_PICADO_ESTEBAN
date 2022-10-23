@@ -7,21 +7,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import curso.java.tienda.pojo.Usuario;
-import curso.java.tienda.service.LoginService;
 import mapping.WebPath;
 
 /**
- * Servlet implementation class LoginController
+ * Servlet implementation class LogoutController
  */
-@WebServlet("/login")
-public class LoginController extends HttpServlet {
+@WebServlet("/logout")
+public class LogoutController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoginController() {
+    public LogoutController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,26 +28,18 @@ public class LoginController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher(WebPath.URL.LOGIN_JSP.toString()).forward(request, response);
+		
+		request.getSession().invalidate();
+		request.getRequestDispatcher(WebPath.URL.INDEX_CONTROLLER.toString()).forward(request, response);
+		
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		Usuario user = null;
-		String email = request.getParameter("email");
-		String password = request.getParameter("password");
-		
-		if ((user = LoginService.validarCredenciales(email, password)) != null) {
-			request.getSession().setAttribute("userdata", user);
-			request.getRequestDispatcher(WebPath.URL.INDEX_CONTROLLER.toString()).forward(request, response);
-		} else {
-			request.setAttribute("errorLogin", "Los datos introducidos no son correctos, por favor, intente de nuevo.");
-			request.getRequestDispatcher(WebPath.URL.LOGIN_JSP.toString()).forward(request, response);
-		}
-		
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
 
 }

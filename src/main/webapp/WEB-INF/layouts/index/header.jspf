@@ -1,3 +1,11 @@
+
+<%@ page pageEncoding="UTF-8" import="java.util.List, java.util.ArrayList, curso.java.tienda.pojo.Usuario, curso.java.tienda.dao.UsuarioDAOImpl" %>
+<%
+	
+	Usuario user = (Usuario) request.getSession().getAttribute("userdata");
+
+%>
+
 <!DOCTYPE html>
 <html>
 <body>
@@ -23,10 +31,14 @@
 						<div class="right-content">
 							<ul class="list-main">
 								<li><i class="ti-location-pin"></i> Store location</li>
-								<li><i class="ti-alarm-clock"></i> <a href="#">Daily
-										deal</a></li>
+								<li><i class="ti-alarm-clock"></i> <a href="#">Daily deal</a></li>
+								<% if (user == null) { %>
 								<li><i class="ti-user"></i> <a href="registro">Crear cuenta</a></li>
-								<li><i class="ti-power-off"></i><a href="login">Login</a></li>
+								<li><i class="fa fa-user-circle-o"></i><a href="login">Iniciar sesión</a></li>
+								<% } else { %>
+								<li><i class="ti-power-off"></i><a href="logout">Cerrar sesión</a></li>
+								<% } %>
+								
 							</ul>
 						</div>
 						<!-- End Top Right -->
@@ -90,10 +102,6 @@
 							<div class="sinlge-bar">
 								<a href="#" class="single-icon"><i class="fa fa-heart-o"
 									aria-hidden="true"></i></a>
-							</div>
-							<div class="sinlge-bar">
-								<a href="#" class="single-icon"><i
-									class="fa fa-user-circle-o" aria-hidden="true"></i></a>
 							</div>
 							<div class="sinlge-bar shopping">
 								<a href="#" class="single-icon"><i class="ti-bag"></i> <span

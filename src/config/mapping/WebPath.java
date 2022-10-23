@@ -10,6 +10,7 @@ public class WebPath {
 	    INDEX_JSP("index/index.jsp"),
 	    LOGIN_CONTROLLER("login"),
 	    LOGIN_JSP("index/login.jsp"),
+	    LOGOUT_CONTROLLER("logout"),
 	    ALTA_USUARIO("index/alta_usuario.jsp"),
 	    RESULTADO("WEB-INF/resultado/index.jsp");
 
