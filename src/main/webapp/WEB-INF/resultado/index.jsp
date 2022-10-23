@@ -57,8 +57,13 @@
 						<% if (node.get("result").asText().equals(Request.result.SUCCESS.toString())) { %>
 
 							<img class="img-fluid mx-auto d-block mb-5" style="width: 256px; height: 256px;"
-								src="index/assets/images/check.png">
+								src="index/assets/images/resultado/check.png">
 								
+						<% } else { %>
+						
+							<img class="img-fluid mx-auto d-block mb-5" style="width: 256px; height: 256px;"
+								src="index/assets/images/resultado/error.png">
+
 						<% } %>
 
 						<%= node.get("msg").asText() %>

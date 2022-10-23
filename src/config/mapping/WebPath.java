@@ -8,7 +8,7 @@ public class WebPath {
 		
 	    INDEX("index/index.jsp"),
 	    LOGIN("index/login.jsp"),
-	    ALTA_USUARIO("index/alta_usuario/alta_usuario.jsp"),
+	    ALTA_USUARIO("index/alta_usuario.jsp"),
 	    RESULTADO("WEB-INF/resultado/index.jsp");
 
 		// Parte Dashboard (privada).

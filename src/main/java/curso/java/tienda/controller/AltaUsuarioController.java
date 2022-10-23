@@ -11,7 +11,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import curso.java.tienda.dao.UsuarioDAOImpl;
+import curso.java.tienda.pojo.Rol;
 import curso.java.tienda.pojo.Usuario;
+import curso.java.tienda.service.AltaUsuarioService;
 import curso.java.tienda.util.DateTime;
 import mapping.Request;
 import mapping.WebPath;
@@ -69,13 +71,12 @@ public class AltaUsuarioController extends HttpServlet {
 		usuario.setLocalidad(request.getParameter("localidad"));
 		usuario.setTelefono(request.getParameter("telefono"));
 		usuario.setPassword(request.getParameter("password"));
-		usuario.setSalt("s");
 		usuario.setEmail(request.getParameter("email"));
 		usuario.setFecha_alta(DateTime.getCurrentTime());
-
-		UsuarioDAOImpl us = new UsuarioDAOImpl();
 		
-		int idUsuario = us.addUsuario(usuario);
+		usuario = AltaUsuarioService.setEncriptacion(usuario);
+				
+		int idUsuario = new UsuarioDAOImpl().addUsuario(usuario);
 		
 		ObjectMapper mapper = new ObjectMapper();
 		ObjectNode altaInformacion = mapper.createObjectNode();
@@ -88,6 +89,16 @@ public class AltaUsuarioController extends HttpServlet {
 			summaryStr.append("<h2 class=\"text-center\">Se ha registrado correctamente</h2>");
 			summaryStr.append("<p class=\"h4 mt-5\">Ahora podrá disfrutar de todas las ventajas de nuestra tienda.</p>");
 			summaryStr.append("<p class=\"h4 mt-5\">Inicie sesión para acceder a todas nuestras ofertas.</p>");
+			
+			altaInformacion.put("msg", summaryStr.toString());
+			
+		} else {
+			
+			altaInformacion.put("result", Request.result.ERROR.toString());
+			
+			StringBuilder summaryStr = new StringBuilder();
+			summaryStr.append("<h2 class=\"text-center\">Se ha producido un error en el registro</h2>");
+			summaryStr.append("<p class=\"h4 mt-5\">No se ha podido completar la creación de su cuenta, intente en otro momento.</p>");
 			
 			altaInformacion.put("msg", summaryStr.toString());
 			
