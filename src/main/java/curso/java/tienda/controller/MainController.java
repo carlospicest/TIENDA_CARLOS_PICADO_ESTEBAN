@@ -13,6 +13,7 @@ import curso.java.tienda.dao.CategoriaDAOImpl;
 import curso.java.tienda.dao.ProductoDAOImpl;
 import curso.java.tienda.pojo.Categoria;
 import curso.java.tienda.pojo.Producto;
+import curso.java.tienda.pojo.Usuario;
 import mapping.WebPath;
 
 
@@ -36,6 +37,8 @@ public class MainController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		// Generar atributos de sesión si no los tiene.
+			
 		// Obtenemos categorias.
 		
 		ArrayList<Categoria> listaCategorias = new CategoriaDAOImpl().getCategorias();

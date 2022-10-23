@@ -3,6 +3,10 @@
 	import="com.fasterxml.jackson.databind.ObjectMapper, com.fasterxml.jackson.databind.node.ObjectNode, 
 			com.fasterxml.jackson.databind.JsonNode,mapping.Request"%>
 
+<%
+	String errorLogin = (String) request.getAttribute("errorLogin");
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,20 +44,30 @@
 
 							<div class="title">
 								<h3 class="text-center">Iniciar sesión</h3>
-							</div>
+							</div>				
 
-							<form class="form" method="POST" action="">
-							
+							<form class="form" method="POST" action="login">
+
 								<div class="row justify-content-center">
+								
 									<div class="col-lg-6 col-12">
+									
+									<% if (errorLogin != null) { %>
+									
+										<div class="alert alert-warning mb-5" role="alert"><%=errorLogin%></div>
+									
+									<% } %>
+									
 										<div class="form-group">
 											<label>Email<span>*</span></label> <input name="email"
 												type="email" placeholder="">
 										</div>
+										
 										<div class="form-group">
-											<label>Contraseña<span>*</span></label> <input name="password"
-												type="password" placeholder="">
+											<label>Contraseña<span>*</span></label> <input
+												name="password" type="password" placeholder="">
 										</div>
+										
 									</div>
 
 									<div class="col-12 mt-4">
@@ -62,7 +76,7 @@
 										</div>
 									</div>
 								</div>
-								
+
 							</form>
 
 

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import curso.java.tienda.service.LoginService;
 import mapping.WebPath;
 
 /**
@@ -28,7 +29,6 @@ public class LoginController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		request.getRequestDispatcher(WebPath.URL.LOGIN.toString()).forward(request, response);
 	}
 
@@ -36,8 +36,17 @@ public class LoginController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		
+		String email = request.getParameter("email");
+		String password = request.getParameter("password");
+		
+		if (LoginService.validarCredenciales(email, password)) {
+			request.getRequestDispatcher(WebPath.URL.INDEX.toString()).forward(request, response);
+		} else {
+			request.setAttribute("errorLogin", "Los datos introducidos no son correctos, por favor, intente de nuevo.");
+			request.getRequestDispatcher(WebPath.URL.LOGIN.toString()).forward(request, response);
+		}
+		
 	}
 
 }

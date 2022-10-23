@@ -12,6 +12,8 @@ public interface UsuarioDAO {
 	
 	public Usuario getUsuario(int id);
 	
+	public Usuario getUsuario(String email);
+	
 	public boolean updateUsuario(Usuario usuario);
 	
 	public boolean deleteUsuario(Usuario usuario);

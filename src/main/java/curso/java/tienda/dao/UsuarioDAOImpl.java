@@ -73,6 +73,23 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 	}
 	
 	@Override
+	public Usuario getUsuario(String email) {
+		
+		SessionFactory sessionFactory = HibernateSession.makeSessionFactory();
+		Session session = sessionFactory.openSession();
+
+		Transaction transaction = session.beginTransaction();
+		Query query = session.createQuery("from usuarios u where u.email = :email");
+		query.setParameter("email", email);
+		Usuario usuario = (Usuario) query.uniqueResult();
+
+		sessionFactory.close();
+		
+		return usuario;
+		
+	}
+	
+	@Override
 	public boolean updateUsuario(Usuario usuario) {
 		
 		boolean result = false;
@@ -106,5 +123,5 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 		
 		return result;
 	}
-
+	
 }
