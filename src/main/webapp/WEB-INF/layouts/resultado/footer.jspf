@@ -12,7 +12,7 @@
 						<!-- Single Widget -->
 						<div class="single-footer about">
 							<div class="logo">
-								<a href="index.html"><img src="../../index/assets/images/logo2.png"
+								<a href="index.html"><img src="index/assets/images/logo2.png"
 									alt="#"></a>
 							</div>
 							<p class="text">Praesent dapibus, neque id cursus ucibus,
@@ -95,7 +95,7 @@
 						</div>
 						<div class="col-lg-6 col-12">
 							<div class="right">
-								<img src="../../index/assets/images/payments.png" alt="#">
+								<img src="index/assets/images/payments.png" alt="#">
 							</div>
 						</div>
 					</div>

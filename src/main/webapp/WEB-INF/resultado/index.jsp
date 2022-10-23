@@ -1,13 +1,19 @@
 <%@ page language="java" contentType="text/html; UTF-8"
 	pageEncoding="UTF-8"
 	import="com.fasterxml.jackson.databind.ObjectMapper, com.fasterxml.jackson.databind.node.ObjectNode, 
-			com.fasterxml.jackson.databind.JsonNode, mapping.Request"
-%>
+			com.fasterxml.jackson.databind.JsonNode,mapping.Request"%>
 
 <%
+
+	String resultado = (String) request.getAttribute("resultado");
+	ObjectMapper mapper = null;
+	JsonNode node = null;
 	
-	ObjectMapper mapper = new ObjectMapper();
-	JsonNode node = mapper.readTree((String)request.getAttribute("resultado"));
+	if (resultado != null) {
+		mapper = new ObjectMapper();
+		node = mapper.readTree(resultado);
+	}
+	
 
 %>
 
@@ -19,7 +25,8 @@
 </head>
 <body class="js">
 
-	<%@ include file="../../WEB-INF/layouts/resultado/header_without_category.jspf"%>
+	<%@ include
+		file="../../WEB-INF/layouts/resultado/header_without_category.jspf"%>
 
 	<!-- Breadcrumbs -->
 	<div class="breadcrumbs">
@@ -45,23 +52,18 @@
 				<div class="row justify-content-md-center">
 					<div class="col-lg-8 col-12">
 						<div class="form-main">
-						
-							<% if (Request.result.SUCCESS.equals(node.get("result").asText())) { %>
-						
-							<img class="img-fluid" style="width: 256px; height: 256px;" src="images/check.png">
-						
-							<h2>Se ha registrado correctamente</h2>
-							
-							<p class="h4 mt-5">Ahora podrá disfrutar de todas las ventajas de nuestra tienda.</p>
-							
-							<p class="h4 mt-5">Inicie sesión para acceder a todas nuestras ofertas.</p>
-							
-							<% } else { %>
-							
-							
-							
-							<% } %>
-							
+
+
+						<% if (node.get("result").asText().equals(Request.result.SUCCESS.toString())) { %>
+
+							<img class="img-fluid mx-auto d-block mb-5" style="width: 256px; height: 256px;"
+								src="index/assets/images/check.png">
+								
+						<% } %>
+
+						<%= node.get("msg").asText() %>
+
+
 						</div>
 					</div>
 				</div>
@@ -102,35 +104,35 @@
 	<%@ include file="../../WEB-INF/layouts/resultado/footer.jspf"%>
 
 	<!-- Jquery -->
-	<script src="../../index/assets/js/jquery.min.js"></script>
-	<script src="../../index/assets/js/jquery-migrate-3.0.0.js"></script>
-	<script src="../../index/assets/js/jquery-ui.min.js"></script>
+	<script src="index/assets/js/jquery.min.js"></script>
+	<script src="index/assets/js/jquery-migrate-3.0.0.js"></script>
+	<script src="index/assets/js/jquery-ui.min.js"></script>
 	<!-- Popper JS -->
-	<script src="../../index/assets/js/popper.min.js"></script>
+	<script src="index/assets/js/popper.min.js"></script>
 	<!-- Bootstrap JS -->
-	<script src="../../index/assets/js/bootstrap.min.js"></script>
+	<script src="index/assets/js/bootstrap.min.js"></script>
 	<!-- Slicknav JS -->
-	<script src="../../index/assets/js/slicknav.min.js"></script>
+	<script src="index/assets/js/slicknav.min.js"></script>
 	<!-- Owl Carousel JS -->
-	<script src="../../index/assets/js/owl-carousel.js"></script>
+	<script src="index/assets/js/owl-carousel.js"></script>
 	<!-- Magnific Popup JS -->
-	<script src="../../index/assets/js/magnific-popup.js"></script>
+	<script src="index/assets/js/magnific-popup.js"></script>
 	<!-- Waypoints JS -->
-	<script src="../../index/assets/js/waypoints.min.js"></script>
+	<script src="index/assets/js/waypoints.min.js"></script>
 	<!-- Countdown JS -->
-	<script src="../../index/assets/js/finalcountdown.min.js"></script>
+	<script src="index/assets/js/finalcountdown.min.js"></script>
 	<!-- Nice Select JS -->
-	<script src="../../index/assets/js/nicesellect.js"></script>
+	<script src="index/assets/js/nicesellect.js"></script>
 	<!-- Flex Slider JS -->
-	<script src="../../index/assets/js/flex-slider.js"></script>
+	<script src="index/assets/js/flex-slider.js"></script>
 	<!-- ScrollUp JS -->
-	<script src="../../index/assets/js/scrollup.js"></script>
+	<script src="index/assets/js/scrollup.js"></script>
 	<!-- Onepage Nav JS -->
-	<script src="../../index/assets/js/onepage-nav.min.js"></script>
+	<script src="index/assets/js/onepage-nav.min.js"></script>
 	<!-- Easing JS -->
-	<script src="../../index/assets/js/easing.js"></script>
+	<script src="index/assets/js/easing.js"></script>
 	<!-- Active JS -->
-	<script src="../../index/assets/js/active.js"></script>
+	<script src="index/assets/js/active.js"></script>
 
 </body>
 </html>

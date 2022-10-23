@@ -1,4 +1,5 @@
 F:\Curso_Serbatic_2022\Proyecto_Tienda_Carlos_Picado_Esteban\TIENDA_CARLOS_PICADO_ESTEBAN\src\main\java\curso\java\tienda\util\Util.java
+F:\Curso_Serbatic_2022\Proyecto_Tienda_Carlos_Picado_Esteban\TIENDA_CARLOS_PICADO_ESTEBAN\src\main\java\soporte\Request.java
 F:\Curso_Serbatic_2022\Proyecto_Tienda_Carlos_Picado_Esteban\TIENDA_CARLOS_PICADO_ESTEBAN\src\main\java\curso\java\tienda\controller\categoria\CategoriaControllerMostrar.java
 F:\Curso_Serbatic_2022\Proyecto_Tienda_Carlos_Picado_Esteban\TIENDA_CARLOS_PICADO_ESTEBAN\src\main\java\curso\java\tienda\controller\MainController.java
 F:\Curso_Serbatic_2022\Proyecto_Tienda_Carlos_Picado_Esteban\TIENDA_CARLOS_PICADO_ESTEBAN\src\main\java\curso\java\tienda\util\Conexion.java
@@ -15,6 +16,8 @@ F:\Curso_Serbatic_2022\Proyecto_Tienda_Carlos_Picado_Esteban\TIENDA_CARLOS_PICAD
 F:\Curso_Serbatic_2022\Proyecto_Tienda_Carlos_Picado_Esteban\TIENDA_CARLOS_PICADO_ESTEBAN\src\main\java\curso\java\tienda\pojo\Usuario.java
 F:\Curso_Serbatic_2022\Proyecto_Tienda_Carlos_Picado_Esteban\TIENDA_CARLOS_PICADO_ESTEBAN\src\main\java\curso\java\tienda\pojo\Pedido.java
 F:\Curso_Serbatic_2022\Proyecto_Tienda_Carlos_Picado_Esteban\TIENDA_CARLOS_PICADO_ESTEBAN\src\main\java\curso\java\tienda\service\AltaUsuarioService.java
+F:\Curso_Serbatic_2022\Proyecto_Tienda_Carlos_Picado_Esteban\TIENDA_CARLOS_PICADO_ESTEBAN\src\main\java\soporte\WebPath.java
 F:\Curso_Serbatic_2022\Proyecto_Tienda_Carlos_Picado_Esteban\TIENDA_CARLOS_PICADO_ESTEBAN\src\main\java\curso\java\tienda\dao\CategoriaDAO.java
 F:\Curso_Serbatic_2022\Proyecto_Tienda_Carlos_Picado_Esteban\TIENDA_CARLOS_PICADO_ESTEBAN\src\main\java\curso\java\tienda\dao\CategoriaDAOImpl.java
 F:\Curso_Serbatic_2022\Proyecto_Tienda_Carlos_Picado_Esteban\TIENDA_CARLOS_PICADO_ESTEBAN\src\main\java\curso\java\tienda\controller\LoginController.java
+F:\Curso_Serbatic_2022\Proyecto_Tienda_Carlos_Picado_Esteban\TIENDA_CARLOS_PICADO_ESTEBAN\src\main\java\soporte\HibernateSession.java

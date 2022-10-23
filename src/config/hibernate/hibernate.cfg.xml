@@ -13,6 +13,7 @@
 		<property name="hibernate.connection.useUnicode">true</property>
 		<property name="hibernate.current_session_context_class">thread</property>
 		<property name="hibernate.connection.isolation">1</property>
+		<property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property> <!-- Importante incluirlo para evitar excepción del driver -->
 		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/tienda_carlos_picado_esteban</property>
 		<property name="hibernate.connection.username">root</property>
 		<property name="hibernate.connection.password"></property>

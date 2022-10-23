@@ -4,12 +4,12 @@ public class WebPath {
 	
 	public enum URL {
 		
-		// Parte Pública.
+		// Parte Pï¿½blica.
 		
 	    INDEX("index/index.jsp"),
 	    LOGIN("index/login.jsp"),
 	    ALTA_USUARIO("index/alta_usuario/alta_usuario.jsp"),
-	    RESULTADO("index/resultado");
+	    RESULTADO("WEB-INF/resultado/index.jsp");
 
 		// Parte Dashboard (privada).
 		
