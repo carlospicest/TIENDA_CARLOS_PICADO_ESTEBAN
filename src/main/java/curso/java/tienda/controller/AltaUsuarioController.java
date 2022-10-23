@@ -1,15 +1,19 @@
 package curso.java.tienda.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+
+import curso.java.tienda.dao.UsuarioDAOImpl;
+import curso.java.tienda.pojo.Usuario;
+import curso.java.tienda.util.DateTime;
+import mapping.Request;
 import mapping.WebPath;
 
 /**
@@ -39,12 +43,10 @@ public class AltaUsuarioController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		// Obtener informaci�n del formulario.
+		// Obtener información del formulario.
 		
-		ArrayList<String> datosFormulario = new ArrayList<>(
-								                Arrays.asList(request.getParameter("nombre"), 
-								                			  request.getParameter("primer_apellido"),
-								                			  request.getParameter("nombre"),
+		/*ArrayList<String> datosFormulario = new ArrayList<>(
+								                Arrays.asList(request.getParameter("nombre"),
 								                			  request.getParameter("primer_apellido"),
 								                			  request.getParameter("segundo_apellido"),
 								                			  request.getParameter("dni"),
@@ -53,7 +55,44 @@ public class AltaUsuarioController extends HttpServlet {
 								                			  request.getParameter("localidad"),
 								                			  request.getParameter("telefono"),
 								                			  request.getParameter("password"),
-								                			  request.getParameter("repassword")));
+								                			  request.getParameter("repassword")));*/
+		
+		// TODO: Implementar validación de datos.
+		
+		Usuario usuario = new Usuario();
+		usuario.setNombre(request.getParameter("nombre"));
+		usuario.setApellido1(request.getParameter("primer_apellido"));
+		usuario.setApellido2(request.getParameter("segundo_apellido"));
+		usuario.setDni(request.getParameter("dni"));
+		usuario.setDireccion(request.getParameter("direccion"));
+		usuario.setProvincia(request.getParameter("provincia"));
+		usuario.setLocalidad(request.getParameter("localidad"));
+		usuario.setTelefono(request.getParameter("telefono"));
+		usuario.setPassword(request.getParameter("password"));
+		usuario.setSalt("s");
+		usuario.setEmail(request.getParameter("email"));
+		usuario.setFecha_alta(DateTime.getCurrentTime());
+
+		int idUsuario = new UsuarioDAOImpl().addUsuario(usuario);
+		
+		ObjectMapper mapper = new ObjectMapper();
+		ObjectNode altaInformacion = mapper.createObjectNode();
+		
+		if (idUsuario > -1) {
+			
+			altaInformacion.put("result", Request.result.SUCCESS.toString());
+			
+			StringBuilder summaryStr = new StringBuilder();
+			summaryStr.append("<h2>Se ha registrado correctamente</h2>");
+			summaryStr.append("<p class=\"h4 mt-5\">Ahora podrá disfrutar de todas las ventajas de nuestra tienda.</p>");
+			summaryStr.append("<p class=\"h4 mt-5\">Inicie sesión para acceder a todas nuestras ofertas.</p>");
+			
+			altaInformacion.put("summary", summaryStr.toString());
+			
+		}
+		
+		request.setAttribute("resultado", mapper.writeValueAsString(altaInformacion));
+		request.getRequestDispatcher(WebPath.URL.RESULTADO.toString()).forward(request, response);
 		
 	}
 

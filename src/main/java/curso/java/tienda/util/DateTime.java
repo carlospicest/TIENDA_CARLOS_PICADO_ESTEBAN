@@ -40,7 +40,7 @@ public class DateTime {
 
 	/**
 	 * Permite convertir una fecha Timestamp en Date con un formato
-	 * específico.
+	 * especÃ­fico.
 	 * @param timestamp
 	 * @param pattern
 	 * @return
@@ -56,5 +56,10 @@ public class DateTime {
         return sdf.format(date);
 
     }
+	
+	public static java.sql.Date getCurrentTime() {  
+	    return new java.sql.Date(System.currentTimeMillis());
+	}
+	
 	
 }

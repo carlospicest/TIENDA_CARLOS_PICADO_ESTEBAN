@@ -6,8 +6,11 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+
 import curso.java.tienda.pojo.Usuario;
-import mapping.HibernateSession;
+import curso.java.tienda.util.DateTime;
+import hibernate.HibernateSession;
+
 
 public class UsuarioDAOImpl implements UsuarioDAO {
 
@@ -104,5 +107,26 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 		
 		return result;
 	}
+	
+	public static void main(String[] args) {
+		
+		Usuario u = new Usuario();
+		u.setNombre("Carlos");
+		u.setApellido1("Picado");
+		u.setApellido2("Esteban");
+		u.setEmail("cap@gmail.com");
+		u.setPassword("sna");
+		u.setSalt("sdaws");
+		u.setDireccion("dsa");
+		u.setProvincia("SA");
+		u.setLocalidad("sa");
+		u.setTelefono("sadsa");
+		u.setDni("sadsadsa");
+		u.setFecha_alta(DateTime.getCurrentTime());
+		
+		new UsuarioDAOImpl().addUsuario(u);
+		
+	}
+	
 
 }

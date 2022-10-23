@@ -5,6 +5,11 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+	</properties>
+
 	<dependencies>
 
 		<!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
@@ -37,6 +42,20 @@
 			<version>5.6.10.Final</version>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>2.13.3</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.13.4.2</version>
+		</dependency>
+
 
 	</dependencies>
 
@@ -47,6 +66,7 @@
 				<version>3.8.1</version>
 				<configuration>
 					<release>17</release>
+					<encoding>UTF-8</encoding> <!-- Especificar en UTF-8 si lo manejamos, para evitar errores al compilar -->
 				</configuration>
 			</plugin>
 			<plugin>
