@@ -28,6 +28,8 @@
 	<link rel="stylesheet" href="index/assets/css/jquery.fancybox.min.css">
 	<!-- Themify Icons -->
 	<link rel="stylesheet" href="index/assets/css/themify-icons.css">
+	<!-- Jquery Ui -->
+    <link rel="stylesheet" href="index/assets/css/jquery-ui.css">
 	<!-- Nice Select CSS -->
 	<link rel="stylesheet" href="index/assets/css/niceselect.css">
 	<!-- Animate CSS -->
