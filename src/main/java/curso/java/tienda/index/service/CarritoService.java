@@ -21,9 +21,6 @@ public class CarritoService {
 		
 		// Primero obtenemos la cantidad de productos del carrito.
 		
-		ObjectNode cartSize = mapper.createObjectNode();
-		cartSize.put("size", cart.size());
-		
 		ArrayNode productCartList = mapper.createArrayNode();
 		
 		productCartList.forEach((productCart) -> {
@@ -43,7 +40,6 @@ public class CarritoService {
 	}
 	
 	public static String addProductCartSession(int idProd, int stack, HashMap<Integer, DetalleCarrito> cartList) {
-		
 		
 		ObjectMapper mapper = new ObjectMapper();
 		ObjectNode addCartInformation = mapper.createObjectNode();
@@ -87,9 +83,7 @@ public class CarritoService {
 			
 		}
 		
-		addCartInformation.put("productCount", cartList.size());
-		
-		// Agregar por último, un sumario con los artículos, cantidad, precio de cada detalleCarrito.
+		// Agregar por último un sumario con los artículos, cantidad, precio de cada detalleCarrito.
 		
 		ArrayNode productCartList = mapper.createArrayNode();
 		
@@ -97,13 +91,19 @@ public class CarritoService {
 			productCartList.addPOJO(detail);
 		}
 		
-		addCartInformation.set("summary", productCartList);
+		addCartInformation.set("products", productCartList);
 		
-		// Extraemos el total de los artículos del carrito.
+		// Extraemos el número de productos en total del carrito.
 		
-		double total = getTotalDetalleCarrito(cartList);
+		int totalProduct = getStackCountDetalleCarrito(cartList);
 		
-		addCartInformation.put("total", total);
+		addCartInformation.put("totalProduct", totalProduct);
+		
+		// Extraemos el precio total de los artículos del carrito.
+		
+		double totalAmmount = getTotalStackAmmountDetalleCarrito(cartList);
+		
+		addCartInformation.put("totalAmmount", totalAmmount);
 		
 		try {
 			return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(addCartInformation);
@@ -114,16 +114,28 @@ public class CarritoService {
 	
 	}
 	
-	private static double getTotalDetalleCarrito(HashMap<Integer, DetalleCarrito> cart) {
+	private static double getTotalStackAmmountDetalleCarrito(HashMap<Integer, DetalleCarrito> cart) {
 		
-		double total = 0;
+		double totalAmmount = 0;
 		
 		for (DetalleCarrito product : cart.values()) {
-			total += (product.getPrecio_unidad()*product.getUnidades());
+			totalAmmount += (product.getPrecio_unidad()*product.getUnidades());
 		}
 		
-		return total;
+		return totalAmmount;
 		
+		
+	}
+	
+	private static int getStackCountDetalleCarrito(HashMap<Integer, DetalleCarrito> cart) {
+		
+		int totalProducts = 0;
+		
+		for (DetalleCarrito product : cart.values()) {
+			totalProducts += product.getUnidades();
+		}
+				
+		return totalProducts;
 		
 	}
 	
