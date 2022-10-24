@@ -99,6 +99,12 @@ public class CarritoService {
 		
 		addCartInformation.set("summary", productCartList);
 		
+		// Extraemos el total de los artículos del carrito.
+		
+		double total = getTotalDetalleCarrito(cartList);
+		
+		addCartInformation.put("total", total);
+		
 		try {
 			return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(addCartInformation);
 		} catch (JsonProcessingException e) {
@@ -107,4 +113,18 @@ public class CarritoService {
 		}
 	
 	}
+	
+	private static double getTotalDetalleCarrito(HashMap<Integer, DetalleCarrito> cart) {
+		
+		double total = 0;
+		
+		for (DetalleCarrito product : cart.values()) {
+			total += (product.getPrecio_unidad()*product.getUnidades());
+		}
+		
+		return total;
+		
+		
+	}
+	
 }

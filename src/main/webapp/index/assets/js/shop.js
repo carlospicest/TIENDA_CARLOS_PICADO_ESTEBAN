@@ -18,9 +18,8 @@ $(function() {
 					
 					if (data.result) {
 						// Cambiamos cantidad.
-						$('.total-count').html(data.productCount);
 						
-						
+						refreshProductCart(data);
 						
 					}
 					
@@ -32,3 +31,27 @@ $(function() {
 	});
 	
 });
+
+function refreshProductCart(data) {
+		
+	$('.total-count').html(data.productCount);
+		
+	const cartListElement = $('.shopping-list');
+		
+	cartListElement.empty();
+		
+	// Agregar elementos con cada artículo.
+	
+	data.summary.forEach(product => {
+		
+		cartListElement.append('<li><a href="#" class="remove" title="Remove this item">' +
+								'<i class="fa fa-remove"></i></a> <a class="cart-img" href="#">' +
+								'<img src="https://via.placeholder.com/70x70" alt="#"></a>' +
+									'<h4><a href="#"> ' + product.producto.nombre + '</a></h4>' +
+									'<p class="quantity">' + product.unidades + 'x - <span class="amount"> ' + product.precio_unidad + '</span></p></li>');
+		
+	});
+	
+	$('.total-amount').html(data.total + ' €');
+	
+}

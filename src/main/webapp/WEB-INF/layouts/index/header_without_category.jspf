@@ -108,10 +108,10 @@
 								<!-- Shopping Item -->
 								<div class="shopping-item">
 									<div class="dropdown-cart-header">
-										<span>2 Items</span> <a href="#">Ver Carrito</a>
+										<span><%= cart.size() %> artículos</span> <a href="#">Ver Carrito</a>
 									</div>
 									<ul class="shopping-list">
-										<li><a href="#" class="remove" title="Remove this item"><i
+										<!-- <li><a href="#" class="remove" title="Remove this item"><i
 												class="fa fa-remove"></i></a> <a class="cart-img" href="#"><img
 												src="https://via.placeholder.com/70x70" alt="#"></a>
 											<h4>
@@ -128,7 +128,7 @@
 											</h4>
 											<p class="quantity">
 												1x - <span class="amount">$35.00</span>
-											</p></li>
+											</p></li> -->
 									</ul>
 									<div class="bottom">
 										<div class="total">
