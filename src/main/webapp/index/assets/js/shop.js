@@ -36,6 +36,10 @@ function refreshProductCart(data) {
 		
 	$('.total-count').html(data.totalProduct);
 		
+	$('.shopping-articles').html(data.totalProduct);	
+		
+	// Limpiar información del carrito para incluirla.
+	
 	const cartListElement = $('.shopping-list');
 		
 	cartListElement.empty();
@@ -44,11 +48,14 @@ function refreshProductCart(data) {
 	
 	data.products.forEach(product => {
 		
-		cartListElement.append('<li><a href="#" class="remove" title="Remove this item">' +
-								'<i class="fa fa-remove"></i></a> <a class="cart-img" href="#">' +
-								'<img src="https://via.placeholder.com/70x70" alt="#"></a>' +
-									'<h4><a href="#"> ' + product.producto.nombre + '</a></h4>' +
-									'<p class="quantity">' + product.unidades + 'x - <span class="amount"> ' + product.precio_unidad + '</span></p></li>');
+		cartListElement.append('<li>' +
+									'<a href="#" class="remove" title="Remove this item">' +
+										'<i class="fa fa-remove"></i>' +
+									'</a> <a class="cart-img" href="#">' +
+										'<img src="https://via.placeholder.com/70x70" alt="#"></a>' +
+										'<h4><a href="#"> ' + product.producto.nombre + '</a></h4>' +
+										'<p class="quantity">' + product.unidades + 'x - <span class="amount"> ' + 
+										product.precio_unidad + ' €</span></p></li>');
 		
 	});
 	

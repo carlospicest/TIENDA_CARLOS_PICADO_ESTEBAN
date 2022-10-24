@@ -1,11 +1,13 @@
 <%@ page pageEncoding="UTF-8" import="java.util.List, java.util.HashMap, curso.java.tienda.index.pojo.Usuario, curso.java.tienda.index.dao.UsuarioDAOImpl,
-									  curso.java.tienda.index.pojo.DetalleCarrito" %>
+									  curso.java.tienda.index.pojo.DetalleCarrito, curso.java.tienda.index.service.CarritoService" %>
 <%
 	
 	Usuario user = (Usuario) request.getSession().getAttribute("userdata");
 	HashMap<Integer, DetalleCarrito> cart = (HashMap<Integer, DetalleCarrito>) request.getSession().getAttribute("cart");
+	
+	int totalProducts = CarritoService.getStackCountDetalleCarrito(cart);
+	
 %>
-
 <!DOCTYPE html>
 <html>
 <body>
@@ -105,37 +107,36 @@
 							</div>
 							<div class="sinlge-bar shopping">
 								<a href="#" class="single-icon"><i class="ti-bag"></i> <span
-									class="total-count"><%= cart.size() %></span></a>
+									class="total-count"><%= totalProducts %></span></a>
 								<!-- Shopping Item -->
 								<div class="shopping-item">
 									<div class="dropdown-cart-header">
-										<span>2 Items</span> <a href="#">Ver Carrito</a>
+										<span class="shopping-articles"><%= totalProducts %></span>
+										<span>artículos</span>
+										<a href="#">Ver Carrito</a>
 									</div>
 									<ul class="shopping-list">
-										<li><a href="#" class="remove" title="Remove this item"><i
+									
+										<% for (DetalleCarrito cartDetail : cart.values()) { %>
+											
+											<li><a href="#" class="remove" title="Remove this item"><i
 												class="fa fa-remove"></i></a> <a class="cart-img" href="#"><img
 												src="https://via.placeholder.com/70x70" alt="#"></a>
 											<h4>
-												<a href="#">Woman Ring</a>
+												<a href="#"><%= cartDetail.getProducto().getNombre() %></a>
 											</h4>
 											<p class="quantity">
-												1x - <span class="amount">$99.00</span>
+												<%= cartDetail.getUnidades() %>x - <span class="amount"><%= cartDetail.getPrecio_unidad() %> €</span>
 											</p></li>
-										<li><a href="#" class="remove" title="Remove this item"><i
-												class="fa fa-remove"></i></a> <a class="cart-img" href="#"><img
-												src="https://via.placeholder.com/70x70" alt="#"></a>
-											<h4>
-												<a href="#">Woman Necklace</a>
-											</h4>
-											<p class="quantity">
-												1x - <span class="amount">$35.00</span>
-											</p></li>
+										
+										<% } %>
+										
 									</ul>
 									<div class="bottom">
 										<div class="total">
-											<span>Total</span> <span class="total-amount">$134.00</span>
+											<span>Total</span> <span class="total-amount"><%= CarritoService.getTotalStackAmmountDetalleCarrito(cart) %></span>
 										</div>
-										<a href="checkout.html" class="btn animate">Checkout</a>
+										<a href="checkout.html" class="btn animate">Realizar compra</a>
 									</div>
 								</div>
 								<!--/ End Shopping Item -->

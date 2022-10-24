@@ -1,7 +1,6 @@
 package curso.java.tienda.index.controller.carrito;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.servlet.ServletException;
@@ -10,10 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import curso.java.tienda.index.pojo.Carrito;
 import curso.java.tienda.index.pojo.DetalleCarrito;
 import curso.java.tienda.index.pojo.Usuario;
-import curso.java.tienda.index.service.CarritoService;
 
 /**
  * Servlet implementation class CarritoController
@@ -44,10 +41,6 @@ public class CarritoController extends HttpServlet {
 			// Carrito en sesión (El usuario no ha iniciado sesión).
 			
 			HashMap<Integer, DetalleCarrito> cart = (HashMap<Integer, DetalleCarrito>) request.getSession().getAttribute("cart");
-			
-			//String cartJSON = CarritoService.getJSONCarrito(cart);
-			
-			System.out.println("");
 			
 		}
 		

@@ -1,6 +1,5 @@
 package curso.java.tienda.index.service;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -14,20 +13,15 @@ import curso.java.tienda.index.pojo.Producto;
 
 public class CarritoService {
 
-	public static String getJSONCarrito(ArrayList<DetalleCarrito> cart) {
+	public static String getCartInfo(HashMap<Integer, DetalleCarrito> cart) {
 		
 		ObjectMapper mapper = new ObjectMapper();
 		ObjectNode cartInformation = mapper.createObjectNode();
 		
 		// Primero obtenemos la cantidad de productos del carrito.
 		
-		ArrayNode productCartList = mapper.createArrayNode();
-		
-		productCartList.forEach((productCart) -> {
-            productCartList.addPOJO(productCart);
-        });
-		
-		cartInformation.set("product_list", productCartList);
+		cartInformation.put("totalProducts", getStackCountDetalleCarrito(cart));
+		cartInformation.put("totalAmmount", getCartInfo(cart));
 		
 		try {
 			return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(cartInformation);
@@ -114,7 +108,7 @@ public class CarritoService {
 	
 	}
 	
-	private static double getTotalStackAmmountDetalleCarrito(HashMap<Integer, DetalleCarrito> cart) {
+	public static double getTotalStackAmmountDetalleCarrito(HashMap<Integer, DetalleCarrito> cart) {
 		
 		double totalAmmount = 0;
 		
@@ -127,7 +121,7 @@ public class CarritoService {
 		
 	}
 	
-	private static int getStackCountDetalleCarrito(HashMap<Integer, DetalleCarrito> cart) {
+	public static int getStackCountDetalleCarrito(HashMap<Integer, DetalleCarrito> cart) {
 		
 		int totalProducts = 0;
 		

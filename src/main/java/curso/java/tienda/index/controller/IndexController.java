@@ -17,6 +17,7 @@ import curso.java.tienda.index.pojo.Categoria;
 import curso.java.tienda.index.pojo.DetalleCarrito;
 import curso.java.tienda.index.pojo.Producto;
 import curso.java.tienda.index.pojo.Usuario;
+import curso.java.tienda.index.service.CarritoService;
 import mapping.WebPath;
 
 
@@ -49,12 +50,12 @@ public class IndexController extends HttpServlet {
 			request.getSession().setAttribute("cart", cart);
 		}
 		
-		// Obtenemos categorias.
+		// Obtener categorias.
 		
 		ArrayList<Categoria> categoriasList = new CategoriaDAOImpl().getCategorias();
 		request.setAttribute("categoriasList", categoriasList);
 		
-		// Obtenemos productos.
+		// Obtener productos.
 		
 		ArrayList<Producto> productosList = new ProductoDAOImpl().getProductos();
 		request.setAttribute("productosList", productosList);

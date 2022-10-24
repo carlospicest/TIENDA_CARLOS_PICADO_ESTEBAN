@@ -2,7 +2,6 @@ package curso.java.tienda.index.controller.carrito;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.servlet.ServletException;
@@ -11,13 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ObjectNode;
-
 import curso.java.tienda.index.pojo.DetalleCarrito;
 import curso.java.tienda.index.pojo.Usuario;
 import curso.java.tienda.index.service.CarritoService;
-import mapping.Request;
 
 /**
  * Servlet implementation class CarritoControllerAdd
