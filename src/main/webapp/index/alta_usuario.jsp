@@ -1,5 +1,9 @@
-<%@ page language="java" contentType="text/html; UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java"
+	import="java.util.List, java.util.ArrayList, curso.java.tienda.util.SourceData"%>
+
+<%
+ArrayList<String> listaProvincias = SourceData.getProvincias();
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +11,8 @@
 </head>
 <body class="js">
 
-	<%@ include file="../../WEB-INF/layouts/index/header_without_category.jspf"%>
+	<%@ include
+		file="../../WEB-INF/layouts/index/header_without_category.jspf"%>
 
 	<!-- Breadcrumbs -->
 	<div class="breadcrumbs">
@@ -33,89 +38,100 @@
 				<div class="row justify-content-md-center">
 					<div class="col-lg-8 col-12">
 						<div class="form-main">
-						
+
 							<div class="title">
 								<h3>Formulario de alta de usuario</h3>
 							</div>
-							
+
 							<form class="form" method="POST" action="registro">
 								<div class="row">
 									<div class="col-lg-6 col-12">
 										<div class="form-group">
-											<label>Nombre<span>*</span></label> 
-											<input name="nombre" type="text" placeholder="" value="Carlos">
+											<label>Nombre<span>*</span></label> <input name="nombre"
+												type="text" placeholder="" value="">
 										</div>
 									</div>
 									<div class="col-lg-6 col-12">
 										<div class="form-group">
-											<label>Primer apellido<span>*</span></label>
-											<input name="primer_apellido" type="text" placeholder="" value="Picado">
+											<label>Primer apellido<span>*</span></label> <input
+												name="primer_apellido" type="text" placeholder=""
+												value="">
 										</div>
 									</div>
 									<div class="col-lg-6 col-12">
 										<div class="form-group">
-											<label>Segundo apellido<span>*</span></label>
-											<input name="segundo_apellido" type="text" value="Esteban">
+											<label>Segundo apellido<span>*</span></label> <input
+												name="segundo_apellido" type="text" value="">
 										</div>
 									</div>
 									<div class="col-lg-6 col-12">
 										<div class="form-group">
-											<label>DNI<span>*</span></label>
-											<input name="dni" type="text" value="44555625X">
+											<label>DNI<span>*</span></label> <input name="dni"
+												type="text" value="">
 										</div>
 									</div>
 									<div class="col-lg-6 col-12">
 										<div class="form-group">
-											<label>DirecciÃ³n<span>*</span></label>
-											<input name="direccion" type="text" value="Calle de las fuentes">
+											<label>Dirección<span>*</span></label> <input
+												name="direccion" type="text" value="">
 										</div>
 									</div>
 									<div class="col-lg-6 col-12">
 										<div class="form-group">
-											<label>Provincia<span>*</span></label>
-											<input name="provincia" type="text" value="Zamora">
+											<label>Provincia<span>*</span></label> 
+											<select
+												name="provincia" id="provincia"
+												style="display: block; border: 1px solid #e6e2f5; border-radius: 2px; height: 5.2vh; width: 100%; padding-left: 1.3vw;">
+												<option value="default" selected>Seleccionar
+													provincia</option>
+												<% for (String provincia : listaProvincias) { %>
+												<option value="<%=provincia%>"><%=provincia%></option>
+												<% }%>
+											</select>
 										</div>
 									</div>
 									<div class="col-lg-6 col-12">
 										<div class="form-group">
-											<label>Localidad<span>*</span></label>
-											<input name="localidad" type="text" value="Zamora">
+											<label>Localidad<span>*</span></label> <input
+												name="localidad" type="text" value="">
 										</div>
 									</div>
 									<div class="col-lg-6 col-12">
 										<div class="form-group">
-											<label>TelÃ©fono<span>*</span></label>
-											<input name="telefono" type="text" value="658888888">
+											<label>Teléfono<span>*</span></label> <input name="telefono"
+												type="text" value="">
 										</div>
 									</div>
 									<div class="col-lg-6 col-12">
 										<div class="form-group">
-											<label>Email<span>*</span></label>
-											<input name="email" type="email" value="carlos@gmail.com">
+											<label>Email<span>*</span></label> <input name="email"
+												type="email" value="">
 										</div>
 									</div>
 									<div class="col-lg-6 col-12">
 										<div class="form-group">
-											<label>ContraseÃ±a<span>*</span></label>
-											<input name="password" type="password" autocomplete="current-passowrd" value="1234">
+											<label>Contraseña<span>*</span></label> <input
+												name="password" type="password"
+												autocomplete="current-passowrd" value="">
 										</div>
 									</div>
 									<div class="col-lg-6 col-12">
 										<div class="form-group">
-											<label>Repetir contraseÃ±a<span>*</span></label>
-											<input name="repassword" type="password" autocomplete="current-passowrd" value="1234">
+											<label>Repetir contraseña<span>*</span></label> <input
+												name="repassword" type="password"
+												autocomplete="current-passowrd" value="">
 										</div>
 									</div>
-									
+
 									<div class="col-12">
 										<div class="form-group button text-center">
-											<button type="submit" class="btn">Crear cuenta</button>
+											<button type="submit" class="btn mt-4">Crear cuenta</button>
 										</div>
 									</div>
-									
+
 								</div>
 							</form>
-							
+
 						</div>
 					</div>
 				</div>
@@ -174,7 +190,7 @@
 	<!-- Countdown JS -->
 	<script src="index/assets/js/finalcountdown.min.js"></script>
 	<!-- Nice Select JS -->
-	<script src="index/assets/js/nicesellect.js"></script>
+	<!-- <script src="index/assets/js/nicesellect.js"></script> -->
 	<!-- Flex Slider JS -->
 	<script src="index/assets/js/flex-slider.js"></script>
 	<!-- ScrollUp JS -->
@@ -184,7 +200,7 @@
 	<!-- Easing JS -->
 	<script src="index/assets/js/easing.js"></script>
 	<!-- Active JS -->
-	<script src="index/assets/js/active.js"></script>
+	<!-- <script src="index/assets/js/active.js"></script> -->
 
 </body>
 </html>

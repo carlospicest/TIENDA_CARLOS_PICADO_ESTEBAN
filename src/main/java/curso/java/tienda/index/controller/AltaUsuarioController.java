@@ -1,6 +1,7 @@
 package curso.java.tienda.index.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,7 +12,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import curso.java.tienda.index.dao.UsuarioDAOImpl;
-import curso.java.tienda.index.pojo.Rol;
 import curso.java.tienda.index.pojo.Usuario;
 import curso.java.tienda.index.service.AltaUsuarioService;
 import curso.java.tienda.util.DateTime;

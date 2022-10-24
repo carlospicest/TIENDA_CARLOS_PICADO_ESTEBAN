@@ -1,3 +1,10 @@
+<%@ page pageEncoding="UTF-8" import="java.util.List, java.util.HashMap, curso.java.tienda.index.pojo.Usuario, curso.java.tienda.index.dao.UsuarioDAOImpl,
+									  curso.java.tienda.index.pojo.DetalleCarrito" %>
+<%
+	
+	Usuario user = (Usuario) request.getSession().getAttribute("userdata");
+	HashMap<Integer, DetalleCarrito> cart = (HashMap<Integer, DetalleCarrito>) request.getSession().getAttribute("cart");
+%>
 <!DOCTYPE html>
 <html>
 <body>
@@ -23,10 +30,14 @@
 						<div class="right-content">
 							<ul class="list-main">
 								<li><i class="ti-location-pin"></i> Store location</li>
-								<li><i class="ti-alarm-clock"></i> <a href="#">Daily
-										deal</a></li>
+								<li><i class="ti-alarm-clock"></i> <a href="#">Daily deal</a></li>
+								<% if (user == null) { %>
 								<li><i class="ti-user"></i> <a href="registro">Crear cuenta</a></li>
-								<li><i class="ti-power-off"></i><a href="login">Login</a></li>
+								<li><i class="fa fa-user-circle-o"></i><a href="login">Iniciar sesión</a></li>
+								<% } else { %>
+								<li><i class="ti-power-off"></i><a href="logout">Cerrar sesión</a></li>
+								<% } %>
+								
 							</ul>
 						</div>
 						<!-- End Top Right -->
@@ -72,7 +83,7 @@
 									<option selected="selected">All Category</option>
 									<option>watch</option>
 									<option>mobile</option>
-									<option>kid’s item</option>
+									<option>kidâs item</option>
 								</select>
 								<form>
 									<input name="search" placeholder="Search Products Here....."
@@ -91,20 +102,16 @@
 								<a href="#" class="single-icon"><i class="fa fa-heart-o"
 									aria-hidden="true"></i></a>
 							</div>
-							<div class="sinlge-bar">
-								<a href="#" class="single-icon"><i
-									class="fa fa-user-circle-o" aria-hidden="true"></i></a>
-							</div>
 							<div class="sinlge-bar shopping">
 								<a href="#" class="single-icon"><i class="ti-bag"></i> <span
-									class="total-count">0</span></a>
+									class="total-count"><%= cart.size() %></span></a>
 								<!-- Shopping Item -->
 								<div class="shopping-item">
 									<div class="dropdown-cart-header">
-										<span>2 Items</span> <a href="#">View Carrito</a>
+										<span><%= cart.size() %> artículos</span> <a href="#">Ver Carrito</a>
 									</div>
 									<ul class="shopping-list">
-										<li><a href="#" class="remove" title="Remove this item"><i
+										<!-- <li><a href="#" class="remove" title="Remove this item"><i
 												class="fa fa-remove"></i></a> <a class="cart-img" href="#"><img
 												src="https://via.placeholder.com/70x70" alt="#"></a>
 											<h4>
@@ -121,7 +128,7 @@
 											</h4>
 											<p class="quantity">
 												1x - <span class="amount">$35.00</span>
-											</p></li>
+											</p></li> -->
 									</ul>
 									<div class="bottom">
 										<div class="total">

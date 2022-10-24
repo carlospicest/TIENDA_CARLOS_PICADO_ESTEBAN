@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.text.Collator;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -64,7 +65,7 @@ public class SourceData {
 
 			urlData = new URL(url);
 
-			BufferedReader in = new BufferedReader(new InputStreamReader(urlData.openStream()));
+			BufferedReader in = new BufferedReader(new InputStreamReader(urlData.openStream(), StandardCharsets.UTF_8));
 
 			String inputLine;
 			while ((inputLine = in.readLine()) != null)
