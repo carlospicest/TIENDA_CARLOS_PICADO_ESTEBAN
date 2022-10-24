@@ -23,6 +23,7 @@ public class CarritoDAOImpl implements CarritoDAO {
 		query.setParameter("idUser", idUser);
 		ArrayList<Carrito> carrito = (ArrayList<Carrito>) query.list();
 
+		session.close();
 		sessionFactory.close();
 		
 		return carrito;
@@ -43,6 +44,7 @@ public class CarritoDAOImpl implements CarritoDAO {
 
 			session.getTransaction().commit();
 
+			session.close();
 			sessionFactory.close();
 
 		} catch (Exception e) {

@@ -1,10 +1,9 @@
-
-<%@ page pageEncoding="UTF-8" import="java.util.List, java.util.ArrayList, curso.java.tienda.pojo.Usuario, curso.java.tienda.dao.UsuarioDAOImpl,
-									  curso.java.tienda.pojo.Carrito" %>
+<%@ page pageEncoding="UTF-8" import="java.util.List, java.util.HashMap, curso.java.tienda.pojo.Usuario, curso.java.tienda.dao.UsuarioDAOImpl,
+									  curso.java.tienda.pojo.DetalleCarrito" %>
 <%
 	
 	Usuario user = (Usuario) request.getSession().getAttribute("userdata");
-	ArrayList<Carrito> cart = (ArrayList<Carrito>) request.getSession().getAttribute("cart");
+	HashMap<Integer, DetalleCarrito> cart = (HashMap<Integer, DetalleCarrito>) request.getSession().getAttribute("cart");
 %>
 
 <!DOCTYPE html>

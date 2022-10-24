@@ -2,6 +2,7 @@ package curso.java.tienda.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,6 +14,7 @@ import curso.java.tienda.dao.CategoriaDAOImpl;
 import curso.java.tienda.dao.ProductoDAOImpl;
 import curso.java.tienda.pojo.Carrito;
 import curso.java.tienda.pojo.Categoria;
+import curso.java.tienda.pojo.DetalleCarrito;
 import curso.java.tienda.pojo.Producto;
 import curso.java.tienda.pojo.Usuario;
 import mapping.WebPath;
@@ -40,10 +42,10 @@ public class IndexController extends HttpServlet {
 		
 		// Generar atributos de sesión si no los tiene (Carrito).
 			
-		ArrayList<Carrito> cart;
+		HashMap<Integer, DetalleCarrito> cart;
 		
-		if ((cart = (ArrayList<Carrito>) request.getSession().getAttribute("cart")) == null) {
-			cart = new ArrayList<Carrito>();
+		if ((cart = (HashMap<Integer, DetalleCarrito>) request.getSession().getAttribute("cart")) == null) {
+			cart = new HashMap<Integer, DetalleCarrito>();
 			request.getSession().setAttribute("cart", cart);
 		}
 		

@@ -8,4 +8,6 @@ public interface ProductoDAO {
 
 	public ArrayList<Producto> getProductos();
 	
+	public Producto getProducto(int idProduct);
+	
 }

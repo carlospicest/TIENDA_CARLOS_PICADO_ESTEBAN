@@ -22,6 +22,7 @@ public class CategoriaDAOImpl implements CategoriaDAO {
 		Query query = session.createQuery("from categorias");
 		ArrayList<Categoria> categorias = (ArrayList<Categoria>) query.list();
 
+		session.close();
 		sessionFactory.close();
 	
 		return categorias;

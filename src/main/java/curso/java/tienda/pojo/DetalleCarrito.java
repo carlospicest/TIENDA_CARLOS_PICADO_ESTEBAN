@@ -24,13 +24,17 @@ public class DetalleCarrito {
 	private int id;
 	
 	@ManyToOne
+	@JoinColumn(name = "carritos_id")
+	private Carrito carrito;
+	
+	@ManyToOne
 	@JoinColumn(name = "productos_id")
 	private Producto producto;
 	
 	@Column(name = "unidades")
 	private int unidades;
 	@Column(name = "precio_unidad")
-	private float precio_unidad;
+	private double precio_unidad;
 	@Column(name = "impuesto")
 	private float impuesto;
 	

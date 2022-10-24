@@ -27,8 +27,9 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 
 			session.getTransaction().commit();
 
+			session.close();
 			sessionFactory.close();
-
+			
 		} catch (Exception e) {
 			System.out.println("[ERROR] " + UsuarioDAOImpl.class.getCanonicalName() + " => " + e.getMessage());
 		}
@@ -48,6 +49,7 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 		Query query = session.createQuery("from usuarios");
 		ArrayList<Usuario> usuarios = (ArrayList<Usuario>) query.list();
 
+		session.close();
 		sessionFactory.close();
 		
 		return usuarios;
@@ -65,6 +67,7 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 		query.setParameter("idUsuario", id);
 		Usuario usuario = (Usuario) query.uniqueResult();
 
+		session.close();
 		sessionFactory.close();
 		
 		return usuario;
@@ -83,6 +86,7 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 		query.setParameter("email", email);
 		Usuario usuario = (Usuario) query.uniqueResult();
 
+		session.close();
 		sessionFactory.close();
 		
 		return usuario;
@@ -104,6 +108,7 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 		result = true;
 		
 		session.close();
+		sessionFactory.close();
 		
 		return result;
 	}
@@ -120,6 +125,8 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 		session.remove(usuario);
 		session.getTransaction().commit();
 		session.close();
+
+		sessionFactory.close();
 		
 		return result;
 	}
