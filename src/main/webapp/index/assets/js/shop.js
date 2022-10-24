@@ -34,7 +34,7 @@ $(function() {
 
 function refreshProductCart(data) {
 		
-	$('.total-count').html(data.productCount);
+	$('.total-count').html(data.totalProduct);
 		
 	const cartListElement = $('.shopping-list');
 		
@@ -42,7 +42,7 @@ function refreshProductCart(data) {
 		
 	// Agregar elementos con cada artículo.
 	
-	data.summary.forEach(product => {
+	data.products.forEach(product => {
 		
 		cartListElement.append('<li><a href="#" class="remove" title="Remove this item">' +
 								'<i class="fa fa-remove"></i></a> <a class="cart-img" href="#">' +
@@ -52,6 +52,6 @@ function refreshProductCart(data) {
 		
 	});
 	
-	$('.total-amount').html(data.total + ' €');
+	$('.total-amount').html(data.totalAmmount + ' €');
 	
 }
