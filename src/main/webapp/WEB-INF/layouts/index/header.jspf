@@ -1,9 +1,10 @@
 
-<%@ page pageEncoding="UTF-8" import="java.util.List, java.util.ArrayList, curso.java.tienda.pojo.Usuario, curso.java.tienda.dao.UsuarioDAOImpl" %>
+<%@ page pageEncoding="UTF-8" import="java.util.List, java.util.ArrayList, curso.java.tienda.pojo.Usuario, curso.java.tienda.dao.UsuarioDAOImpl,
+									  curso.java.tienda.pojo.Carrito" %>
 <%
 	
 	Usuario user = (Usuario) request.getSession().getAttribute("userdata");
-
+	ArrayList<Carrito> cart = (ArrayList<Carrito>) request.getSession().getAttribute("cart");
 %>
 
 <!DOCTYPE html>
@@ -105,11 +106,11 @@
 							</div>
 							<div class="sinlge-bar shopping">
 								<a href="#" class="single-icon"><i class="ti-bag"></i> <span
-									class="total-count">2</span></a>
+									class="total-count"><%= cart.size() %></span></a>
 								<!-- Shopping Item -->
 								<div class="shopping-item">
 									<div class="dropdown-cart-header">
-										<span>2 Items</span> <a href="#">View Carrito</a>
+										<span>2 Items</span> <a href="#">Ver Carrito</a>
 									</div>
 									<ul class="shopping-list">
 										<li><a href="#" class="remove" title="Remove this item"><i

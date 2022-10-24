@@ -2,6 +2,7 @@ package curso.java.tienda.pojo;
 
 import java.sql.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,8 +27,8 @@ public class Usuario {
 	@Column(name = "id")
 	private int id;
 	
-	@ManyToOne
-	@JoinColumn(name = "id_rol", nullable = true)
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "id_rol")
 	private Rol rol;
 
 	@Column(name = "email")

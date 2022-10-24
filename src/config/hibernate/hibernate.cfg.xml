@@ -26,6 +26,8 @@
         <mapping class="curso.java.tienda.pojo.Rol"></mapping>
         <mapping class="curso.java.tienda.pojo.Categoria"></mapping>
         <mapping class="curso.java.tienda.pojo.Producto"></mapping>
+        <mapping class="curso.java.tienda.pojo.Carrito"></mapping>
+        <mapping class="curso.java.tienda.pojo.DetalleCarrito"></mapping>
     
     <!-- Fin mapeo de clases -->
     	

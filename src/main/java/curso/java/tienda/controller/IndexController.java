@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import curso.java.tienda.dao.CategoriaDAOImpl;
 import curso.java.tienda.dao.ProductoDAOImpl;
+import curso.java.tienda.pojo.Carrito;
 import curso.java.tienda.pojo.Categoria;
 import curso.java.tienda.pojo.Producto;
 import curso.java.tienda.pojo.Usuario;
@@ -37,8 +38,15 @@ public class IndexController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		// Generar atributos de sesión si no los tiene.
+		// Generar atributos de sesión si no los tiene (Carrito).
 			
+		ArrayList<Carrito> cart;
+		
+		if ((cart = (ArrayList<Carrito>) request.getSession().getAttribute("cart")) == null) {
+			cart = new ArrayList<Carrito>();
+			request.getSession().setAttribute("cart", cart);
+		}
+		
 		// Obtenemos categorias.
 		
 		ArrayList<Categoria> categoriasList = new CategoriaDAOImpl().getCategorias();
