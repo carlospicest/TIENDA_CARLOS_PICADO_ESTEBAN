@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"
-	import="java.util.List, java.util.ArrayList, curso.java.tienda.pojo.Categoria, curso.java.tienda.dao.CategoriaDAOImpl,
-			curso.java.tienda.pojo.Producto, curso.java.tienda.dao.ProductoDAOImpl" %>
+	import="java.util.List, java.util.ArrayList,curso.java.tienda.index.pojo.Categoria,curso.java.tienda.index.dao.CategoriaDAOImpl,curso.java.tienda.index.pojo.Producto, curso.java.tienda.index.dao.ProductoDAOImpl" %>
 <%
 	ArrayList<Producto> productosList = (ArrayList<Producto>) request.getAttribute("productosList");
 %>

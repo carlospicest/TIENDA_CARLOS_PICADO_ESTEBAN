@@ -22,12 +22,12 @@
     	
     <!-- Mapear las clases que vayamos a usar -->	
     	
-    	<mapping class="curso.java.tienda.pojo.Usuario"></mapping>
-        <mapping class="curso.java.tienda.pojo.Rol"></mapping>
-        <mapping class="curso.java.tienda.pojo.Categoria"></mapping>
-        <mapping class="curso.java.tienda.pojo.Producto"></mapping>
-        <mapping class="curso.java.tienda.pojo.Carrito"></mapping>
-        <mapping class="curso.java.tienda.pojo.DetalleCarrito"></mapping>
+    	<mapping class="curso.java.tienda.index.pojo.Usuario"></mapping>
+        <mapping class="curso.java.tienda.index.pojo.Rol"></mapping>
+        <mapping class="curso.java.tienda.index.pojo.Categoria"></mapping>
+        <mapping class="curso.java.tienda.index.pojo.Producto"></mapping>
+        <mapping class="curso.java.tienda.index.pojo.Carrito"></mapping>
+        <mapping class="curso.java.tienda.index.pojo.DetalleCarrito"></mapping>
     
     <!-- Fin mapeo de clases -->
     	
