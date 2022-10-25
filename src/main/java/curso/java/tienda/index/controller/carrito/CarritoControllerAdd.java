@@ -40,24 +40,10 @@ public class CarritoControllerAdd extends HttpServlet {
 		
 		Integer idProduct = Integer.parseInt(request.getParameter("idProduct"));
 		Integer stack = Integer.parseInt(request.getParameter("stack"));
+
+		HashMap<Integer, DetalleCarrito> cartList = (HashMap<Integer, DetalleCarrito>) request.getAttribute("cart");
 		
-		// Primero comprobamos si el usuario está logueado, si es así el carrito pasa a
-		// persistir en BD.
-
-		Usuario user;
-		String jsonResponse = null;
-		
-		if ((user = (Usuario) request.getSession().getAttribute("userdata")) == null) {
-
-			// Carrito en sesión (El usuario no ha iniciado sesión).
-
-			HashMap<Integer, DetalleCarrito> cart = (HashMap<Integer, DetalleCarrito>) request.getSession().getAttribute("cart");
-
-			// Agregamos el artículo solicitado a su carrito.
-			
-			jsonResponse = CarritoService.addProductCartSession(idProduct, stack, cart);
-
-		}
+		String jsonResponse = CarritoService.addProductCartSession(idProduct, stack, cartList);
 		
 		PrintWriter out = response.getWriter();
 		response.setContentType("application/json");

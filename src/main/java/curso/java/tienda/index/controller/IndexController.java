@@ -40,28 +40,7 @@ public class IndexController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		// Generar atributos de sesión si no los tiene (Carrito).
-			
-		HashMap<Integer, DetalleCarrito> cart;
-		
-		if ((cart = (HashMap<Integer, DetalleCarrito>) request.getSession().getAttribute("cart")) == null) {
-			cart = new HashMap<Integer, DetalleCarrito>();
-			request.getSession().setAttribute("cart", cart);
-		}
-		
-		// Obtener categorias.
-		
-		ArrayList<Categoria> categoriasList = new CategoriaDAOImpl().getCategorias();
-		request.setAttribute("categoriasList", categoriasList);
-		
-		// Obtener productos.
-		
-		ArrayList<Producto> productosList = new ProductoDAOImpl().getProductos();
-		request.setAttribute("productosList", productosList);
-		
 		request.getRequestDispatcher(WebPath.URL.INDEX_JSP.toString()).forward(request, response);
-		
 	}
 
 	/**

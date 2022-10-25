@@ -55,45 +55,6 @@ public class LoginController extends HttpServlet {
 		if ((user = LoginService.validarCredenciales(email, password)) != null) {
 			request.getSession().setAttribute("userdata", user);
 
-			// Comprobar si el usuario invitado tiene artículos en carrito para enviarlos de
-			// la sesión a la bbdd.
-
-			HashMap<Integer, DetalleCarrito> cartList = (HashMap<Integer, DetalleCarrito>) request.getSession()
-					.getAttribute("cart");
-
-			if (cartList != null && !cartList.isEmpty()) {
-
-				// Generamos el carrito para el usuario.
-
-				Carrito cart = new Carrito();
-				cart.setCheckout(false);
-				cart.setUsuario(user);
-
-				int cartID = new CarritoDAOImpl().addCarrito(cart);
-
-				// Si se ha generado el carrito, comenzamos a introducir sus productos.
-				
-				if (cartID > -1) {
-
-					for (DetalleCarrito product : cartList.values()) {
-
-						DetalleCarrito productDetail = new DetalleCarrito();
-						productDetail.setCarrito(cart);
-						productDetail.setImpuesto(product.getImpuesto());
-						productDetail.setUnidades(product.getUnidades());
-						productDetail.setPrecio_unidad(product.getPrecio_unidad());
-						productDetail.setProducto(product.getProducto());
-						
-						new DetalleCarritoDAOImpl().addDetalleCarrito(productDetail);
-						
-					}
-					
-					// Una vez incorporados los artículos, limpiamos el atributo cart de la sesión.
-					
-					request.getSession().setAttribute("cart", null);
-
-				}
-			}
 
 			request.getRequestDispatcher(WebPath.URL.INDEX_CONTROLLER.toString()).forward(request, response);
 		} else {

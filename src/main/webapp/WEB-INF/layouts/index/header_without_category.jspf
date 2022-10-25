@@ -2,7 +2,7 @@
 									  curso.java.tienda.index.pojo.DetalleCarrito, curso.java.tienda.index.service.CarritoService" %>
 <%
 	Usuario user = (Usuario) request.getSession().getAttribute("userdata");
-	HashMap<Integer, DetalleCarrito> cart = (HashMap<Integer, DetalleCarrito>) request.getSession().getAttribute("cart");
+	HashMap<Integer, DetalleCarrito> cart = (HashMap<Integer, DetalleCarrito>) request.getAttribute("cart");
 	
 	int totalProducts = CarritoService.getStackCountDetalleCarrito(cart);
 	
