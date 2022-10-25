@@ -9,8 +9,8 @@
 <html>
 <head>
 <%@ include file="../WEB-INF/layouts/index/head.jspf"%>
-</head>
-<body class="js">
+
+<body class="js" style="overflow: hidden;">
 
 	<!-- Preloader -->
 	<div class="preloader">
