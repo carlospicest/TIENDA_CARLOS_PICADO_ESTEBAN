@@ -1,6 +1,7 @@
 package curso.java.tienda.index.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,6 +16,7 @@ import curso.java.tienda.index.dao.UsuarioDAOImpl;
 import curso.java.tienda.index.pojo.Usuario;
 import curso.java.tienda.index.service.AltaUsuarioService;
 import curso.java.tienda.util.DateTime;
+import curso.java.tienda.util.SourceData;
 import mapping.Request;
 import mapping.WebPath;
 
@@ -37,6 +39,10 @@ public class AltaUsuarioController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		ArrayList<String> provinciasList = SourceData.getProvincias();
+		
+		request.setAttribute("provinciasList", provinciasList);
 		request.getRequestDispatcher(WebPath.URL.ALTA_USUARIO.toString()).forward(request, response);
 	}
 

@@ -1,8 +1,7 @@
 <%@ page language="java"
-	import="java.util.List, java.util.ArrayList, curso.java.tienda.util.SourceData"%>
-
+	import="java.util.List, java.util.ArrayList" %>
 <%
-ArrayList<String> listaProvincias = SourceData.getProvincias();
+	ArrayList<String> provinciasList = (ArrayList<String>) request.getAttribute("provinciasList");
 %>
 <!DOCTYPE html>
 <html>
@@ -84,7 +83,7 @@ ArrayList<String> listaProvincias = SourceData.getProvincias();
 												style="display: block; border: 1px solid #e6e2f5; border-radius: 2px; height: 5.2vh; width: 100%; padding-left: 1.3vw;">
 												<option value="default" selected>Seleccionar
 													provincia</option>
-												<% for (String provincia : listaProvincias) { %>
+												<% for (String provincia : provinciasList) { %>
 												<option value="<%=provincia%>"><%=provincia%></option>
 												<% }%>
 											</select>
