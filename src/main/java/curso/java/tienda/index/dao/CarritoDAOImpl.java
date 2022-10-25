@@ -8,10 +8,30 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import curso.java.tienda.index.pojo.Carrito;
+import curso.java.tienda.index.pojo.Usuario;
 import hibernate.HibernateSession;
 
 public class CarritoDAOImpl implements CarritoDAO {
 
+
+	@Override
+	public Carrito getCarritoUnproccessed(Usuario user) {
+		
+		SessionFactory sessionFactory = HibernateSession.makeSessionFactory();
+		Session session = sessionFactory.openSession();
+
+		Transaction transaction = session.beginTransaction();
+		Query query = session.createQuery("from carritos c where c.usuario.id = :idUser and c.checkout = 0");
+		query.setParameter("idUser", user.getId());
+		Carrito carrito = (Carrito) query.uniqueResult();
+
+		session.close();
+		sessionFactory.close();
+		
+		return carrito;
+		
+	}
+	
 	@Override
 	public ArrayList<Carrito> getCarrito(int idUser) {
 		

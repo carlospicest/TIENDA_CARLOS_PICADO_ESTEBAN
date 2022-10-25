@@ -133,7 +133,9 @@ public class RequestFilter extends HttpFilter implements Filter {
 				
 				// Obtenemos los artículos del carrito que tiene en la bbdd.
 				
-
+				Carrito cart = new CarritoDAOImpl().getCarritoUnproccessed(user);
+				
+				HashMap<Integer, DetalleCarrito> cartList = new DetalleCarritoDAOImpl().getDetalleCarrito(0);
 				
 			}
 

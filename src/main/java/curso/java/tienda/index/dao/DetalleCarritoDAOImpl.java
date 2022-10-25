@@ -1,5 +1,7 @@
 package curso.java.tienda.index.dao;
 
+import java.util.HashMap;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
@@ -8,6 +10,15 @@ import hibernate.HibernateSession;
 
 public class DetalleCarritoDAOImpl implements DetalleCarritoDAO {
 
+	@Override
+	public HashMap<Integer, DetalleCarrito> getDetalleCarrito(int idCart) {
+		
+		
+		
+		
+		return null;
+	}
+	
 	@Override
 	public int addDetalleCarrito(DetalleCarrito cartDetail) {
 		
