@@ -2,6 +2,6 @@
 
 $(function() {
 
-	$('#categoryList').css('display', 'none'); // Ocultar despliegue de categorías.
+	$('#categoryList').css('visibility', 'hidden'); // Ocultar despliegue de categorías.
 
 });
