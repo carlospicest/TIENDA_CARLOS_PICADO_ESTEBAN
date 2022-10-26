@@ -62,14 +62,14 @@ function refreshProductCart(data) {
 		
 	});
 	
-	$('.total-amount').html(data.totalAmmount + ' €');
+	$('.total-amount-cart').html(data.totalAmmount + ' €');
 	
 }
 
 function getCartDetail() {
 
 	$.ajax({
-		url: 'carrito',
+		url: 'carrito_show',
 		data: {},
 		success: function(data) {
 
@@ -93,7 +93,7 @@ function printCartDetail(data) {
 		totalCount: $('.total-count'), // Cantidad total de productos.
 		shopArticles: $('.shopping-articles'), // Cantidad total de productos.
 		cartListElement: $('.shopping-list'), // Lista de los productos.
-		totalAmmount: $('.total-amount') // Precio total de los productos.
+		totalAmmount: $('.total-amount-cart') // Precio total de los productos.
 	};
 
 	emptyHtml(cart);
