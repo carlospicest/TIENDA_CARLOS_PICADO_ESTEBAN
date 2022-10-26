@@ -1,14 +1,22 @@
-<%@ page pageEncoding="UTF-8" import="java.util.List, java.util.HashMap, curso.java.tienda.index.pojo.Usuario, curso.java.tienda.index.dao.UsuarioDAOImpl,
-									  curso.java.tienda.index.pojo.DetalleCarrito" %>
+<%@ page pageEncoding="UTF-8"
+	import="java.util.List, java.util.HashMap, curso.java.tienda.index.pojo.Usuario"%>
 <%
-	
-	Usuario user = (Usuario) request.getSession().getAttribute("userdata");
-	HashMap<Integer, DetalleCarrito> cart = (HashMap<Integer, DetalleCarrito>) request.getAttribute("cart");
+Usuario user = (Usuario) request.getSession().getAttribute("userdata");
 %>
 
 <!DOCTYPE html>
 <html>
 <body>
+
+	<!-- Preloader -->
+	<div class="preloader">
+		<div class="preloader-inner">
+			<div class="preloader-icon">
+				<span></span> <span></span>
+			</div>
+		</div>
+	</div>
+	<!-- End Preloader -->
 
 	<!-- Header -->
 	<header class="header shop">
@@ -31,14 +39,24 @@
 						<div class="right-content">
 							<ul class="list-main">
 								<li><i class="ti-location-pin"></i> Store location</li>
-								<li><i class="ti-alarm-clock"></i> <a href="#">Daily deal</a></li>
-								<% if (user == null) { %>
-								<li><i class="ti-user"></i> <a href="registro">Crear cuenta</a></li>
-								<li><i class="fa fa-user-circle-o"></i><a href="login">Iniciar sesión</a></li>
-								<% } else { %>
-								<li><i class="ti-power-off"></i><a href="logout">Cerrar sesión</a></li>
-								<% } %>
-								
+								<li><i class="ti-alarm-clock"></i> <a href="#">Daily
+										deal</a></li>
+								<%
+								if (user == null) {
+								%>
+								<li><i class="ti-user"></i> <a href="registro">Crear
+										cuenta</a></li>
+								<li><i class="fa fa-user-circle-o"></i><a href="login">Iniciar
+										sesión</a></li>
+								<%
+								} else {
+								%>
+								<li><i class="ti-power-off"></i><a href="logout">Cerrar
+										sesión</a></li>
+								<%
+								}
+								%>
+
 							</ul>
 						</div>
 						<!-- End Top Right -->
@@ -105,37 +123,24 @@
 							</div>
 							<div class="sinlge-bar shopping">
 								<a href="#" class="single-icon"><i class="ti-bag"></i> <span
-									class="total-count"><%= cart.size() %></span></a>
+									class="total-count">{TOTAL_PRODUCTS}</span></a>
 								<!-- Shopping Item -->
 								<div class="shopping-item">
 									<div class="dropdown-cart-header">
-										<span>2 Items</span> <a href="#">Ver Carrito</a>
+										<span class="shopping-articles">{TOTAL_PRODUCTS}</span> <span>artículos</span>
+										<a href="#">Ver Carrito</a>
 									</div>
 									<ul class="shopping-list">
-										<li><a href="#" class="remove" title="Remove this item"><i
-												class="fa fa-remove"></i></a> <a class="cart-img" href="#"><img
-												src="https://via.placeholder.com/70x70" alt="#"></a>
-											<h4>
-												<a href="#">Woman Ring</a>
-											</h4>
-											<p class="quantity">
-												1x - <span class="amount">$99.00</span>
-											</p></li>
-										<li><a href="#" class="remove" title="Remove this item"><i
-												class="fa fa-remove"></i></a> <a class="cart-img" href="#"><img
-												src="https://via.placeholder.com/70x70" alt="#"></a>
-											<h4>
-												<a href="#">Woman Necklace</a>
-											</h4>
-											<p class="quantity">
-												1x - <span class="amount">$35.00</span>
-											</p></li>
+
+
+
 									</ul>
 									<div class="bottom">
 										<div class="total">
-											<span>Total</span> <span class="total-amount">$134.00</span>
+											<span>Total</span> <span class="total-amount">{TOTAL_AMMOUNT}</span>
 										</div>
-										<a href="checkout.html" class="btn animate">Checkout</a>
+										<a href="checkout.html" class="btn animate">Realizar
+											compra</a>
 									</div>
 								</div>
 								<!--/ End Shopping Item -->

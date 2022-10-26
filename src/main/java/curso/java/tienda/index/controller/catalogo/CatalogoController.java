@@ -2,6 +2,7 @@ package curso.java.tienda.index.controller.catalogo;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -36,7 +37,7 @@ public class CatalogoController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		ArrayList<Categoria> categoryList = new CategoriaDAOImpl().getCategorias();
-		ArrayList<Producto> productList = new ProductoDAOImpl().getProductos();
+		HashMap<Integer, Producto> productList = new ProductoDAOImpl().getProductos();
 		
 		request.setAttribute("productList", productList);
 		request.setAttribute("categoryList", categoryList);

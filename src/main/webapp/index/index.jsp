@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"
-	import="java.util.List, java.util.ArrayList,curso.java.tienda.index.pojo.Categoria,curso.java.tienda.index.dao.CategoriaDAOImpl,curso.java.tienda.index.pojo.Producto, curso.java.tienda.index.dao.ProductoDAOImpl" %>
+	import="java.util.List, java.util.HashMap, curso.java.tienda.index.pojo.Categoria,curso.java.tienda.index.dao.CategoriaDAOImpl,curso.java.tienda.index.pojo.Producto, curso.java.tienda.index.dao.ProductoDAOImpl" %>
 <%
-	ArrayList<Producto> productosList = (ArrayList<Producto>) request.getAttribute("productosList");
+	HashMap<Integer, Producto> productosList = (HashMap<Integer, Producto>) request.getAttribute("productosList");
 %>
 
 <!DOCTYPE html>
@@ -10,17 +10,7 @@
 <head>
 <%@ include file="../WEB-INF/layouts/index/head.jspf"%>
 
-<body class="js" style="overflow: hidden;">
-
-	<!-- Preloader -->
-	<div class="preloader">
-		<div class="preloader-inner">
-			<div class="preloader-icon">
-				<span></span> <span></span>
-			</div>
-		</div>
-	</div>
-	<!-- End Preloader -->
+<body class="js">
 
 	<%@ include file="../WEB-INF/layouts/index/header.jspf"%>
 
@@ -91,7 +81,7 @@
 								<div class="tab-single">
 									<div class="row">
 									
-										<% for (Producto producto : productosList) { %>
+										<% for (Producto producto : productosList.values()) { %>
 										<div class="col-xl-3 col-lg-4 col-md-4 col-12">
 											<div class="single-product">
 												<div class="product-img">
@@ -598,6 +588,8 @@
 	<script src="index/assets/js/easing.js"></script>
 	<!-- Active JS -->
 	<script src="index/assets/js/active.js"></script>
+	<!-- Shop -->
+	<script src="index/assets/js/shop.js"></script>
 
 </body>
 </html>

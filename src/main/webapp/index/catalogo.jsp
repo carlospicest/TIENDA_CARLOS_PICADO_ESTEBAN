@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"
-	import="java.util.List, java.util.ArrayList,curso.java.tienda.index.pojo.Categoria, curso.java.tienda.index.pojo.Producto"%>
+	import="java.util.List, java.util.ArrayList, java.util.HashMap, curso.java.tienda.index.pojo.Categoria, curso.java.tienda.index.pojo.Producto"%>
 <%
 ArrayList<Categoria> categoryList = (ArrayList<Categoria>) request.getAttribute("categoryList");
-ArrayList<Producto> productList = (ArrayList<Producto>) request.getAttribute("productList");
+HashMap<Integer, Producto> productList = (HashMap<Integer, Producto>) request.getAttribute("productList");
 %>
 <!DOCTYPE html>
 <html>
@@ -120,7 +120,7 @@ ArrayList<Producto> productList = (ArrayList<Producto>) request.getAttribute("pr
 					<!-- Artículos de la tienda -->
 					<div class="row">
 						<%
-						for (Producto product : productList) {
+						for (Producto product : productList.values()) {
 						%>
 						<div class="col-lg-4 col-md-6 col-12">
 							<div class="single-product">

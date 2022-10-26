@@ -1,32 +1,42 @@
 package curso.java.tienda.index.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import curso.java.tienda.index.pojo.Producto;
-import curso.java.tienda.index.pojo.Usuario;
 import hibernate.HibernateSession;
 
 public class ProductoDAOImpl implements ProductoDAO {
 
 	@Override
-	public ArrayList<Producto> getProductos() {
+	public HashMap<Integer, Producto> getProductos() {
 		
 		SessionFactory sessionFactory = HibernateSession.makeSessionFactory();
 		Session session = sessionFactory.openSession();
 
-		Transaction transaction = session.beginTransaction();
+		session.beginTransaction();
 		Query query = session.createQuery("from productos");
-		ArrayList<Producto> productos = (ArrayList<Producto>) query.list();
+		List<Producto> productos = (ArrayList<Producto>) query.list();
 
 		session.close();
 		sessionFactory.close();
 		
-		return productos;
+		HashMap<Integer, Producto> productoList = new HashMap<>();
+		
+		if (productos != null && !productos.isEmpty()) {
+			
+			for (Producto pedido : productos) {
+				productoList.put(pedido.getId(), pedido);
+			}
+			
+		}
+		
+		return productoList;
 		
 	}
 
@@ -36,7 +46,7 @@ public class ProductoDAOImpl implements ProductoDAO {
 		SessionFactory sessionFactory = HibernateSession.makeSessionFactory();
 		Session session = sessionFactory.openSession();
 
-		Transaction transaction = session.beginTransaction();
+		session.beginTransaction();
 		Query query = session.createQuery("from productos p where p.id = :idProduct");
 		query.setParameter("idProduct", idProduct);
 		Producto producto = (Producto) query.uniqueResult();

@@ -8,32 +8,18 @@ import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import curso.java.tienda.index.dao.ProductoDAOImpl;
-import curso.java.tienda.index.pojo.DetalleCarrito;
+import curso.java.tienda.index.pojo.DetallePedido;
 import curso.java.tienda.index.pojo.Producto;
 
 public class CarritoService {
 
-	public static String getCartInfo(HashMap<Integer, DetalleCarrito> cart) {
-
-		ObjectMapper mapper = new ObjectMapper();
-		ObjectNode cartInformation = mapper.createObjectNode();
-
-		// Primero obtenemos la cantidad de productos del carrito.
-
-		cartInformation.put("totalProducts", getStackCountDetalleCarrito(cart));
-		cartInformation.put("totalAmmount", getCartInfo(cart));
-
-		try {
-			return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(cartInformation);
-		} catch (JsonProcessingException e) {
-			System.err.println(e.getMessage());
-		}
-
-		return null;
-
+	public static String getProductCart(HashMap<Integer, DetallePedido> cartList) {
+		
+		return getJSONCartInfo(cartList);
+		
 	}
-
-	public static String addProductCartSession(int idProd, int stack, HashMap<Integer, DetalleCarrito> cartList) {
+	
+	public static String addProductCart(int idProd, int stack, HashMap<Integer, DetallePedido> cartList) {
 
 		ObjectMapper mapper = new ObjectMapper();
 		ObjectNode addCartInformation = mapper.createObjectNode();
@@ -44,7 +30,7 @@ public class CarritoService {
 
 			// Comprobamos si el producto ya ha sido agregado al carrito.
 
-			DetalleCarrito cartDetail = cartList.get(idProd);
+			DetallePedido cartDetail = cartList.get(idProd);
 
 			if (cartDetail != null) {
 
@@ -56,13 +42,11 @@ public class CarritoService {
 
 				cartDetail.setUnidades(stackAux);
 
-				addCartInformation.put("result", true);
-
 			} else {
 
 				// No existe, lo agregamos.
 
-				cartDetail = new DetalleCarrito();
+				cartDetail = new DetallePedido();
 
 				cartDetail.setProducto(product);
 				cartDetail.setUnidades(stack);
@@ -71,37 +55,43 @@ public class CarritoService {
 
 				cartList.put(product.getId(), cartDetail);
 
-				addCartInformation.put("result", true);
-
 			}
 
 		}
 
-		// Agregar por último un sumario con los artículos, cantidad, precio de cada
-		// detalleCarrito.
+		return getJSONCartInfo(cartList);
+		
+	}
 
-		ArrayNode productCartList = mapper.createArrayNode();
+	private static String getJSONCartInfo(HashMap<Integer, DetallePedido> cart) {
 
-		for (DetalleCarrito detail : cartList.values()) {
-			productCartList.addPOJO(detail);
-		}
-
-		addCartInformation.set("products", productCartList);
+		ObjectMapper mapper = new ObjectMapper();
+		ObjectNode cartInformation = mapper.createObjectNode();
 
 		// Extraemos el número de productos en total del carrito.
 
-		int totalProduct = getStackCountDetalleCarrito(cartList);
+		int totalProduct = getStackCountDetalleCarrito(cart);
 
-		addCartInformation.put("totalProduct", totalProduct);
+		cartInformation.put("totalProduct", totalProduct);
+
+		// Agregamos los productos que existen en el carrito.
+		
+		ArrayNode productCartList = mapper.createArrayNode();
+
+		for (DetallePedido detail : cart.values()) {
+			productCartList.addPOJO(detail);
+		}
+
+		cartInformation.set("products", productCartList);
 
 		// Extraemos el precio total de los artículos del carrito.
 
-		double totalAmmount = getTotalStackAmmountDetalleCarrito(cartList);
+		double totalAmmount = getTotalStackAmmountDetalleCarrito(cart);
 
-		addCartInformation.put("totalAmmount", totalAmmount);
+		cartInformation.put("totalAmmount", totalAmmount);
 
 		try {
-			return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(addCartInformation);
+			return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(cartInformation);
 		} catch (JsonProcessingException e) {
 			// Traza
 			return null;
@@ -109,25 +99,29 @@ public class CarritoService {
 
 	}
 
-	public static double getTotalStackAmmountDetalleCarrito(HashMap<Integer, DetalleCarrito> cart) {
+	private static double getTotalStackAmmountDetalleCarrito(HashMap<Integer, DetallePedido> cart) {
 
 		double totalAmmount = 0;
 
-		for (DetalleCarrito product : cart.values()) {
-			totalAmmount += (product.getPrecio_unidad() * product.getUnidades());
+		if (cart != null && !cart.isEmpty()) {
+
+			for (DetallePedido product : cart.values()) {
+				totalAmmount += (product.getPrecio_unidad() * product.getUnidades());
+			}
+
 		}
 
 		return totalAmmount;
 
 	}
 
-	public static int getStackCountDetalleCarrito(HashMap<Integer, DetalleCarrito> cart) {
+	private static int getStackCountDetalleCarrito(HashMap<Integer, DetallePedido> cart) {
 
 		int totalProducts = 0;
 
-		if (cart != null) {
+		if (cart != null && !cart.isEmpty()) {
 
-			for (DetalleCarrito product : cart.values()) {
+			for (DetallePedido product : cart.values()) {
 				totalProducts += product.getUnidades();
 			}
 

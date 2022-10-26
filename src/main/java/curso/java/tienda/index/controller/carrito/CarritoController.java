@@ -1,6 +1,7 @@
 package curso.java.tienda.index.controller.carrito;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 
 import javax.servlet.ServletException;
@@ -9,8 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import curso.java.tienda.index.pojo.DetalleCarrito;
-import curso.java.tienda.index.pojo.Usuario;
+import curso.java.tienda.index.pojo.DetallePedido;
+import curso.java.tienda.index.service.CarritoService;
 
 /**
  * Servlet implementation class CarritoController
@@ -32,17 +33,15 @@ public class CarritoController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		// Primero comprobamos si el usuario está logueado, si es así el carrito pasa a persistir en BD.
+		HashMap<Integer, DetallePedido> cart = (HashMap<Integer, DetallePedido>) request.getSession().getAttribute("cart");
 		
-		Usuario user;
+		String jsonResponse = CarritoService.getProductCart(cart);
 		
-		if ((user = (Usuario) request.getSession().getAttribute("userdata")) == null) {
-			
-			// Carrito en sesión (El usuario no ha iniciado sesión).
-			
-			HashMap<Integer, DetalleCarrito> cart = (HashMap<Integer, DetalleCarrito>) request.getSession().getAttribute("cart");
-			
-		}
+		PrintWriter out = response.getWriter();
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		out.print(jsonResponse);
+		out.flush();
 		
 	}
 

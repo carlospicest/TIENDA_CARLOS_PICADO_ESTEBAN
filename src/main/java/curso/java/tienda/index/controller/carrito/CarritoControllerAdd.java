@@ -10,8 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import curso.java.tienda.index.pojo.DetalleCarrito;
-import curso.java.tienda.index.pojo.Usuario;
+import curso.java.tienda.index.pojo.DetallePedido;
 import curso.java.tienda.index.service.CarritoService;
 
 /**
@@ -41,9 +40,9 @@ public class CarritoControllerAdd extends HttpServlet {
 		Integer idProduct = Integer.parseInt(request.getParameter("idProduct"));
 		Integer stack = Integer.parseInt(request.getParameter("stack"));
 
-		HashMap<Integer, DetalleCarrito> cartList = (HashMap<Integer, DetalleCarrito>) request.getAttribute("cart");
+		HashMap<Integer, DetallePedido> cartList = (HashMap<Integer, DetallePedido>) request.getSession().getAttribute("cart");
 		
-		String jsonResponse = CarritoService.addProductCartSession(idProduct, stack, cartList);
+		String jsonResponse = CarritoService.addProductCart(idProduct, stack, cartList);
 		
 		PrintWriter out = response.getWriter();
 		response.setContentType("application/json");

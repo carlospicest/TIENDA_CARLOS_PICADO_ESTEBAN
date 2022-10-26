@@ -1,7 +1,6 @@
 package curso.java.tienda.index.controller;
 
 import java.io.IOException;
-import java.util.HashMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,10 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import curso.java.tienda.index.dao.CarritoDAOImpl;
-import curso.java.tienda.index.dao.DetalleCarritoDAOImpl;
-import curso.java.tienda.index.pojo.Carrito;
-import curso.java.tienda.index.pojo.DetalleCarrito;
 import curso.java.tienda.index.pojo.Usuario;
 import curso.java.tienda.index.service.LoginService;
 import mapping.WebPath;

@@ -38,7 +38,7 @@ public class Producto {
 	@Column(name = "stock")
 	private int stock;
 	@Column(name = "impuesto")
-	private float impuesto;
+	private double impuesto;
 	@Column(name = "imagen")
 	private String imagen;
 	@Column(name = "baja", columnDefinition = "TINYINT", nullable = true)
