@@ -149,7 +149,7 @@
 	<script src="index/assets/js/easing.js"></script>
 	<!-- Active JS -->
 	<script src="index/assets/js/active.js"></script>
-	<!-- Login settings -->
+	<!-- Common settings -->
 	<script src="index/assets/js/common-settings.js"></script>
 	<!-- Shop -->
 	<script src="index/assets/js/shop.js"></script>

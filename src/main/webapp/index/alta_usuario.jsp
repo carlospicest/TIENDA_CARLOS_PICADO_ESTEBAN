@@ -168,7 +168,7 @@
 	<!-- End Shop Newsletter -->
 	<!-- Modal end -->
 
-	<%@ include file="../../WEB-INF/layouts/footer.jspf" %>
+	<%@ include file="../WEB-INF/layouts/footer.jspf"%>
 
 	<!-- Jquery -->
 	<script src="index/assets/js/jquery.min.js"></script>
@@ -189,7 +189,7 @@
 	<!-- Countdown JS -->
 	<script src="index/assets/js/finalcountdown.min.js"></script>
 	<!-- Nice Select JS -->
-	<!-- <script src="index/assets/js/nicesellect.js"></script> -->
+	<script src="index/assets/js/nicesellect.js"></script>
 	<!-- Flex Slider JS -->
 	<script src="index/assets/js/flex-slider.js"></script>
 	<!-- ScrollUp JS -->
@@ -199,7 +199,11 @@
 	<!-- Easing JS -->
 	<script src="index/assets/js/easing.js"></script>
 	<!-- Active JS -->
-	<!-- <script src="index/assets/js/active.js"></script> -->
+	<script src="index/assets/js/active.js"></script>
+	<!-- Common settings -->
+	<script src="index/assets/js/common-settings.js"></script>
+	<!-- Shop -->
+	<script src="index/assets/js/shop.js"></script>
 
 </body>
 </html>
