@@ -52,7 +52,7 @@ function refreshProductCart(data) {
 	data.products.forEach(product => {
 		
 		cartListElement.append('<li>' +
-									'<a href="#" class="remove" title="Remove this item">' +
+									'<a href="#" class="remove" title="Eliminar artículo">' +
 										'<i class="fa fa-remove"></i>' +
 									'</a> <a class="cart-img" href="#">' +
 										'<img src="https://via.placeholder.com/70x70" alt="#"></a>' +

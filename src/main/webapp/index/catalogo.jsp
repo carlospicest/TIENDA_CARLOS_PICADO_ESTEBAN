@@ -8,12 +8,11 @@ HashMap<Integer, Producto> productList = (HashMap<Integer, Producto>) request.ge
 <!DOCTYPE html>
 <html>
 <head>
-<%@ include file="../WEB-INF/layouts/index/head.jspf"%>
+<%@ include file="../WEB-INF/layouts/head.jspf"%>
 </head>
 <body>
 
-	<%@ include
-		file="../WEB-INF/layouts/index/header_without_category.jspf"%>
+	<%@ include file="../WEB-INF/layouts/header.jspf"%>
 
 	<!-- Breadcrumbs -->
 	<div class="breadcrumbs">
@@ -319,7 +318,7 @@ HashMap<Integer, Producto> productList = (HashMap<Integer, Producto>) request.ge
 	</div>
 	<!-- Modal end -->
 
-	<%@ include file="../WEB-INF/layouts/index/footer.jspf"%>
+	<%@ include file="../WEB-INF/layouts/footer.jspf"%>
 
 	<!-- Jquery -->
 	<script src="index/assets/js/jquery.min.js"></script>

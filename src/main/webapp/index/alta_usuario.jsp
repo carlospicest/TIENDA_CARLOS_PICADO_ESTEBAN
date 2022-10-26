@@ -6,12 +6,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%@ include file="../../WEB-INF/layouts/index/head.jspf"%>
+<%@ include file="../../WEB-INF/layouts/head.jspf" %>
 </head>
 <body class="js">
 
 	<%@ include
-		file="../../WEB-INF/layouts/index/header_without_category.jspf"%>
+		file="../../WEB-INF/layouts/header.jspf" %>
 
 	<!-- Breadcrumbs -->
 	<div class="breadcrumbs">
@@ -168,7 +168,7 @@
 	<!-- End Shop Newsletter -->
 	<!-- Modal end -->
 
-	<%@ include file="../../WEB-INF/layouts/index/footer.jspf"%>
+	<%@ include file="../../WEB-INF/layouts/footer.jspf" %>
 
 	<!-- Jquery -->
 	<script src="index/assets/js/jquery.min.js"></script>

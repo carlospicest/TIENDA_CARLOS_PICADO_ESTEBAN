@@ -10,12 +10,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%@ include file="../../WEB-INF/layouts/resultado/head.jspf"%>
+<%@ include file="../../WEB-INF/layouts/head.jspf"%>
 </head>
 <body class="js">
 
-	<%@ include
-		file="../../WEB-INF/layouts/resultado/header_without_category.jspf"%>
+	<%@ include file="../../WEB-INF/layouts/header.jspf"%>
 
 	<!-- Breadcrumbs -->
 	<div class="breadcrumbs">
@@ -118,7 +117,7 @@
 	<!-- End Shop Newsletter -->
 	<!-- Modal end -->
 
-	<%@ include file="../../WEB-INF/layouts/resultado/footer.jspf"%>
+	<%@ include file="../../WEB-INF/layouts/footer.jspf"%>
 
 	<!-- Jquery -->
 	<script src="index/assets/js/jquery.min.js"></script>
@@ -150,6 +149,10 @@
 	<script src="index/assets/js/easing.js"></script>
 	<!-- Active JS -->
 	<script src="index/assets/js/active.js"></script>
+	<!-- Login settings -->
+	<script src="index/assets/js/common-settings.js"></script>
+	<!-- Shop -->
+	<script src="index/assets/js/shop.js"></script>
 
 </body>
 </html>

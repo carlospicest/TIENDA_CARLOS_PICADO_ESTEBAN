@@ -8,11 +8,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%@ include file="../WEB-INF/layouts/index/head.jspf"%>
+<%@ include file="../WEB-INF/layouts/head.jspf"%>
 
 <body class="js">
 
-	<%@ include file="../WEB-INF/layouts/index/header.jspf"%>
+	<%@ include file="../WEB-INF/layouts/header.jspf"%>
 
 	<!-- Slider Area -->
 	<section class="hero-slider">
@@ -556,7 +556,7 @@
 	</div>
 	<!-- Modal end -->
 
-	<%@ include file="../WEB-INF/layouts/index/footer.jspf"%>
+	<%@ include file="../WEB-INF/layouts/footer.jspf"%>
 
 	<!-- Jquery -->
 	<script src="index/assets/js/jquery.min.js"></script>
