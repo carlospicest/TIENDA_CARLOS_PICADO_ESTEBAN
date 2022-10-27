@@ -1,15 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"
-	import="java.util.List, java.util.HashMap, curso.java.tienda.index.pojo.Categoria,curso.java.tienda.index.dao.CategoriaDAOImpl,curso.java.tienda.index.pojo.Producto, curso.java.tienda.index.dao.ProductoDAOImpl" %>
+	import="java.util.List, java.util.HashMap, curso.java.tienda.index.pojo.Categoria,curso.java.tienda.index.dao.CategoriaDAOImpl,curso.java.tienda.index.pojo.Producto, curso.java.tienda.index.dao.ProductoDAOImpl"%>
 <%
-	HashMap<Integer, Producto> productosList = (HashMap<Integer, Producto>) request.getAttribute("productosList");
+HashMap<Integer, Producto> productosList = (HashMap<Integer, Producto>) request.getAttribute("productosList");
 %>
 
 <!DOCTYPE html>
 <html>
 <head>
 <%@ include file="../WEB-INF/layouts/head.jspf"%>
-
 <body class="js">
 
 	<%@ include file="../WEB-INF/layouts/header.jspf"%>
@@ -77,11 +76,14 @@
 
 							<!-- Start Variado Tab -->
 
-							<div class="tab-pane fade show active" id="variado" role="tabpanel">
+							<div class="tab-pane fade show active" id="variado"
+								role="tabpanel">
 								<div class="tab-single">
 									<div class="row">
-									
-										<% for (Producto producto : productosList.values()) { %>
+
+										<%
+										for (Producto producto : productosList.values()) {
+										%>
 										<div class="col-xl-3 col-lg-4 col-md-4 col-12">
 											<div class="single-product">
 												<div class="product-img">
@@ -93,28 +95,32 @@
 													</a>
 													<div class="button-head">
 														<div class="product-action">
-															<a id="<%= producto.getId() %>" class="product_modal"
-																title="Quick View" href="#"><i class=" ti-eye"></i><span>Ver información</span></a> <a title="Wishlist" href="#"><i
+															<a id="<%=producto.getId()%>" class="product_modal"
+																title="Quick View" href="#" data-toggle="modal"
+																data-target="#exampleModal"><i class=" ti-eye"></i><span>Ver
+																	información</span></a> <a title="Wishlist" href="#"><i
 																class=" ti-heart "></i><span>Add to Wishlist</span></a> <a
 																title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add
 																	to Compare</span></a>
 														</div>
 														<div class="product-action-2">
-															<a title="Add to cart" href="#">Añadir al carrito</a>
+															<a title="Add to cart" id="<%= producto.getId() %>" class="addCart" href="#">Añadir al carrito</a>
 														</div>
 													</div>
 												</div>
 												<div class="product-content">
 													<h3>
-														<a href="product-details.html"><%= producto.getNombre() %></a>
+														<a href="product-details.html"><%=producto.getNombre()%></a>
 													</h3>
 													<div class="product-price">
-														<span><%= producto.getPrecio() %></span>
+														<span><%=producto.getPrecio()%></span>
 													</div>
 												</div>
 											</div>
 										</div>
-										<% } %>
+										<%
+										}
+										%>
 									</div>
 								</div>
 							</div>
@@ -430,10 +436,10 @@
 		</div>
 	</section>
 	<!-- End Shop Newsletter -->
-	
-	<%@ include file="../WEB-INF/layouts/modal_product.jspf" %>
 
-	<%@ include file="../WEB-INF/layouts/footer.jspf" %>
+	<%@ include file="../WEB-INF/layouts/modal_product.jspf"%>
+
+	<%@ include file="../WEB-INF/layouts/footer.jspf"%>
 
 	<!-- Jquery -->
 	<script src="index/assets/js/jquery.min.js"></script>

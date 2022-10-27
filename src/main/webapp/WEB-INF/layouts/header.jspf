@@ -127,7 +127,7 @@ Usuario user = (Usuario) request.getSession().getAttribute("userdata");
 								<div class="shopping-item">
 									<div class="dropdown-cart-header">
 										<span class="shopping-articles">{TOTAL_PRODUCTS}</span> <span>artículos</span>
-										<a href="#">Ver Carrito</a>
+										<a href="carrito">Ver Carrito</a>
 									</div>
 									<ul class="shopping-list">
 

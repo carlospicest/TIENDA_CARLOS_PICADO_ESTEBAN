@@ -99,7 +99,7 @@
 									</ul>
 									<div class="button5">
 										<a href="#" class="btn">Realizar pago</a> 
-										<a href="#" class="btn">Continuar comprando</a>
+										<a href="catalogo" class="btn">Continuar comprando</a>
 									</div>
 								</div>
 							</div>

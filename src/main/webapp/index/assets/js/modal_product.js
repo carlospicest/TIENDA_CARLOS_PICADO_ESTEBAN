@@ -29,9 +29,9 @@ $(function() {
 
 	// Eventos para los botones de sumar, restar y el input de cantidad.
 	
-	const minusButton = $('#modalMinusBtn');
-	const plusButton = $('#modalPlusBtn');
-	const stackInput = $('#modalStackProduct');
+	const minusButton = $('#modalProductMinus');
+	const plusButton = $('#modalProductPlus');
+	const stackInput = $('#modalProductStack');
 	const addCartButton = $('#modalAddCart');
 
 	minusButton.click(() => {
@@ -62,7 +62,8 @@ $(function() {
 
 	addCartButton.click(() => {
 
-		// Obtenemos número de unidades.
+		// Obtenemos número de unidades y el id del producto.
+		
 		const idProduct = addCartButton.prop('value');
 		const stack = stackInput.val();
 		
@@ -101,6 +102,6 @@ function showProductInformation(productData) {
 
 	// Mostramos el formulario.
 
-	$('#exampleModal').modal('show');
+	//$('#exampleModal').modal('show');
 
 }

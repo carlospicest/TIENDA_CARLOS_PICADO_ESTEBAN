@@ -1,13 +1,17 @@
 $(function() {
 
+	$('.addCart').click(function() {
+		const idProduct = $(this).attr('id');
+		addSimpleProductCart(idProduct, 1);
+		return false; // Evita que al pulsar el enlace, la página se desplaze hasta el principio.`
+	});
+
+
 	// Asignamos evento al botón de Agregar carrito (Del catálogo).
 
 	$("input[name='addCart']").click(function() {
-
 		const idProduct = $(this).attr('id');
-
 		addSimpleProductCart(idProduct, 1);
-
 	});
 
 	// Obtenemos la información de los productos del carrito.
