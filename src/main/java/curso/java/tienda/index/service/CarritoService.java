@@ -13,17 +13,32 @@ import curso.java.tienda.index.pojo.Producto;
 
 public class CarritoService {
 
-	public static String getProductCart(HashMap<Integer, DetallePedido> cartList) {
-		
-		return getJSONCartInfo(cartList);
-		
+	public static enum MODE {
+
+		MINUS("MINUS"), PLUS("PLUS"), MASIVE("MASIVE");
+
+		private final String url;
+
+		MODE(final String url) {
+			this.url = url;
+		}
+
+		@Override
+		public String toString() {
+			return url;
+		}
+
 	}
-	
-	public static String addProductCart(int idProd, int stack, HashMap<Integer, DetallePedido> cartList) {
 
-		ObjectMapper mapper = new ObjectMapper();
-		ObjectNode addCartInformation = mapper.createObjectNode();
+	public static String getProductCart(HashMap<Integer, DetallePedido> cartList) {
 
+		return getJSONCompleteCartInfo(cartList);
+
+	}
+
+	public static String updateProductCart(int idProd, int stack, MODE mode, HashMap<Integer, DetallePedido> cartList) {
+
+		String resultJSON = null;
 		Producto product = new ProductoDAOImpl().getProducto(idProd);
 
 		if (product != null) {
@@ -34,36 +49,59 @@ public class CarritoService {
 
 			if (cartDetail != null) {
 
-				// Ya existe el producto, le incrementamos las unidades.
+				// Ya existe el producto, modificamos unidades.
 
-				int stackAux = cartDetail.getUnidades();
+				switch (mode) {
 
-				stackAux += stack;
+					case MINUS:
+						
+						setMinusDetallePedido(cartDetail);
+						break;
+	
+					case PLUS:
+	
+						setPlusDetallePedido(cartDetail);
+						break;
+	
+					case MASIVE:
+	
+						setMasiveDetallePedido(cartDetail, stack);
+						break;
 
-				cartDetail.setUnidades(stackAux);
+				}
+
+				cartDetail.setTotal(cartDetail.getUnidades() * cartDetail.getPrecio_unidad());
 
 			} else {
 
 				// No existe, lo agregamos.
 
 				cartDetail = new DetallePedido();
-
 				cartDetail.setProducto(product);
 				cartDetail.setUnidades(stack);
+				cartDetail.setTotal(stack * cartDetail.getPrecio_unidad());
 				cartDetail.setPrecio_unidad(product.getPrecio());
 				cartDetail.setImpuesto(product.getImpuesto());
 
 				cartList.put(product.getId(), cartDetail);
 
 			}
+			
+			try {
+				ObjectMapper mapper = new ObjectMapper();
+				resultJSON = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(cartDetail);
+			} catch (JsonProcessingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
 		}
-
-		return getJSONCartInfo(cartList);
 		
+		return resultJSON;
+
 	}
 
-	private static String getJSONCartInfo(HashMap<Integer, DetallePedido> cart) {
+	public static String getJSONCompleteCartInfo(HashMap<Integer, DetallePedido> cart) {
 
 		ObjectMapper mapper = new ObjectMapper();
 		ObjectNode cartInformation = mapper.createObjectNode();
@@ -75,7 +113,7 @@ public class CarritoService {
 		cartInformation.put("totalProduct", totalProduct);
 
 		// Agregamos los productos que existen en el carrito.
-		
+
 		ArrayNode productCartList = mapper.createArrayNode();
 
 		for (DetallePedido detail : cart.values()) {
@@ -128,6 +166,32 @@ public class CarritoService {
 		}
 
 		return totalProducts;
+
+	}
+
+	private static void setMinusDetallePedido(DetallePedido detallePedido) {
+
+		int stack = detallePedido.getUnidades();
+
+		if (stack > 1) {
+			detallePedido.setUnidades(stack - 1);
+		}
+
+	}
+
+	private static void setPlusDetallePedido(DetallePedido detallePedido) {
+
+		int stack = detallePedido.getUnidades();
+
+		detallePedido.setUnidades(stack + 1);
+
+	}
+
+	private static void setMasiveDetallePedido(DetallePedido detallePedido, int stack) {
+
+		if (stack >= 1) {
+			detallePedido.setUnidades(stack);
+		}
 
 	}
 

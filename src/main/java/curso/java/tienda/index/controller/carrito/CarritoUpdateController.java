@@ -16,14 +16,15 @@ import curso.java.tienda.index.service.CarritoService;
 /**
  * Servlet implementation class CarritoControllerAdd
  */
-@WebServlet("/carrito_add")
-public class CarritoControllerAdd extends HttpServlet {
+@WebServlet("/carrito_rsc")
+public class CarritoUpdateController extends HttpServlet {
+
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public CarritoControllerAdd() {
+	public CarritoUpdateController() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -35,15 +36,11 @@ public class CarritoControllerAdd extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		// Recogemos los datos sobre el id del producto y las unidades.
-		
-		Integer idProduct = Integer.parseInt(request.getParameter("idProduct"));
-		Integer stack = Integer.parseInt(request.getParameter("stack"));
+		HashMap<Integer, DetallePedido> cartList = (HashMap<Integer, DetallePedido>) request.getSession()
+				.getAttribute("cart");
 
-		HashMap<Integer, DetallePedido> cartList = (HashMap<Integer, DetallePedido>) request.getSession().getAttribute("cart");
-		
-		String jsonResponse = CarritoService.addProductCart(idProduct, stack, cartList);
-		
+		String jsonResponse = CarritoService.getJSONCompleteCartInfo(cartList);
+
 		PrintWriter out = response.getWriter();
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
@@ -58,8 +55,24 @@ public class CarritoControllerAdd extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+
+		// Recogemos los datos sobre el id del producto y las unidades.
+
+		Integer idProduct = Integer.parseInt(request.getParameter("idProduct"));
+		Integer stack = Integer.parseInt(request.getParameter("stack"));
+		CarritoService.MODE mode = CarritoService.MODE.valueOf(request.getParameter("mode"));
+
+		HashMap<Integer, DetallePedido> cartList = (HashMap<Integer, DetallePedido>) request.getSession()
+				.getAttribute("cart");
+
+		String jsonResponse = CarritoService.updateProductCart(idProduct, stack, mode, cartList);
+
+		PrintWriter out = response.getWriter();
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		out.print(jsonResponse);
+		out.flush();
+
 	}
 
 }

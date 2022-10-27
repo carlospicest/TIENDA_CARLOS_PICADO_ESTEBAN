@@ -17,13 +17,13 @@ import curso.java.tienda.index.service.CarritoService;
  * Servlet implementation class CarritoController
  */
 @WebServlet("/carrito_show")
-public class CarritoControllerShow extends HttpServlet {
+public class CarritoShowController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CarritoControllerShow() {
+    public CarritoShowController() {
         super();
         // TODO Auto-generated constructor stub
     }

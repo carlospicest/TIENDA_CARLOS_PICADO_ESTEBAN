@@ -75,13 +75,13 @@
 						<div class="row">
 							<div class="col-lg-8 col-md-5 col-12">
 								<div class="left">
-									<div class="coupon">
+									<div class="coupon d-none">
 										<form action="#" target="_blank">
 											<input name="Coupon" placeholder="Enter Your Coupon">
 											<button class="btn">Apply</button>
 										</form>
 									</div>
-									<div class="checkbox">
+									<div class="checkbox d-none">
 										<label class="checkbox-inline" for="2"><input
 											name="news" id="2" type="checkbox"> Shipping (+10$)</label>
 									</div>
@@ -90,14 +90,16 @@
 							<div class="col-lg-4 col-md-7 col-12">
 								<div class="right">
 									<ul>
-										<li>Cart Subtotal<span>$330.00</span></li>
-										<li>Shipping<span>Free</span></li>
-										<li>You Save<span>$20.00</span></li>
-										<li class="last">You Pay<span>$310.00</span></li>
+										<li>Importe total
+											<span id="cart_resume_total_amount"></span>
+										</li>
+										<li class="d-none">Shipping<span>Free</span></li>
+										<li class="d-none">You Save<span>$20.00</span></li>
+										<li class="last d-none">You Pay<span>$310.00</span></li>
 									</ul>
 									<div class="button5">
-										<a href="#" class="btn">Checkout</a> <a href="#" class="btn">Continue
-											shopping</a>
+										<a href="#" class="btn">Realizar pago</a> 
+										<a href="#" class="btn">Continuar comprando</a>
 									</div>
 								</div>
 							</div>
