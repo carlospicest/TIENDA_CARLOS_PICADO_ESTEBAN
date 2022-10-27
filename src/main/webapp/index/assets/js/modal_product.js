@@ -4,65 +4,103 @@ $(function() {
 
 	const buttonList = $('a[class="product_modal"]');
 
-	//buttonList.forEach(element => console.log('Mostrando info del producto => ', element.attr("id")));
+	for (let button of buttonList) {
 
+		$(button).click(() => {
 
-	Object.values(buttonList).forEach((e) => {
+			const idProduct = $(button).attr('id');
 
-		let element = $(e);
-		let idProduct = null;
+			$.ajax({
+				url: 'producto_show',
+				type: 'GET',
+				data: {
+					idProduct: idProduct,
+				},
+				success: (data) => {
 
-		if ((idProduct = $(element).prop("id")) !== undefined) {
+					showProductInformation(data);
 
-			// Establecemos evento para abrir el modal con la información del producto.
-
-			$(element).click(() => {
-
-				$.ajax({
-
-					url: 'producto_show',
-					type: 'GET',
-					data: {
-						idProduct: parseInt(idProduct),
-					},
-					success: (data) => {
-
-						console.log('Showing in modal => ', data);
-
-					}
-
-				});
-
-				$("#exampleModal").modal('show');
-
-				return false; // Anulamos la acción del a href
-
+				}
 			});
+
+		});
+
+	}
+
+	// Eventos para los botones de sumar, restar y el input de cantidad.
+	
+	const minusButton = $('#modalMinusBtn');
+	const plusButton = $('#modalPlusBtn');
+	const stackInput = $('#modalStackProduct');
+	const addCartButton = $('#modalAddCart');
+
+	minusButton.click(() => {
+
+		let currentQuantity = parseInt(stackInput.val());
+
+		if (currentQuantity > 1) {
+
+			currentQuantity--;
+
+			stackInput.val(currentQuantity);
 
 		}
 
 	});
+
+	plusButton.click(() => {
+
+		let currentQuantity = parseInt(stackInput.val());
+
+		currentQuantity++;
+
+		stackInput.val(currentQuantity);
+
+	});
+
+	// Evento para el botón de agregar al carrito.
+
+	addCartButton.click(() => {
+
+		// Obtenemos número de unidades.
+		const idProduct = addCartButton.prop('value');
+		const stack = stackInput.val();
+		
+		addSimpleProductCart(idProduct, stack);
+		
+		$('#exampleModal').modal('hide');
+
+	});
+
 
 });
 
 
 
-function showProductInformation(idProduct) {
+function showProductInformation(productData) {
 
-	$.ajax({
+	console.log(productData);
 
-		url: 'producto_show',
-		type: 'GET',
-		data: {
-			idProduct: parseInt(idProduct),
-		},
-		success: (data) => {
+	// Cargamos la información del producto dentro del modal.
 
-			console.log('Showing in modal => ', data);
+	const productName = $('#productName');
+	const productValorations = $('#productValorations');
+	const productStock = $('#productStock');
+	const productPrice = $('#productPrice');
+	const productDescription = $('#productDescription');
+	const addCartButton = $('#modalAddCart');
+	addCartButton.attr('value', productData.id);
+	
+	// Establecer los valores.
 
-		}
+	productName.html(productData.nombre);
+	productValorations.html(0);
+	productStock.html('available');
+	productPrice.html(productData.precio + " €");
+	productDescription.html(productData.descripcion);
 
-	});
+	// Mostramos el formulario.
 
+	$('#exampleModal').modal('show');
 
 }

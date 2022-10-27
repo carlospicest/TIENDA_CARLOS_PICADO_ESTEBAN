@@ -34,7 +34,7 @@ public class ProductoControllerShow extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		Integer productId = Integer.parseInt(request.getParameter("productId"));
+		Integer productId = Integer.parseInt(request.getParameter("idProduct"));
 		
 		Producto product = new ProductoDAOImpl().getProducto(productId);
 		
