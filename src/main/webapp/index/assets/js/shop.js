@@ -88,7 +88,7 @@ function fillIncludedCart(data) {
 
 	if (data !== null) {
 
-		console.log(data);
+		console.log('fillIncludedCart => ', data);
 
 		const includedCartElement = $('div[class="sinlge-bar shopping"]');
 
@@ -141,9 +141,18 @@ function fillIncludedCart(data) {
 
 			// Si nos encontramos en la vista carrito, actualizar el importe total de la tabla.
 
+			const cartTable = $('table, .table shopping-summery');
 			const cartResumeTotalAmount = $('#cart_resume_total_amount');
 
-			if (cartResumeTotalAmount.length === 1) {
+			if (cartTable.length === 1) {
+				
+				// Comprobamos el número de artículos.
+				
+				if (data.products.length === 0) {
+					showNoProductsCartTableMsg();
+				}
+				
+				// Estamos en la vista de la tabla carrito, incluimos la información.
 				cartResumeTotalAmount.html(includedCart.totalAmmount);
 			}
 
@@ -205,7 +214,7 @@ function fillCartTable(data) {
 		emptyHtml(cartTableBody);
 
 		// Comenzamos a rellenar la tabla con la información de los productos.
-
+		
 		data.products.forEach(product => {
 			addRowProductCartTable(product);
 		});
@@ -216,6 +225,23 @@ function fillCartTable(data) {
 		totalAmmount.html(data.totalAmmount + ' €');
 
 	}
+
+}
+
+/* 
+	Agrega a la tabla del carrito de productos un mensaje cuando
+	no haya ningún producto.
+*/
+
+function showNoProductsCartTableMsg() {
+
+	const cartTableBody = $('.table shopping-summery, tbody');
+
+	cartTableBody.append('<tr>' +
+		'<td colspan="6" class="text-center">' +
+		'<span>No hay productos en el carrito.</span>' +
+		'</td>' +
+		'</tr>');
 
 }
 
@@ -303,7 +329,7 @@ function addRowProductCartTable(product) {
 			let currentQuantity = parseInt(inputQuantity.val());
 
 			updateProductCartTable(idProduct, currentQuantity, 'MASIVE');
-			
+
 		}
 
 	});
@@ -327,8 +353,6 @@ function addRowProductCartTable(product) {
  */
 
 function updateQuantityTable(data) {
-
-	console.log('Actualizado producto => ', data);
 
 	const totalAmmount = $('#totalProductAmount_' + data.producto.id);
 	const quantityInput = $('#product_' + data.producto.id);
@@ -360,8 +384,6 @@ function deleteProductCart(product) {
 			idProduct: parseInt(product)
 		},
 		success: (data) => {
-
-			console.log('Result delete => ', data);
 
 			if (data !== null) {
 				if (data.result === true) {

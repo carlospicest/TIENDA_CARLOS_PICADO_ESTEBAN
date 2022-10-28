@@ -1,0 +1,18 @@
+i {
+	height: 20px;
+	width: 20px;
+	background-repeat: no-repeat; 
+	background-size: 20px 20px;
+}
+
+.at {
+	background-image: url('../images/bs-icons/at.svg');
+}
+
+.pw {
+	background-image: url('../images/bs-icons/eye-fill.svg');
+}
+
+.pw-not {
+	background-image: url('../images/bs-icons/eye-slash-fill.svg');
+}

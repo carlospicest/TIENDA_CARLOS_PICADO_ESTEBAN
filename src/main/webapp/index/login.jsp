@@ -4,13 +4,14 @@
 			com.fasterxml.jackson.databind.JsonNode,mapping.Request"%>
 
 <%
-	String errorLogin = (String) request.getAttribute("errorLogin");
+String errorLogin = (String) request.getAttribute("errorLogin");
 %>
 
 <!DOCTYPE html>
 <html>
 <head>
 <%@ include file="../../WEB-INF/layouts/head.jspf"%>
+<link rel="stylesheet" href="index/assets/css/login.css">
 </head>
 <body class="js">
 
@@ -41,32 +42,51 @@
 					<div class="col-lg-8 col-12">
 						<div class="form-main">
 
+							<div class="form-group"></div>
+
+
 							<div class="title">
 								<h3 class="text-center">Iniciar sesión</h3>
-							</div>				
+							</div>
 
 							<form class="form" method="POST" action="login">
 
 								<div class="row justify-content-center">
-								
+
 									<div class="col-lg-6 col-12">
-									
-									<% if (errorLogin != null) { %>
-									
+
+										<%
+										if (errorLogin != null) {
+										%>
+
 										<div class="alert alert-warning mb-5" role="alert"><%=errorLogin%></div>
-									
-									<% } %>
-									
+
+										<%
+										}
+										%>
+
 										<div class="form-group">
-											<label>Email<span>*</span></label> <input name="email"
-												type="email" placeholder="">
+											<label class="control-label" for="email">Email</label>
+											<div class="input-group">
+												<div class="input-group-addon">
+													<i class="at"></i>
+												</div>
+												<input class="form-control" id="email" name="email"
+													type="text" />
+											</div>
 										</div>
-										
+
 										<div class="form-group">
-											<label>Contraseña<span>*</span></label> <input
-												name="password" type="password" placeholder="">
+											<label class="control-label" for="password">Contraseña</label>
+											<div class="input-group password-data">
+												<div class="input-group-addon">
+													<i class="pw"></i>
+												</div>
+												<input class="form-control" id="password" name="password"
+													type="password" />
+											</div>
 										</div>
-										
+
 									</div>
 
 									<div class="col-12 mt-4">
@@ -153,6 +173,8 @@
 	<script src="index/assets/js/common-settings.js"></script>
 	<!-- Shop -->
 	<script src="index/assets/js/shop.js"></script>
+	<!-- Login -->
+	<script src="index/assets/js/login.js"></script>
 
 </body>
 </html>
