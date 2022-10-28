@@ -88,8 +88,6 @@ function fillIncludedCart(data) {
 
 	if (data !== null) {
 
-		console.log('fillIncludedCart => ', data);
-
 		const includedCartElement = $('div[class="sinlge-bar shopping"]');
 
 		if ($(includedCartElement).length === 1) {
@@ -145,13 +143,7 @@ function fillIncludedCart(data) {
 			const cartResumeTotalAmount = $('#cart_resume_total_amount');
 
 			if (cartTable.length === 1) {
-				
-				// Comprobamos el número de artículos.
-				
-				if (data.products.length === 0) {
-					showNoProductsCartTableMsg();
-				}
-				
+
 				// Estamos en la vista de la tabla carrito, incluimos la información.
 				cartResumeTotalAmount.html(includedCart.totalAmmount);
 			}
@@ -214,10 +206,16 @@ function fillCartTable(data) {
 		emptyHtml(cartTableBody);
 
 		// Comenzamos a rellenar la tabla con la información de los productos.
-		
-		data.products.forEach(product => {
-			addRowProductCartTable(product);
-		});
+
+		if (data.products.length === 0) {
+			showNoProductsCartTableMsg();
+		} else {
+
+			data.products.forEach(product => {
+				addRowProductCartTable(product);
+			});
+
+		}
 
 		// Actualizamos el importe total en el resúmen final.
 
