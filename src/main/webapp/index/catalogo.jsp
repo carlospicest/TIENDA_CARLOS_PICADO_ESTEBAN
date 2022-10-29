@@ -350,7 +350,7 @@ HashMap<Integer, Producto> productList = (HashMap<Integer, Producto>) request.ge
 	<script src="index/assets/js/easing.js"></script>
 	<!-- Active JS -->
 	<script src="index/assets/js/active.js"></script>
-	<!-- Common settings -->
+	<!-- Common Settings JS -->
 	<script src="index/assets/js/common-settings.js"></script>
 	<!-- Shop JS -->
 	<script src="index/assets/js/shop.js"></script>

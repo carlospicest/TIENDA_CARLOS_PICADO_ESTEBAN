@@ -4,28 +4,25 @@
 			com.fasterxml.jackson.databind.JsonNode,mapping.Request"%>
 
 <%
+String resultado = (String) request.getAttribute("resultado");
+ObjectMapper mapper = null;
+JsonNode node = null;
 
-	String resultado = (String) request.getAttribute("resultado");
-	ObjectMapper mapper = null;
-	JsonNode node = null;
-	
-	if (resultado != null) {
-		mapper = new ObjectMapper();
-		node = mapper.readTree(resultado);
-	}
-	
-
+if (resultado != null) {
+	mapper = new ObjectMapper();
+	node = mapper.readTree(resultado);
+}
 %>
 
 
 <!DOCTYPE html>
 <html>
 <head>
-<%@ include file="../../WEB-INF/layouts/head.jspf" %>
+<%@ include file="../../WEB-INF/layouts/head.jspf"%>
 </head>
 <body class="js">
 
-	<%@ include file="../../WEB-INF/layouts/header.jspf" %>
+	<%@ include file="../../WEB-INF/layouts/header.jspf"%>
 
 	<!-- Breadcrumbs -->
 	<div class="breadcrumbs">
@@ -53,19 +50,27 @@
 						<div class="form-main">
 
 
-						<% if (node.get("result").asText().equals(Request.result.SUCCESS.toString())) { %>
+							<%
+							if (node.get("result").asText().equals(Request.result.SUCCESS.toString())) {
+							%>
 
-							<img class="img-fluid mx-auto d-block mb-5" style="width: 256px; height: 256px;"
+							<img class="img-fluid mx-auto d-block mb-5"
+								style="width: 256px; height: 256px;"
 								src="index/assets/images/resultado/check.png">
-								
-						<% } else { %>
-						
-							<img class="img-fluid mx-auto d-block mb-5" style="width: 256px; height: 256px;"
+
+							<%
+							} else {
+							%>
+
+							<img class="img-fluid mx-auto d-block mb-5"
+								style="width: 256px; height: 256px;"
 								src="index/assets/images/resultado/error.png">
 
-						<% } %>
+							<%
+							}
+							%>
 
-						<%= node.get("msg").asText() %>
+							<%=node.get("msg").asText()%>
 
 
 						</div>
@@ -105,7 +110,7 @@
 	<!-- End Shop Newsletter -->
 	<!-- Modal end -->
 
-	<%@ include file="../../WEB-INF/layouts/footer.jspf" %>
+	<%@ include file="../../WEB-INF/layouts/footer.jspf"%>
 
 	<!-- Jquery -->
 	<script src="index/assets/js/jquery.min.js"></script>
@@ -137,6 +142,12 @@
 	<script src="index/assets/js/easing.js"></script>
 	<!-- Active JS -->
 	<script src="index/assets/js/active.js"></script>
+	<!-- Resultado JS -->
+	<script src="index/assets/js/resultado.js"></script>
+	<!-- Common Settings JS -->
+	<script src="index/assets/js/common-settings.js"></script>
+	<!-- Shop JS -->
+	<script src="index/assets/js/shop.js"></script>
 
 </body>
 </html>

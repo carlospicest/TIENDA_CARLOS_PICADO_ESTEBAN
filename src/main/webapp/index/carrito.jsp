@@ -98,7 +98,7 @@
 										<li class="last d-none">You Pay<span>$310.00</span></li>
 									</ul>
 									<div class="button5">
-										<a href="#" class="btn">Realizar pago</a> 
+										<a href="pago" class="btn">Realizar pago</a> 
 										<a href="catalogo" class="btn">Continuar comprando</a>
 									</div>
 								</div>

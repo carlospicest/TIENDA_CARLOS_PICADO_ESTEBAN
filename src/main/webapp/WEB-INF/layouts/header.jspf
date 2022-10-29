@@ -217,7 +217,7 @@ Usuario user = (Usuario) request.getSession().getAttribute("userdata");
 						<div class="col-lg-9 col-12">
 							<div class="menu-area">
 								<!-- Main Menu -->
-								<%@ include file="navbar.jspf" %>
+								<%@ include file="navbar.jspf"%>
 								<!--/ End Main Menu -->
 							</div>
 						</div>

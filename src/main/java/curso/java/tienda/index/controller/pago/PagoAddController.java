@@ -1,4 +1,4 @@
-package curso.java.tienda.index.controller;
+package curso.java.tienda.index.controller.pago;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,19 +7,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import mapping.WebPath;
-
 /**
- * Servlet implementation class LogoutController
+ * Servlet implementation class PagoAddController
  */
-@WebServlet("/logout")
-public class LogoutController extends HttpServlet {
+@WebServlet("/pag")
+public class PagoAddController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LogoutController() {
+    public PagoAddController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,10 +26,8 @@ public class LogoutController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		request.getSession().setAttribute("userdata", null);
-		request.getRequestDispatcher(WebPath.URL.INDEX_CONTROLLER.toString()).forward(request, response);
-		
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**

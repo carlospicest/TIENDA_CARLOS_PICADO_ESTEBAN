@@ -8,10 +8,10 @@ HashMap<Integer, Producto> productosList = (HashMap<Integer, Producto>) request.
 <!DOCTYPE html>
 <html>
 <head>
-<%@ include file="../WEB-INF/layouts/head.jspf"%>
+<%@ include file="../WEB-INF/layouts/head.jspf" %>
 <body class="js">
 
-	<%@ include file="../WEB-INF/layouts/header.jspf"%>
+	<%@ include file="../WEB-INF/layouts/header.jspf" %>
 
 	<!-- Slider Area -->
 	<section class="hero-slider">

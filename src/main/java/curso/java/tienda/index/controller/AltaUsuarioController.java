@@ -12,11 +12,13 @@ import javax.servlet.http.HttpServletResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
+import curso.java.tienda.index.dao.RolDAOImpl;
 import curso.java.tienda.index.dao.UsuarioDAOImpl;
 import curso.java.tienda.index.pojo.Usuario;
 import curso.java.tienda.index.service.AltaUsuarioService;
 import curso.java.tienda.util.DateTime;
 import curso.java.tienda.util.SourceData;
+import datos.RoleData;
 import mapping.Request;
 import mapping.WebPath;
 
@@ -79,38 +81,39 @@ public class AltaUsuarioController extends HttpServlet {
 		usuario.setPassword(request.getParameter("password"));
 		usuario.setEmail(request.getParameter("email"));
 		usuario.setFecha_alta(DateTime.getCurrentTime());
+		usuario.setRol(new RolDAOImpl().getRol(RoleData.rol.CLIENTE.getId()));
 		
 		usuario = AltaUsuarioService.setEncriptacion(usuario);
 				
 		int idUsuario = new UsuarioDAOImpl().addUsuario(usuario);
 		
 		ObjectMapper mapper = new ObjectMapper();
-		ObjectNode altaInformacion = mapper.createObjectNode();
+		ObjectNode altaInformation = mapper.createObjectNode();
 		
 		if (idUsuario > -1) {
 			
-			altaInformacion.put("result", Request.result.SUCCESS.toString());
+			altaInformation.put("result", Request.result.SUCCESS.toString());
 			
 			StringBuilder summaryStr = new StringBuilder();
 			summaryStr.append("<h2 class=\"text-center\">Se ha registrado correctamente</h2>");
 			summaryStr.append("<p class=\"h4 mt-5\">Ahora podrá disfrutar de todas las ventajas de nuestra tienda.</p>");
 			summaryStr.append("<p class=\"h4 mt-5\">Inicie sesión para acceder a todas nuestras ofertas.</p>");
 			
-			altaInformacion.put("msg", summaryStr.toString());
+			altaInformation.put("msg", summaryStr.toString());
 			
 		} else {
 			
-			altaInformacion.put("result", Request.result.ERROR.toString());
+			altaInformation.put("result", Request.result.ERROR.toString());
 			
 			StringBuilder summaryStr = new StringBuilder();
 			summaryStr.append("<h2 class=\"text-center\">Se ha producido un error en el registro</h2>");
 			summaryStr.append("<p class=\"h4 mt-5\">No se ha podido completar la creación de su cuenta, intente en otro momento.</p>");
 			
-			altaInformacion.put("msg", summaryStr.toString());
+			altaInformation.put("msg", summaryStr.toString());
 			
 		}
 		
-		String json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(altaInformacion);
+		String json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(altaInformation);
 		
 		request.setAttribute("resultado", json);
 		request.getRequestDispatcher(WebPath.URL.RESULTADO.toString()).forward(request, response);

@@ -3,7 +3,7 @@ package mapping;
 public interface Request {
 
 	enum result {
-		SUCCESS, ERROR
+		SUCCESS, ERROR, USER_IDENTIFICATION_NEEDED, 
 	}
 
 }
