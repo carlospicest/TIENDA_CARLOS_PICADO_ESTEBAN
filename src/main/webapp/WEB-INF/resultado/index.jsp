@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; UTF-8"
 	pageEncoding="UTF-8"
 	import="com.fasterxml.jackson.databind.ObjectMapper, com.fasterxml.jackson.databind.node.ObjectNode, 
-			com.fasterxml.jackson.databind.JsonNode,mapping.Request"%>
+			com.fasterxml.jackson.databind.JsonNode,mapping.Request" %>
 
 <%
 String resultado = (String) request.getAttribute("resultado");

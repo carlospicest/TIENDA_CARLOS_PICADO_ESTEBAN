@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import curso.java.tienda.index.pojo.Usuario;
+import curso.java.tienda.index.service.UsuarioService;
 import curso.java.tienda.util.SourceData;
 
 /**
@@ -33,6 +35,11 @@ public class UsuarioController extends HttpServlet {
 		
 		ArrayList<String> provinciasList = SourceData.getProvincias();
 		
+		Usuario user = (Usuario) request.getSession().getAttribute("userdata");
+		
+		String userDataJSON = UsuarioService.getUserData(user);
+		
+		request.setAttribute("userDataJSON", userDataJSON);
 		request.setAttribute("provinciasList", provinciasList);
 		request.getRequestDispatcher("index/usuario.jsp").forward(request, response);
 		

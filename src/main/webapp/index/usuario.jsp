@@ -1,8 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; UTF-8"
 	pageEncoding="UTF-8"
-	import="curso.java.tienda.index.pojo.Usuario, java.util.List, java.util.ArrayList" %>
+	import="com.fasterxml.jackson.databind.ObjectMapper, com.fasterxml.jackson.databind.node.ObjectNode, 
+			com.fasterxml.jackson.databind.JsonNode,mapping.Request, java.util.List, java.util.ArrayList,
+			curso.java.tienda.index.pojo.Usuario, curso.java.tienda.index.pojo.Rol" %>
 <% 
-	ArrayList<String> provinciasList = (ArrayList<String>) request.getAttribute("provinciasList");
+ArrayList<String> provinciasList = (ArrayList<String>) request.getAttribute("provinciasList");
 %>
 <!DOCTYPE html>
 <html>
@@ -27,37 +29,31 @@
 								<h3 class="text-left">Perfil de usuario</h3>
 							</div>
 
-							<form class="form" method="POST" action="registro">
+							<form class="form" method="POST" action="usuario_update">
 								<div class="row">
 									<div class="col-lg-6 col-12">
 										<div class="form-group">
 											<label>Nombre<span>*</span></label> <input name="nombre"
-												type="text" placeholder="" value="">
+												type="text" placeholder="" value="<%= user.getNombre() %>">
 										</div>
 									</div>
 									<div class="col-lg-6 col-12">
 										<div class="form-group">
 											<label>Primer apellido<span>*</span></label> <input
 												name="primer_apellido" type="text" placeholder=""
-												value="">
+												value="<%= user.getApellido1() %>">
 										</div>
 									</div>
 									<div class="col-lg-6 col-12">
 										<div class="form-group">
 											<label>Segundo apellido<span>*</span></label> <input
-												name="segundo_apellido" type="text" value="">
-										</div>
-									</div>
-									<div class="col-lg-6 col-12">
-										<div class="form-group">
-											<label>DNI<span>*</span></label> <input name="dni"
-												type="text" value="">
+												name="segundo_apellido" type="text" value="<%= user.getApellido2() %>">
 										</div>
 									</div>
 									<div class="col-lg-6 col-12">
 										<div class="form-group">
 											<label>Dirección<span>*</span></label> <input
-												name="direccion" type="text" value="">
+												name="direccion" type="text" value="<%= user.getDireccion() %>">
 										</div>
 									</div>
 									<div class="col-lg-6 col-12">
@@ -66,50 +62,43 @@
 											<select
 												name="provincia" id="provincia"
 												style="display: block; border: 1px solid #e6e2f5; border-radius: 2px; height: 5.2vh; width: 100%; padding-left: 1.3vw;">
-												<option value="default" selected>Seleccionar
+												<option value="default">Seleccionar
 													provincia</option>
-												<% for (String provincia : provinciasList) { %>
+												<% for (String provincia : provinciasList) {
+														if (user.getProvincia().equals(provincia)) {
+															
+												%>
+												<option value="<%=provincia%>" selected><%=provincia%></option>
+												<% } else { %>
 												<option value="<%=provincia%>"><%=provincia%></option>
-												<% }%>
+												<% }
+														
+												}%>
 											</select>
 										</div>
 									</div>
 									<div class="col-lg-6 col-12">
 										<div class="form-group">
 											<label>Localidad<span>*</span></label> <input
-												name="localidad" type="text" value="">
+												name="localidad" type="text" value="<%= user.getLocalidad() %>">
 										</div>
 									</div>
 									<div class="col-lg-6 col-12">
 										<div class="form-group">
 											<label>Teléfono<span>*</span></label> <input name="telefono"
-												type="text" value="">
+												type="text" value="<%= user.getTelefono() %>">
 										</div>
 									</div>
 									<div class="col-lg-6 col-12">
 										<div class="form-group">
 											<label>Email<span>*</span></label> <input name="email"
-												type="email" value="">
-										</div>
-									</div>
-									<div class="col-lg-6 col-12">
-										<div class="form-group">
-											<label>Contraseña<span>*</span></label> <input
-												name="password" type="password"
-												autocomplete="current-passowrd" value="">
-										</div>
-									</div>
-									<div class="col-lg-6 col-12">
-										<div class="form-group">
-											<label>Repetir contraseña<span>*</span></label> <input
-												name="repassword" type="password"
-												autocomplete="current-passowrd" value="">
+												type="email" value="<%= user.getEmail() %>">
 										</div>
 									</div>
 
 									<div class="col-12">
 										<div class="form-group button text-center">
-											<button type="submit" class="btn mt-4">Crear cuenta</button>
+											<button type="submit" class="btn mt-4">Guardar cambios</button>
 										</div>
 									</div>
 
@@ -145,7 +134,7 @@
 	<!-- Countdown JS -->
 	<script src="index/assets/js/finalcountdown.min.js"></script>
 	<!-- Nice Select JS -->
-	<script src="index/assets/js/nicesellect.js"></script>
+	<!-- <script src="index/assets/js/nicesellect.js"></script> -->
 	<!-- Flex Slider JS -->
 	<script src="index/assets/js/flex-slider.js"></script>
 	<!-- ScrollUp JS -->

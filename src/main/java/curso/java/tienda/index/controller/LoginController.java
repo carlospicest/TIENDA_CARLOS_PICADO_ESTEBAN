@@ -49,8 +49,6 @@ public class LoginController extends HttpServlet {
 
 		if ((user = LoginService.validarCredenciales(email, password)) != null) {
 			request.getSession().setAttribute("userdata", user);
-
-
 			request.getRequestDispatcher(WebPath.URL.INDEX_CONTROLLER.toString()).forward(request, response);
 		} else {
 			request.setAttribute("errorLogin", "Los datos introducidos no son correctos, por favor, intente de nuevo.");
