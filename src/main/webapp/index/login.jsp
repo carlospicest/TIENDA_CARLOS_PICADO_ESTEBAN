@@ -34,16 +34,13 @@ String errorLogin = (String) request.getAttribute("errorLogin");
 	</div>
 	<!-- End Breadcrumbs -->
 
-	<!-- Start Contact -->
+	<!-- Start Login -->
 	<section id="contact-us" class="contact-us section">
 		<div class="container">
 			<div class="contact-head">
 				<div class="row justify-content-md-center">
 					<div class="col-lg-8 col-12">
 						<div class="form-main">
-
-							<div class="form-group"></div>
-
 
 							<div class="title">
 								<h3 class="text-center">Iniciar sesión</h3>
@@ -98,44 +95,13 @@ String errorLogin = (String) request.getAttribute("errorLogin");
 
 							</form>
 
-
-
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
-	<!--/ End Contact -->
-
-	<!-- Start Shop Newsletter  -->
-	<section class="shop-newsletter section">
-		<div class="container">
-			<div class="inner-top">
-				<div class="row">
-					<div class="col-lg-8 offset-lg-2 col-12">
-						<!-- Start Newsletter Inner -->
-						<div class="inner">
-							<h4>Newsletter</h4>
-							<p>
-								Subscribe to our newsletter and get <span>10%</span> off your
-								first purchase
-							</p>
-							<form action="mail/mail.php" method="get" target="_blank"
-								class="newsletter-inner">
-								<input name="EMAIL" placeholder="Your email address" required=""
-									type="email">
-								<button class="btn">Subscribe</button>
-							</form>
-						</div>
-						<!-- End Newsletter Inner -->
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- End Shop Newsletter -->
-	<!-- Modal end -->
+	<!--/ End Login -->
 
 	<%@ include file="../../WEB-INF/layouts/footer.jspf"%>
 

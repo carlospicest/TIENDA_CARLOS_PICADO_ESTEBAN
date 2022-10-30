@@ -19,6 +19,8 @@
 	
 	<!-- Bootstrap -->
 	<link rel="stylesheet" href="index/assets/css/bootstrap.css">
+	<!-- Bootstrap icons -->
+	<link rel="stylesheet" href="index/assets/css/bootstrap-icons.css">
 	<!-- Magnific Popup -->
 	<link rel="stylesheet" href="index/assets/css/magnific-popup.min.css">
 	<!-- Font Awesome -->

@@ -1,5 +1,5 @@
 <%@ page pageEncoding="UTF-8"
-	import="java.util.List, java.util.HashMap, curso.java.tienda.index.pojo.Usuario"%>
+	import="java.util.List, java.util.HashMap, curso.java.tienda.index.pojo.Usuario, datos.RoleData"%>
 <%
 Usuario user = (Usuario) request.getSession().getAttribute("userdata");
 %>
@@ -43,16 +43,18 @@ Usuario user = (Usuario) request.getSession().getAttribute("userdata");
 								<%
 								if (user == null) {
 								%>
-								<li><i class="ti-user"></i> <a href="registro">Crear
-										cuenta</a></li>
+								<li><i class="bi bi-person-plus-fill"></i> <a
+									href="registro">Crear cuenta</a></li>
 								<li><i class="fa fa-user-circle-o"></i><a href="login">Iniciar
 										sesión</a></li>
 								<%
 								} else {
+								if (user.getRol().getId() == RoleData.rol.CLIENTE.getId()) {
 								%>
 								<li><i class="ti-power-off"></i><a href="logout">Cerrar
 										sesión</a></li>
 								<%
+								}
 								}
 								%>
 
@@ -216,9 +218,38 @@ Usuario user = (Usuario) request.getSession().getAttribute("userdata");
 						</div>
 						<div class="col-lg-9 col-12">
 							<div class="menu-area">
-								<!-- Main Menu -->
-								<%@ include file="navbar.jspf"%>
-								<!--/ End Main Menu -->
+								<!-- Navbar -->
+								<div class="col-lg-9 col-12">
+									<div class="menu-area">
+										<nav class="navbar navbar-expand-lg">
+											<div class="navbar-collapse">
+												<div class="nav-inner">
+													<ul class="nav main-menu menu navbar-nav">
+														<li class="active"><a
+															href="<%=request.getContextPath()%>">Inicio</a></li>
+														<li><a href="catalogo">Catálogo</a></li>
+														<li><a href="<%=request.getContextPath()%>/carrito">Ver
+																carrito</a></li>
+														<li>
+															<div>
+																<a href="#"><i class="bi bi-list"
+																	style="font-size: 20px"></i>Opciones<i
+																	class="ti-angle-down"></i></a>
+															</div>
+															<ul class="dropdown">
+
+																<li><a href="">Ver perfil</a></li>
+																<li><a href="">Modificar contraseña</a></li>
+															</ul>
+														</li>
+														<li><a href="contact.html">Contact Us</a></li>
+													</ul>
+												</div>
+											</div>
+										</nav>
+									</div>
+								</div>
+								<!--/ Navbar -->
 							</div>
 						</div>
 					</div>
