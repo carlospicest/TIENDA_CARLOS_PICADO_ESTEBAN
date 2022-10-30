@@ -1,25 +1,33 @@
-package curso.java.tienda.index.controller;
+package curso.java.tienda.index.controller.index;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import curso.java.tienda.index.dao.CategoriaDAOImpl;
+import curso.java.tienda.index.dao.ProductoDAOImpl;
+import curso.java.tienda.index.pojo.Categoria;
+import curso.java.tienda.index.pojo.Producto;
 import mapping.WebPath;
 
+
 /**
- * Servlet implementation class LogoutController
+ * Servlet implementation class MainController
  */
-@WebServlet("/logout")
-public class LogoutController extends HttpServlet {
+@WebServlet("")
+public class IndexController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LogoutController() {
+    public IndexController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,8 +37,17 @@ public class LogoutController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.getSession().setAttribute("userdata", null);
-		request.getRequestDispatcher(WebPath.URL.INDEX_CONTROLLER.toString()).forward(request, response);
+		// Obtener categorias.
+		
+		ArrayList<Categoria> categoriasList = new CategoriaDAOImpl().getCategorias();
+		request.setAttribute("categoriasList", categoriasList);
+		
+		// Obtener productos.
+		
+		HashMap<Integer, Producto> productosList = new ProductoDAOImpl().getProductos();
+		request.setAttribute("productosList", productosList);
+		
+		request.getRequestDispatcher(WebPath.URL.INDEX_JSP.toString()).forward(request, response);
 		
 	}
 

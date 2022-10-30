@@ -1,4 +1,4 @@
-package curso.java.tienda.index.controller;
+package curso.java.tienda.index.controller.alta_usuario;
 
 import java.io.IOException;
 import java.util.ArrayList;
