@@ -64,9 +64,9 @@ Version:1.0
 		});
 		
 		/*=======================
-		  Slider Range JS
+		  Slider Range JS (Se configura en catalogo.js);
 		=========================*/ 
-		$( function() {
+		/*$( function() {
 			$( "#slider-range" ).slider({
 			  range: true,
 			  min: 0,
@@ -78,7 +78,7 @@ Version:1.0
 			});
 			$( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
 			  " - $" + $( "#slider-range" ).slider( "values", 1 ) );
-		} );
+		} );*/
 		
 		/*=======================
 		  Home Slider JS

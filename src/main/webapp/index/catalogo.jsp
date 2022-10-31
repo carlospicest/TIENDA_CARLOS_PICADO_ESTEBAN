@@ -41,16 +41,18 @@ HashMap<Integer, Producto> productList = (HashMap<Integer, Producto>) request.ge
 						<div class="single-widget category">
 							<h3 class="title">Categorías</h3>
 
-							<ul class="categor-list">
-								<li><a href="#">Todas</a></li>
-								<%
-								for (Categoria category : categoryList) {
-								%>
-								<li><a href="#"><%=category.getNombre()%></a></li>
-								<%
-								}
-								%>
-							</ul>
+							<div style="overflow-y: auto; height: 25vh;">
+								<ul class="categor-list">
+									<li><a href="#">Todas</a></li>
+									<%
+									for (Categoria category : categoryList) {
+									%>
+									<li><a href="#"><%=category.getNombre()%></a></li>
+									<%
+									}
+									%>
+								</ul>
+							</div>
 
 						</div>
 						<!--/ End Single Widget -->
@@ -63,22 +65,11 @@ HashMap<Integer, Producto> productList = (HashMap<Integer, Producto>) request.ge
 									<div class="price_slider_amount">
 										<div class="label-input">
 											<span>Intervalo:</span><input type="text" id="amount"
-												name="price" placeholder="Introduzca un precio" />
+												name="price" value="" placeholder="min - max" />
 										</div>
 									</div>
 								</div>
 							</div>
-							<ul class="check-box-list">
-								<li><label class="checkbox-inline" for="1"><input
-										name="news" id="1" type="checkbox">$20 - $50<span
-										class="count">(3)</span></label></li>
-								<li><label class="checkbox-inline" for="2"><input
-										name="news" id="2" type="checkbox">$50 - $100<span
-										class="count">(5)</span></label></li>
-								<li><label class="checkbox-inline" for="3"><input
-										name="news" id="3" type="checkbox">$100 - $250<span
-										class="count">(8)</span></label></li>
-							</ul>
 						</div>
 						<!--/ End Shop By Price -->
 
@@ -133,12 +124,14 @@ HashMap<Integer, Producto> productList = (HashMap<Integer, Producto>) request.ge
 									</a>
 									<div class="button-head">
 										<div class="product-action">
-											<a title="Wishlist" href="#"><i class=" ti-heart ">
-											</i><span>Añadir a lista de deseos</span></a>
+											<a title="Wishlist" href="#"><i class=" ti-heart "> </i><span>Añadir
+													a lista de deseos</span></a>
 										</div>
 										<div class="product-action-2">
 											<!-- <a title="Add to cart" href="#">Añadir al carrito</a>  -->
-											<input type="button" name="addCart" id="<%= product.getId() %>" class="btn" value="Añadir al carrito">
+											<input type="button" name="addCart"
+												id="<%=product.getId()%>" class="btn"
+												value="Añadir al carrito">
 										</div>
 									</div>
 								</div>
@@ -356,6 +349,8 @@ HashMap<Integer, Producto> productList = (HashMap<Integer, Producto>) request.ge
 	<script src="index/assets/js/common-settings.js"></script>
 	<!-- Shop JS -->
 	<script src="index/assets/js/shop.js"></script>
+	<!-- Catalogo JS -->
+	<script src="index/assets/js/catalogo.js"></script>
 
 </body>
 </html>
