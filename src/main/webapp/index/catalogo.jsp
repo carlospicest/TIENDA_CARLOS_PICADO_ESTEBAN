@@ -9,7 +9,6 @@ HashMap<Integer, Producto> productList = (HashMap<Integer, Producto>) request.ge
 <html>
 <head>
 <%@ include file="../WEB-INF/layouts/head.jspf"%>
-</head>
 <body>
 
 	<%@ include file="../WEB-INF/layouts/header.jspf"%>
@@ -43,11 +42,16 @@ HashMap<Integer, Producto> productList = (HashMap<Integer, Producto>) request.ge
 
 							<div style="overflow-y: auto; height: 25vh;">
 								<ul class="categor-list">
-									<li><a href="#">Todas</a></li>
 									<%
-									for (Categoria category : categoryList) {
+									for (Categoria categoria : categoryList) {
 									%>
-									<li><a href="#"><%=category.getNombre()%></a></li>
+									<li>
+										<!-- <a href="#"><%=categoria.getNombre()%></a> --> <label
+										for="<%=categoria.getId()%>" class="d-block"> <input
+											name="category" id="<%=categoria.getId()%>" type="checkbox"
+											value="<%=categoria.getNombre()%>"> <%=categoria.getNombre()%>
+									</label>
+									</li>
 									<%
 									}
 									%>
@@ -58,7 +62,7 @@ HashMap<Integer, Producto> productList = (HashMap<Integer, Producto>) request.ge
 						<!--/ End Single Widget -->
 						<!-- Shop By Price -->
 						<div class="single-widget range">
-							<h3 class="title">Filtrar por precio</h3>
+							<h3 class="title">Precio</h3>
 							<div class="price-filter">
 								<div class="price-filter-inner">
 									<div id="slider-range"></div>
@@ -76,35 +80,12 @@ HashMap<Integer, Producto> productList = (HashMap<Integer, Producto>) request.ge
 					</div>
 				</div>
 				<div class="col-lg-9 col-md-8 col-12">
-					<div class="row">
-						<div class="col-12">
-							<!-- Shop Top -->
-							<div class="shop-top">
-								<div class="shop-shorter">
-									<div class="single-shorter">
-										<label>Show :</label> <select>
-											<option selected="selected">09</option>
-											<option>15</option>
-											<option>25</option>
-											<option>30</option>
-										</select>
-									</div>
-									<div class="single-shorter">
-										<label>Sort By :</label> <select>
-											<option selected="selected">Name</option>
-											<option>Price</option>
-											<option>Size</option>
-										</select>
-									</div>
-								</div>
-								<ul class="view-mode">
-									<li class="active"><a href="shop-grid.html"><i
-											class="fa fa-th-large"></i></a></li>
-									<li><a href="shop-list.html"><i class="fa fa-th-list"></i></a></li>
-								</ul>
-							</div>
-							<!--/ End Shop Top -->
-						</div>
+
+					<div class="d-flex justify-content-center" style="background-color: #F6F7FB; padding: 15px;">
+						<button class="btn mr-2"><i class="bi bi-arrow-down mr-1"></i>Precio más bajo</button>
+						<button class="btn mr-2"><i class="bi bi-arrow-up mr-1"></i>Precio más alto</button>
+						<button class="btn mr-2"><i class="bi bi-currency-exchange mr-1"></i>Más vendidos</button>
+						<button class="btn mr-2"><i class="bi bi-star mr-1"></i>Mejor valorados</button>
 					</div>
 
 					<!-- Artículos de la tienda -->
@@ -129,9 +110,8 @@ HashMap<Integer, Producto> productList = (HashMap<Integer, Producto>) request.ge
 										</div>
 										<div class="product-action-2">
 											<!-- <a title="Add to cart" href="#">Añadir al carrito</a>  -->
-											<input type="button" name="addCart"
-												id="<%=product.getId()%>" class="btn"
-												value="Añadir al carrito">
+											<input type="button" name="addCart" id="<%=product.getId()%>"
+												class="btn" value="Añadir al carrito">
 										</div>
 									</div>
 								</div>
@@ -350,7 +330,7 @@ HashMap<Integer, Producto> productList = (HashMap<Integer, Producto>) request.ge
 	<!-- Shop JS -->
 	<script src="index/assets/js/shop.js"></script>
 	<!-- Catalogo JS -->
-	<script src="index/assets/js/catalogo.js"></script>
+	<script src="index/assets/js/catalogo_filter.js"></script>
 
 </body>
 </html>
