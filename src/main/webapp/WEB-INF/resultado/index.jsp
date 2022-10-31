@@ -143,7 +143,7 @@ if (resultado != null) {
 	<!-- Active JS -->
 	<script src="index/assets/js/active.js"></script>
 	<!-- Resultado JS -->
-	<script src="index/assets/js/resultado.js"></script>
+	<script src="index/assets/js/common-settings.js"></script>
 	<!-- Common Settings JS -->
 	<script src="index/assets/js/common-settings.js"></script>
 	<!-- Shop JS -->

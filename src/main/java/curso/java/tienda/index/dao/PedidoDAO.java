@@ -11,4 +11,6 @@ public interface PedidoDAO {
 	
 	public HashMap<Integer, Pedido> getPedidos(Usuario user);
 	
+	public int addPedido(Pedido pedido);
+	
 }

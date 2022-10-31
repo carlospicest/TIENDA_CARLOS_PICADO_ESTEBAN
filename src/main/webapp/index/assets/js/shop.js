@@ -1,5 +1,7 @@
 $(function() {
 
+	// Establecer configuración de las notificaciones del plugin Toastr.
+
 	$('.addCart').click(function() {
 		const idProduct = $(this).attr('id');
 		addSimpleProductCart(idProduct, 1);
@@ -53,6 +55,7 @@ function addSimpleProductCart(idProduct, stack) {
 
 			if (data !== null) {
 				updateProductCart();
+				showSuccessToastr('Nuevo producto en el carrito', getProductName(idProduct) + ' x' + stack);
 			}
 
 		}
@@ -414,3 +417,40 @@ function emptyHtml(data) {
 	}
 }
 
+/*
+	Funciones de productos.
+ */
+ 
+function getProductName(idProduct) {
+	
+	let productName;
+	
+	$.ajax({
+
+		url: 'producto_show',
+		type: 'GET',
+		data: {
+			idProduct: idProduct,
+		},
+		success: (data) => {
+			console.log(data);
+			productName = data.nombre;			
+		}
+
+	});
+	
+	return productName;
+	
+}
+
+/*
+	Funciones para llamar a Toastr.
+ */
+
+function showSuccessToastr(title, msg) {
+	toastr.success(msg, title);
+}
+
+function showErrorToastr(title, msg) {
+	toastr.error(msg, title);
+}

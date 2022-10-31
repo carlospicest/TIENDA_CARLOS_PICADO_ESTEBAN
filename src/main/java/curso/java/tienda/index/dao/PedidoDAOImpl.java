@@ -68,4 +68,29 @@ public class PedidoDAOImpl implements PedidoDAO {
 		
 	}
 
+	@Override
+	public int addPedido(Pedido pedido) {
+		
+		SessionFactory sessionFactory = HibernateSession.makeSessionFactory();
+		Session session = sessionFactory.openSession();
+
+		try {
+
+			session.beginTransaction();
+
+			session.save(pedido);
+
+			session.getTransaction().commit();
+
+			session.close();
+			sessionFactory.close();
+			
+		} catch (Exception e) {
+			System.out.println("[ERROR] " + PedidoDAOImpl.class.getCanonicalName() + " => " + e.getMessage());
+		}
+
+		return pedido.getId();
+
+	}
+
 }

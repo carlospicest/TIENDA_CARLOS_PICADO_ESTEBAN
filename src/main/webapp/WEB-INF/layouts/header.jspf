@@ -25,12 +25,17 @@ Usuario user = (Usuario) request.getSession().getAttribute("userdata");
 				<div class="row">
 					<div class="col-lg-4 col-md-12 col-12">
 						<!-- Top Left -->
+						<% 
+						if (user != null) {
+							if (user.getRol().getRol().toUpperCase().equals(RoleData.rol.CLIENTE.toString())) { %>
 						<div class="top-left">
 							<ul class="list-main">
-								<li><i class="ti-headphone-alt"></i> +060 (800) 801-582</li>
-								<li><i class="ti-email"></i> support@shophub.com</li>
+								<li>Bienvenid@ <%= user.getNombre() %>!</li>
 							</ul>
 						</div>
+						<% }
+						}
+						%>
 						<!--/ End Top Left -->
 					</div>
 					<div class="col-lg-8 col-md-12 col-12">
@@ -49,7 +54,7 @@ Usuario user = (Usuario) request.getSession().getAttribute("userdata");
 										sesión</a></li>
 								<%
 								} else {
-								if (user.getRol().getId() == RoleData.rol.CLIENTE.getId()) {
+								if (user.getRol().getRol().toUpperCase().equals(RoleData.rol.CLIENTE.toString())) {
 								%>
 								<li><i class="ti-power-off"></i><a href="logout">Cerrar
 										sesión</a></li>
@@ -239,7 +244,7 @@ Usuario user = (Usuario) request.getSession().getAttribute("userdata");
 															<ul class="dropdown">
 
 																<li><a href="usuario">Ver perfil</a></li>
-																<li><a href="">Modificar contraseña</a></li>
+																<li><a href="password">Modificar contraseña</a></li>
 															</ul>
 														</li>
 														<li><a href="contact.html">Contact Us</a></li>

@@ -41,7 +41,8 @@
 	<link rel="stylesheet" href="index/assets/css/owl-carousel.css">
 	<!-- Slicknav -->
 	<link rel="stylesheet" href="index/assets/css/slicknav.min.css">
-	
+	<!-- Toastr -->
+	<link rel="stylesheet" href="index/assets/css/toastr.css">
 	<!-- Eshop StyleSheet -->
 	<link rel="stylesheet" href="index/assets/css/reset.css">
 	<link rel="stylesheet" href="index/assets/style.css">

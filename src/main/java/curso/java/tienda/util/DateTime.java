@@ -57,9 +57,10 @@ public class DateTime {
 
     }
 	
-	public static java.sql.Date getCurrentTime() {  
-	    return new java.sql.Date(System.currentTimeMillis());
+	public static java.sql.Timestamp getCurrentTime() {
+		java.util.Date utilDate = new java.util.Date();
+		java.sql.Timestamp sqlTS = new java.sql.Timestamp(utilDate.getTime());
+	    return sqlTS;
 	}
-	
 	
 }

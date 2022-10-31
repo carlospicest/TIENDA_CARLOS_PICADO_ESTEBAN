@@ -79,7 +79,7 @@ public class CarritoService {
 				cartDetail = new DetallePedido();
 				cartDetail.setProducto(product);
 				cartDetail.setUnidades(stack);
-				cartDetail.setTotal(stack * cartDetail.getPrecio_unidad());
+				cartDetail.setTotal(stack * product.getPrecio());
 				cartDetail.setPrecio_unidad(product.getPrecio());
 				cartDetail.setImpuesto(product.getImpuesto());
 
@@ -137,7 +137,7 @@ public class CarritoService {
 
 	}
 
-	private static double getTotalStackAmmountDetalleCarrito(HashMap<Integer, DetallePedido> cart) {
+	public static double getTotalStackAmmountDetalleCarrito(HashMap<Integer, DetallePedido> cart) {
 
 		double totalAmmount = 0;
 
@@ -174,7 +174,9 @@ public class CarritoService {
 		int stack = detallePedido.getUnidades();
 
 		if (stack > 1) {
+			Producto product = detallePedido.getProducto();
 			detallePedido.setUnidades(stack - 1);
+			detallePedido.setTotal(product.getPrecio()*stack);
 		}
 
 	}
@@ -183,14 +185,18 @@ public class CarritoService {
 
 		int stack = detallePedido.getUnidades();
 
+		Producto product = detallePedido.getProducto();
 		detallePedido.setUnidades(stack + 1);
+		detallePedido.setTotal(product.getPrecio()*stack);
 
 	}
 
 	private static void setMasiveDetallePedido(DetallePedido detallePedido, int stack) {
 
 		if (stack >= 1) {
+			Producto product = detallePedido.getProducto();
 			detallePedido.setUnidades(stack);
+			detallePedido.setTotal(product.getPrecio()*stack);
 		}
 
 	}

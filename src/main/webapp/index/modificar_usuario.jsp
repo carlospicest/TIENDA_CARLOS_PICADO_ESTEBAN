@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; UTF-8"
 	pageEncoding="UTF-8"
-	import="com.fasterxml.jackson.databind.ObjectMapper, com.fasterxml.jackson.databind.node.ObjectNode, 
-			com.fasterxml.jackson.databind.JsonNode,mapping.Request, java.util.List, java.util.ArrayList,
-			curso.java.tienda.index.pojo.Usuario, curso.java.tienda.index.pojo.Rol" %>
+	import="java.util.List, java.util.ArrayList, curso.java.tienda.index.pojo.Usuario" %>
 <% 
 ArrayList<String> provinciasList = (ArrayList<String>) request.getAttribute("provinciasList");
 %>

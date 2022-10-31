@@ -471,6 +471,8 @@ HashMap<Integer, Producto> productosList = (HashMap<Integer, Producto>) request.
 	<script src="index/assets/js/easing.js"></script>
 	<!-- Active JS -->
 	<script src="index/assets/js/active.js"></script>
+	<!-- Toastr -->
+	<script src="index/assets/js/toastr.js"></script>
 	<!-- Shop -->
 	<script src="index/assets/js/shop.js"></script>
 	<!-- Modal product -->

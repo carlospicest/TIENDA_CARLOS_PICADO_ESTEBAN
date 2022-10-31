@@ -1,6 +1,6 @@
 package curso.java.tienda.index.pojo;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -58,6 +58,6 @@ public class Usuario {
 	@Column(name = "baja", columnDefinition = "TINYINT", nullable = true)
 	private boolean baja;
 	@Column(name = "fecha_alta")
-	private Date fecha_alta;
+	private Timestamp fecha_alta;
 	
 }
