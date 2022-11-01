@@ -57,7 +57,7 @@ HashMap<Integer, Producto> productList = (HashMap<Integer, Producto>) request.ge
 									%>
 									<li>
 										<!-- <a href="#"><%=categoria.getNombre()%></a> --> <label
-										for="<%=categoria.getId()%>" class="d-block"> <input
+										for="<%=categoria.getId()%>" class="d-block category"> <input
 											name="category" id="<%=categoria.getId()%>" type="checkbox"
 											value="<%=categoria.getNombre()%>"> <%=categoria.getNombre()%>
 									</label>
@@ -93,22 +93,22 @@ HashMap<Integer, Producto> productList = (HashMap<Integer, Producto>) request.ge
 				
 					<div class="d-flex justify-content-center"
 						style="background-color: #F6F7FB; padding: 15px;">
-						<button class="btn mr-2 sort" id="lowest_price">
+						<button class="btn mr-2 sortCriteria" id="lowest_price">
 							<i class="bi bi-arrow-down mr-1"></i>Precio más bajo
 						</button>
-						<button class="btn mr-2 sort" id="highest_price">
+						<button class="btn mr-2 sortCriteria" id="highest_price">
 							<i class="bi bi-arrow-up mr-1"></i>Precio más alto
 						</button>
-						<button class="btn mr-2 sort" id="best_sellers">
+						<button class="btn mr-2 sortCriteria" id="best_sellers">
 							<i class="bi bi-currency-exchange mr-1"></i>Más vendidos
 						</button>
-						<button class="btn mr-2 sort" id="top_rated">
+						<button class="btn mr-2 sortCriteria" id="top_rated">
 							<i class="bi bi-star mr-1"></i>Mejor valorados
 						</button>
 					</div>
 
 					<!-- Artículos de la tienda -->
-					<div class="row">
+					<div id="productsList" class="row">
 						<%
 						for (Producto product : productList.values()) {
 						%>

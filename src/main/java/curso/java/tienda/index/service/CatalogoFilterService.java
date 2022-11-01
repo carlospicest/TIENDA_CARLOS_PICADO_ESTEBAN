@@ -104,6 +104,8 @@ public class CatalogoFilterService {
 
 		ArrayList<Producto> productosResult = (ArrayList<Producto>) query.list();
 
+		System.out.println("Query => " + hql.toString() + " return " + productosResult.size() + " records.");
+		
 		session.close();
 		sessionFactory.close();
 
@@ -130,7 +132,7 @@ public class CatalogoFilterService {
 						String param = ":param" + parametrizar.getIndex();
 
 						if (hql.indexOf("where") == -1) {
-							hql.append("where p.categoria.id in (from categorias c where c.id = " + param);
+							hql.append("where p.categoria.id in (select c from categorias c where c.id = " + param);
 							parametrizar.addValueParameter(objNode.asInt());
 						} else {
 							hql.append(" or c.id = " + param);
