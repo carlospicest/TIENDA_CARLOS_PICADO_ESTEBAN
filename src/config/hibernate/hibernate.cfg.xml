@@ -30,6 +30,7 @@
         <mapping class="curso.java.tienda.index.pojo.Pedido"></mapping>
         <mapping class="curso.java.tienda.index.pojo.DetallePedido"></mapping>
         <mapping class="curso.java.tienda.index.pojo.MetodoPago"></mapping>
+        <mapping class="curso.java.tienda.index.pojo.Valoracion"></mapping>
     
     <!-- Fin mapeo de clases -->
     	

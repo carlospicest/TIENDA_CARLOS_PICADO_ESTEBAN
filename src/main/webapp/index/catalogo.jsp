@@ -9,6 +9,8 @@ HashMap<Integer, Producto> productList = (HashMap<Integer, Producto>) request.ge
 <html>
 <head>
 <%@ include file="../WEB-INF/layouts/head.jspf"%>
+<!-- Catalogo filter -->
+<link rel="stylesheet" href="index/assets/css/catalogo_filter.css">
 <body>
 
 	<%@ include file="../WEB-INF/layouts/header.jspf"%>
@@ -36,6 +38,14 @@ HashMap<Integer, Producto> productList = (HashMap<Integer, Producto>) request.ge
 			<div class="row">
 				<div class="col-lg-3 col-md-4 col-12">
 					<div class="shop-sidebar">
+					
+						<div class="single-widget category">
+							<button id="clearFilter" class="btn">
+								<i class="bi bi-funnel mr-1"></i>
+								Borrar filtros
+							</button>
+						</div>
+					
 						<!-- Single Widget -->
 						<div class="single-widget category">
 							<h3 class="title">Categorías</h3>
@@ -80,12 +90,21 @@ HashMap<Integer, Producto> productList = (HashMap<Integer, Producto>) request.ge
 					</div>
 				</div>
 				<div class="col-lg-9 col-md-8 col-12">
-
-					<div class="d-flex justify-content-center" style="background-color: #F6F7FB; padding: 15px;">
-						<button class="btn mr-2"><i class="bi bi-arrow-down mr-1"></i>Precio más bajo</button>
-						<button class="btn mr-2"><i class="bi bi-arrow-up mr-1"></i>Precio más alto</button>
-						<button class="btn mr-2"><i class="bi bi-currency-exchange mr-1"></i>Más vendidos</button>
-						<button class="btn mr-2"><i class="bi bi-star mr-1"></i>Mejor valorados</button>
+				
+					<div class="d-flex justify-content-center"
+						style="background-color: #F6F7FB; padding: 15px;">
+						<button class="btn mr-2 sort" id="lowest_price">
+							<i class="bi bi-arrow-down mr-1"></i>Precio más bajo
+						</button>
+						<button class="btn mr-2 sort" id="highest_price">
+							<i class="bi bi-arrow-up mr-1"></i>Precio más alto
+						</button>
+						<button class="btn mr-2 sort" id="best_sellers">
+							<i class="bi bi-currency-exchange mr-1"></i>Más vendidos
+						</button>
+						<button class="btn mr-2 sort" id="top_rated">
+							<i class="bi bi-star mr-1"></i>Mejor valorados
+						</button>
 					</div>
 
 					<!-- Artículos de la tienda -->
