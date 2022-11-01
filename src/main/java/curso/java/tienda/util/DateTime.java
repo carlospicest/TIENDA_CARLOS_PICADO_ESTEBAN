@@ -63,4 +63,10 @@ public class DateTime {
 	    return sqlTS;
 	}
 	
+	public static String getFormat(java.sql.Timestamp time, String pattern) {
+		
+		DateFormat sdf = new SimpleDateFormat(pattern);
+		return sdf.format(time);
+	}
+	
 }

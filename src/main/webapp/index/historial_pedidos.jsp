@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; UTF-8"
 	pageEncoding="UTF-8"
 	import="java.util.LinkedHashMap, curso.java.tienda.index.pojo.Usuario,
-			curso.java.tienda.index.pojo.Pedido"%>
+			curso.java.tienda.index.pojo.Pedido, datos.EstadoPedido"%>
 <%
 LinkedHashMap<Integer, Pedido> pedidosList = (LinkedHashMap<Integer, Pedido>) request.getAttribute("pedidosList");
 %>
@@ -9,6 +9,7 @@ LinkedHashMap<Integer, Pedido> pedidosList = (LinkedHashMap<Integer, Pedido>) re
 <html>
 <head>
 <%@ include file="../WEB-INF/layouts/head.jspf"%>
+<link rel="stylesheet" href="index/assets/css/button_icon_table.css">
 </head>
 <body>
 
@@ -47,13 +48,24 @@ LinkedHashMap<Integer, Pedido> pedidosList = (LinkedHashMap<Integer, Pedido>) re
 											for (Pedido pedido : pedidosList.values()) {
 											%>
 											<tr>
-												<td><%=pedido.getNum_factura()%></td>
-												<td><%=pedido.getMetodo_pago()%></td>
-												<td><%=pedido.getTotal()%></td>
-												<td><%=pedido.getEstado()%></td>
-												<td>
-													<button>Ver detalles</button>
+												<td class="align-middle text-center"><%=pedido.getNum_factura()%></td>
+												<td class="align-middle text-center"><%=pedido.getMetodo_pago()%></td>
+												<td class="align-middle text-center"><%=pedido.getTotal()%> €</td>
+												<td class="align-middle text-center"><%=pedido.getEstado()%></td>
+												<td class="align-middle text-center">
+													<a title="Ver detalles del pedido" href="detalle_pedido?pedido=<%= pedido.getId() %>" target="_blank"><i class="bi bi-card-list icon_table" style="color: #F7941D;">
+														</i>
+													</a>
+													
+													<% if (pedido.getEstado().equals(EstadoPedido.estado.PENDIENTE_ENVIO.toString())) { %>
+													<a title="Cancelar pedido" href="detalle_pedido?pedido=<%= pedido.getId() %>" target="_blank"><i class="bi bi-send-slash-fill icon_table" style="color: #FF0000;">
+														</i>
+													</a>
+													<% } %>
+													
 												</td>
+												
+												
 
 											</tr>
 											<%

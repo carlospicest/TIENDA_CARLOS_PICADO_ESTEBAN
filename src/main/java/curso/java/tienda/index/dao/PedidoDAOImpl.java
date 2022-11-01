@@ -93,4 +93,22 @@ public class PedidoDAOImpl implements PedidoDAO {
 
 	}
 
+	@Override
+	public Pedido getPedido(int idPedido) {
+		
+		SessionFactory sessionFactory = HibernateSession.makeSessionFactory();
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		
+		Query query = session.createQuery("from pedidos p where p.id = :idPedido");
+		query.setParameter("idPedido", idPedido);
+		Pedido pedido = (Pedido) query.uniqueResult();
+
+		session.close();
+		sessionFactory.close();
+		
+		return pedido;
+		
+	}
+
 }

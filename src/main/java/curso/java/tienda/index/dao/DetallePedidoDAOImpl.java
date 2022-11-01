@@ -1,6 +1,7 @@
 package curso.java.tienda.index.dao;
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -14,7 +15,7 @@ import hibernate.HibernateSession;
 public class DetallePedidoDAOImpl implements DetallePedidoDAO {
 
 	@Override
-	public HashMap<Integer, DetallePedido> getDetallePedido(Pedido pedido) {
+	public LinkedHashMap<Integer, DetallePedido> getDetallesPedido(Pedido pedido) {
 
 		SessionFactory sessionFactory = HibernateSession.makeSessionFactory();
 		Session session = sessionFactory.openSession();
@@ -27,12 +28,12 @@ public class DetallePedidoDAOImpl implements DetallePedidoDAO {
 		session.close();
 		sessionFactory.close();
 
-		HashMap<Integer, DetallePedido> detallePedidoList = new HashMap<>();
+		LinkedHashMap<Integer, DetallePedido> detallePedidoList = new LinkedHashMap<>();
 
 		if (detallesPedido != null && !detallesPedido.isEmpty()) {
 
 			for (DetallePedido detallePedido : detallesPedido) {
-				detallePedidoList.put(pedido.getId(), detallePedido);
+				detallePedidoList.put(detallePedido.getId(), detallePedido);
 			}
 
 		}
@@ -85,6 +86,24 @@ public class DetallePedidoDAOImpl implements DetallePedidoDAO {
 
 		return result;
 
+	}
+
+	@Override
+	public ArrayList<DetallePedido> getDetallesByPedido(Pedido pedido) {
+		
+		SessionFactory sessionFactory = HibernateSession.makeSessionFactory();
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+
+		Query query = session.createQuery("from detalles_pedido dp where dp.pedido.id = :idPedido");
+		query.setParameter("idPedido", pedido.getId());
+		ArrayList<DetallePedido> detallesPedido = (ArrayList<DetallePedido>) query.list();
+
+		session.close();
+		sessionFactory.close();
+
+		return detallesPedido;
+		
 	}
 
 }

@@ -1,15 +1,17 @@
 package curso.java.tienda.index.dao;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import curso.java.tienda.index.pojo.Pedido;
 import curso.java.tienda.index.pojo.Usuario;
 
 public interface PedidoDAO {
 
-	public HashMap<Integer, Pedido> getPedidos();
+	public LinkedHashMap<Integer, Pedido> getPedidos();
 	
-	public HashMap<Integer, Pedido> getPedidos(Usuario user);
+	public LinkedHashMap<Integer, Pedido> getPedidos(Usuario user);
+	
+	public Pedido getPedido(int idPedido);
 	
 	public int addPedido(Pedido pedido);
 	
