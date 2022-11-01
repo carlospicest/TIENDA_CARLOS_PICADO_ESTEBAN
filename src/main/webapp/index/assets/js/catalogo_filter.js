@@ -268,7 +268,7 @@ function prepareFilter() {
 		},
 		success: (data) => {
 
-
+			console.log(data);
 
 		}
 

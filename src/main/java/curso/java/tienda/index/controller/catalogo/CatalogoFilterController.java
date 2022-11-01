@@ -1,6 +1,7 @@
 package curso.java.tienda.index.controller.catalogo;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -49,10 +50,14 @@ public class CatalogoFilterController extends HttpServlet {
 
 		String criteriaData = request.getParameter("filter");
 
-		HashMap<Integer, Producto> productList = CatalogoFilterService.getProductoFilter(criteriaData);
+		String jsonProducts = CatalogoFilterService.getProductoFilter(criteriaData);
 
+		PrintWriter out = response.getWriter();
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		out.print(jsonProducts);
+		out.flush();
 		
-
 	}
 
 }
