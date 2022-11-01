@@ -17,7 +17,7 @@
 			<div class="row">
 				<div class="col-12">
 					<!-- Shopping Summery -->
-					<table class="table shopping-summery">
+					<table class="table shopping-summery" id="cartTable">
 						<thead>
 							<tr class="main-hading">
 								<th class="align-middle">PRODUCTO</th>

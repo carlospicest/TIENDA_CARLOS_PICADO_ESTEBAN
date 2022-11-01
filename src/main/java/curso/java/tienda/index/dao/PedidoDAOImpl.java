@@ -1,6 +1,6 @@
 package curso.java.tienda.index.dao;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -14,7 +14,7 @@ import hibernate.HibernateSession;
 public class PedidoDAOImpl implements PedidoDAO {
 
 	@Override
-	public HashMap<Integer, Pedido> getPedidos() {
+	public LinkedHashMap<Integer, Pedido> getPedidos() {
 		
 		SessionFactory sessionFactory = HibernateSession.makeSessionFactory();
 		Session session = sessionFactory.openSession();
@@ -26,7 +26,7 @@ public class PedidoDAOImpl implements PedidoDAO {
 		session.close();
 		sessionFactory.close();
 
-		HashMap<Integer, Pedido> pedidoList = new HashMap<>();
+		LinkedHashMap<Integer, Pedido> pedidoList = new LinkedHashMap<>();
 		
 		if (pedidos != null && !pedidos.isEmpty()) {
 			
@@ -41,7 +41,7 @@ public class PedidoDAOImpl implements PedidoDAO {
 	}
 
 	@Override
-	public HashMap<Integer, Pedido> getPedidos(Usuario user) {
+	public LinkedHashMap<Integer, Pedido> getPedidos(Usuario user) {
 		
 		SessionFactory sessionFactory = HibernateSession.makeSessionFactory();
 		Session session = sessionFactory.openSession();
@@ -54,7 +54,7 @@ public class PedidoDAOImpl implements PedidoDAO {
 		session.close();
 		sessionFactory.close();
 
-		HashMap<Integer, Pedido> pedidoList = new HashMap<>();
+		LinkedHashMap<Integer, Pedido> pedidoList = new LinkedHashMap<>();
 		
 		if (pedidos != null && !pedidos.isEmpty()) {
 			

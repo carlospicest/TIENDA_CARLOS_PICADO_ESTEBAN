@@ -199,13 +199,13 @@ function updateProductCartTable(idProduct, stack, mode) {
 
 function fillCartTable(data) {
 
-	const cartTable = $('table, .table shopping-summery');
+	const cartTable = $('#cartTable');
 
 	if (cartTable.length === 1) {
 
 		// Limpiamos el contenido de la tabla.
 
-		const cartTableBody = $('.table shopping-summery, tbody');
+		const cartTableBody = $('#cartTable > tbody');
 		emptyHtml(cartTableBody);
 
 		// Comenzamos a rellenar la tabla con la información de los productos.
@@ -236,7 +236,7 @@ function fillCartTable(data) {
 
 function showNoProductsCartTableMsg() {
 
-	const cartTableBody = $('.table shopping-summery, tbody');
+	const cartTableBody = $('#cartTable > tbody');
 
 	cartTableBody.append('<tr>' +
 		'<td colspan="6" class="text-center">' +
@@ -254,7 +254,7 @@ function addRowProductCartTable(product) {
 
 	const idProduct = product.producto.id;
 
-	const cartTableBody = $('.table shopping-summery, tbody');
+	const cartTableBody = $('#cartTable > tbody');
 
 	cartTableBody.append('<tr id="' + idProduct + '">' +
 		'<td class="image" data-title="No"><img src="https://via.placeholder.com/100x100" alt="#"></td>' +
@@ -372,8 +372,11 @@ function updateQuantityTable(data) {
 /*
 	Elimina un determinado producto.
 	
-	Si la eliminación se ha realizado, se actualiza el carrito
-	y la tabla (si estamos en la vista carrito).
+	Si la eliminación se ha realizado, se actualiza el carrito incluído
+	en el header.
+	
+	Y también la tabla del carrito si se encuentra en la vista.
+	
  */
 
 function deleteProductCart(product) {
@@ -388,8 +391,14 @@ function deleteProductCart(product) {
 
 			if (data !== null) {
 				if (data.result === true) {
+					
 					$('.table shopping-summery, tr#' + product).remove();
 					updateProductCart();
+
+					if ($('#cartTable > tbody > tr').length == 0) {
+						showNoProductsCartTableMsg();
+					}
+
 				}
 			}
 
@@ -420,11 +429,11 @@ function emptyHtml(data) {
 /*
 	Funciones de productos.
  */
- 
+
 function getProductName(idProduct) {
-	
+
 	let productName;
-	
+
 	$.ajax({
 
 		url: 'producto_show',
@@ -434,13 +443,13 @@ function getProductName(idProduct) {
 		},
 		success: (data) => {
 			console.log(data);
-			productName = data.nombre;			
+			productName = data.nombre;
 		}
 
 	});
-	
+
 	return productName;
-	
+
 }
 
 /*
