@@ -4,9 +4,10 @@ public class RoleData {
 
 	public enum rol {
 
-		INVITADO(1),
+		ANONIMO(1),
 		CLIENTE(2),
-		ADMINISTRADOR(3);
+		ADMINISTRADOR(3),
+		EMPLEADO(4);
 
 		private final int id;
 

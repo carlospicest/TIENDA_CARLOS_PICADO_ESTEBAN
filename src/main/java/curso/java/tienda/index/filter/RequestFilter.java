@@ -13,7 +13,11 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpFilter;
 import javax.servlet.http.HttpServletRequest;
 
+import curso.java.tienda.index.dao.RolDAOImpl;
 import curso.java.tienda.index.pojo.DetallePedido;
+import curso.java.tienda.index.pojo.Rol;
+import curso.java.tienda.index.pojo.Usuario;
+import datos.RoleData;
 
 /**
  * Servlet Filter implementation class RequestFilter
@@ -47,6 +51,20 @@ public class RequestFilter extends HttpFilter implements Filter {
 		 * en las distintas vistas de la tienda.
 		 */
 
+		// Comprobamos si el usuario tiene una sesión o es anónimo.
+		
+		Usuario user = (Usuario) ((HttpServletRequest) request).getSession().getAttribute("userdata");
+		Rol rolUser = null;
+		
+		if (user == null) {
+			rolUser = new RolDAOImpl().getRol(RoleData.rol.ANONIMO.getId());
+		} else {
+			rolUser = user.getRol();
+		}
+		
+		((HttpServletRequest) request).getSession().setAttribute("rolUser", rolUser);
+		//((HttpServletRequest) request).getSession().setAttribute("roles", );
+		
 		HashMap<Integer, DetallePedido> cartList = (HashMap<Integer, DetallePedido>) ((HttpServletRequest) request)
 				.getSession().getAttribute("cart");
 
@@ -56,6 +74,8 @@ public class RequestFilter extends HttpFilter implements Filter {
 			((HttpServletRequest) request).getSession().setAttribute("cart", cartList);
 		}
 
+		// Obtenemos las opciones del menú disponibles
+		
 		// pass the request along the filter chain
 		chain.doFilter(request, response);
 
