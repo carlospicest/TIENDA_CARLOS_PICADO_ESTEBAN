@@ -19,8 +19,6 @@
 	</div>
 	<!-- End Preloader -->
 
-	<% %><h1>Test Usuario</h1>
-
 	<!-- Header -->
 	<header class="header shop">
 		<!-- Topbar -->
@@ -148,7 +146,7 @@
 										<div class="total">
 											<span>Total</span> <span class="total-amount-cart">{TOTAL_AMOUNT}</span>
 										</div>
-										<a href="checkout.html" class="btn animate">Realizar
+										<a href="pago" class="btn animate">Realizar
 											compra</a>
 									</div>
 								</div>

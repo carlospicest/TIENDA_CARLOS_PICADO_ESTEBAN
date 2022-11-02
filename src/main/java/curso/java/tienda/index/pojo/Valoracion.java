@@ -29,7 +29,7 @@ public class Valoracion {
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_producto")
 	private Producto producto;
-	
+
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_usuario")
 	private Usuario usuario;
