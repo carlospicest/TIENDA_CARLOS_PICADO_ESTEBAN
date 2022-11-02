@@ -1,8 +1,7 @@
-package curso.java.tienda.index.controller.detalle_pedido;
+package curso.java.tienda.index.controller.cancelacion_pedido;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,22 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import curso.java.tienda.index.dao.DetallePedidoDAOImpl;
 import curso.java.tienda.index.dao.PedidoDAOImpl;
-import curso.java.tienda.index.pojo.DetallePedido;
 import curso.java.tienda.index.pojo.Pedido;
 
 /**
- * Servlet implementation class DetallePedidoShowController
+ * Servlet implementation class CancelacionPedidoController
  */
-@WebServlet("/detalle_pedido")
-public class DetallePedidoShowController extends HttpServlet {
+@WebServlet("/cancelacion_pedido")
+public class CancelacionPedidoController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DetallePedidoShowController() {
+    public CancelacionPedidoController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,20 +32,14 @@ public class DetallePedidoShowController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		try {
+		Integer idPedido = Integer.parseInt(request.getParameter("pedido"));
 		
-			Integer idPedido = Integer.parseInt(request.getParameter("pedido"));
-			
-			Pedido pedido = new PedidoDAOImpl().getPedido(idPedido);
-			
-			if (pedido != null) {
-				ArrayList<DetallePedido> detallePedido = new DetallePedidoDAOImpl().getDetallesByPedido(pedido);
-				request.setAttribute("detallePedido", detallePedido);
-				request.getRequestDispatcher("index/detalle_pedido.jsp").forward(request, response);
-			}
-			
-		} catch (NumberFormatException e) {
-			
+		Pedido pedido = new PedidoDAOImpl().getPedido(idPedido);
+		
+		if (pedido != null) {
+			request.getSession().setAttribute("pedidoCancelId", pedido.getId());
+			request.setAttribute("pedido", pedido);
+			request.getRequestDispatcher("index/cancelacion_pedido.jsp").forward(request, response);
 		}
 		
 	}

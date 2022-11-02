@@ -111,4 +111,25 @@ public class PedidoDAOImpl implements PedidoDAO {
 		
 	}
 
+	@Override
+	public boolean updatePedido(Pedido pedido) {
+		
+		boolean result = false;
+		
+		SessionFactory sessionFactory = HibernateSession.makeSessionFactory();
+		Session session = sessionFactory.openSession();
+		
+		session.beginTransaction();
+		session.update(pedido);
+		session.getTransaction().commit();
+		
+		result = true;
+		
+		session.close();
+		sessionFactory.close();
+		
+		return result;
+		
+	}
+
 }

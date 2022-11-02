@@ -15,4 +15,6 @@ public interface PedidoDAO {
 	
 	public int addPedido(Pedido pedido);
 	
+	public boolean updatePedido(Pedido pedido);
+	
 }

@@ -57,15 +57,37 @@ LinkedHashMap<Integer, Pedido> pedidosList = (LinkedHashMap<Integer, Pedido>) re
 														</i>
 													</a>
 													
-													<% if (pedido.getEstado().equals(EstadoPedido.estado.PENDIENTE_ENVIO.toString())) { %>
-													<a title="Cancelar pedido" href="detalle_pedido?pedido=<%= pedido.getId() %>" target="_blank"><i class="bi bi-send-slash-fill icon_table" style="color: #FF0000;">
+													<%
+														switch (EstadoPedido.estado.getValueFromAlias(pedido.getEstado())) {
+														
+														case PENDIENTE_ENVIO:
+													%>
+													<a title="Cancelar pedido" href="cancelacion_pedido?pedido=<%= pedido.getId() %>" target="_blank"><i class="bi bi-send-slash-fill icon_table" style="color: #FF0000;">
 														</i>
 													</a>
-													<% } %>
+													<%
+															break;
+															
+														case PENDIENTE_CANCELACION:
+															
+													%>
+													<a title="El pedido ha sido cancelado"><i class="bi bi-send-slash-fill icon_table">
+														</i>
+													</a>
+													<%
+													
+															break;
+															
+														case CANCELADO:
+														
+															break;
+														
+														}
+													
+													
+													%>
 													
 												</td>
-												
-												
 
 											</tr>
 											<%
