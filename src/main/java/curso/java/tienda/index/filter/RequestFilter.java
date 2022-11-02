@@ -13,8 +13,10 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpFilter;
 import javax.servlet.http.HttpServletRequest;
 
+import curso.java.tienda.index.dao.OpcionMenuDAOImpl;
 import curso.java.tienda.index.dao.RolDAOImpl;
 import curso.java.tienda.index.pojo.DetallePedido;
+import curso.java.tienda.index.pojo.OpcionMenu;
 import curso.java.tienda.index.pojo.Rol;
 import curso.java.tienda.index.pojo.Usuario;
 import datos.RoleData;
@@ -62,8 +64,17 @@ public class RequestFilter extends HttpFilter implements Filter {
 			rolUser = user.getRol();
 		}
 		
+		// Comprobamos si las opciones del menú ya han sido cargadas.
+		
+		HashMap<String, OpcionMenu> menuOpciones = (HashMap<String, OpcionMenu>) ((HttpServletRequest) request).getSession().getAttribute("menuOpciones");
+		
+		if (menuOpciones == null) {
+			
+			//menuOpciones = new OpcionMenuDAO
+			
+		}
+		
 		((HttpServletRequest) request).getSession().setAttribute("rolUser", rolUser);
-		//((HttpServletRequest) request).getSession().setAttribute("roles", );
 		
 		HashMap<Integer, DetallePedido> cartList = (HashMap<Integer, DetallePedido>) ((HttpServletRequest) request)
 				.getSession().getAttribute("cart");

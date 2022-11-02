@@ -6,11 +6,18 @@ import java.util.HashMap;
 import curso.java.tienda.index.pojo.OpcionMenu;
 import curso.java.tienda.index.pojo.Rol;
 
-public class RoleData {
+public class RoleDataUtil {
 
 	private static Rol userRol;
 	private static HashMap<String, OpcionMenu> opcionMenuList;
 
+	/**
+	 * Se agregan todas las opciones que van a ser utilizadas por el
+	 * sistema de roles.
+	 * @param rol
+	 * @param opcionMenu
+	 */
+	
 	public static void fillOpcionMenu(Rol rol, ArrayList<OpcionMenu> opcionMenu) {
 
 		if (rol != null && opcionMenu != null) {
@@ -18,7 +25,7 @@ public class RoleData {
 			if (!opcionMenu.isEmpty()) {
 
 				for (OpcionMenu opcion : opcionMenu) {
-					opcionMenuList.put(opcion.getOpcion().getAlias(), opcion); // Prueba dev
+					opcionMenuList.put(opcion.getOpcion().getAlias(), opcion);
 				}
 
 			}
