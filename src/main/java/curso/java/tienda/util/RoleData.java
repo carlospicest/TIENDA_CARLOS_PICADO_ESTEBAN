@@ -18,7 +18,7 @@ public class RoleData {
 			if (!opcionMenu.isEmpty()) {
 
 				for (OpcionMenu opcion : opcionMenu) {
-					opcionMenuList.put(opcion.getOpcion().getAlias(), opcion);
+					opcionMenuList.put(opcion.getOpcion().getAlias(), opcion); // Prueba dev
 				}
 
 			}
