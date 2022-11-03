@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS `cancelaciones_pedido` (
   CONSTRAINT `cancelaciones_pedido_ibfk_1` FOREIGN KEY (`id_pedido`) REFERENCES `pedidos` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 
--- Volcando datos para la tabla tienda_carlos_picado_esteban.cancelaciones_pedido: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla tienda_carlos_picado_esteban.cancelaciones_pedido: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `cancelaciones_pedido` DISABLE KEYS */;
 INSERT INTO `cancelaciones_pedido` (`id`, `id_pedido`, `motivo`, `estado`) VALUES
 	(2, 6, 'Producto recibido en mal estado.\r\nLos daÃ±os que presenta imposibilitan su uso.', 'PP');
@@ -139,13 +139,13 @@ INSERT INTO `metodos_pago` (`id`, `metodo_pago`) VALUES
 CREATE TABLE IF NOT EXISTS `opciones` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `alias` varchar(255) NOT NULL,
-  `nombre` varchar(255) NOT NULL,
+  `nombre` varchar(255) DEFAULT NULL,
   `url` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `alias` (`alias`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
 
--- Volcando datos para la tabla tienda_carlos_picado_esteban.opciones: ~9 rows (aproximadamente)
+-- Volcando datos para la tabla tienda_carlos_picado_esteban.opciones: ~10 rows (aproximadamente)
 /*!40000 ALTER TABLE `opciones` DISABLE KEYS */;
 INSERT INTO `opciones` (`id`, `alias`, `nombre`, `url`) VALUES
 	(1, 'NAVBAR_CATALOGO', 'Catálogo', 'catalogo'),
@@ -156,7 +156,8 @@ INSERT INTO `opciones` (`id`, `alias`, `nombre`, `url`) VALUES
 	(6, 'NAVBAR_MODIFICAR_CONTRASENA', 'Modificar contraseña', 'password'),
 	(7, 'HEADER_CREAR_CUENTA', 'Crear cuenta', 'registro'),
 	(8, 'HEADER_INICIAR_SESION', 'Iniciar sesión', 'login'),
-	(9, 'HEADER_CERRAR_SESION', 'Cerrar sesión', 'logout');
+	(9, 'HEADER_CERRAR_SESION', 'Cerrar sesión', 'logout'),
+	(10, 'HEADER_BIENVENIDA_USUARIO', '', NULL);
 /*!40000 ALTER TABLE `opciones` ENABLE KEYS */;
 
 -- Volcando estructura para tabla tienda_carlos_picado_esteban.opciones_menu
@@ -169,9 +170,9 @@ CREATE TABLE IF NOT EXISTS `opciones_menu` (
   KEY `id_opcion` (`id_opcion`),
   CONSTRAINT `opciones_menu_ibfk_1` FOREIGN KEY (`id_rol`) REFERENCES `roles` (`id`),
   CONSTRAINT `opciones_menu_ibfk_2` FOREIGN KEY (`id_opcion`) REFERENCES `opciones` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
 
--- Volcando datos para la tabla tienda_carlos_picado_esteban.opciones_menu: ~7 rows (aproximadamente)
+-- Volcando datos para la tabla tienda_carlos_picado_esteban.opciones_menu: ~9 rows (aproximadamente)
 /*!40000 ALTER TABLE `opciones_menu` DISABLE KEYS */;
 INSERT INTO `opciones_menu` (`id`, `id_rol`, `id_opcion`) VALUES
 	(1, 1, 1),
@@ -182,7 +183,8 @@ INSERT INTO `opciones_menu` (`id`, `id_rol`, `id_opcion`) VALUES
 	(6, 2, 6),
 	(7, 1, 8),
 	(8, 1, 7),
-	(9, 2, 9);
+	(9, 2, 9),
+	(10, 2, 10);
 /*!40000 ALTER TABLE `opciones_menu` ENABLE KEYS */;
 
 -- Volcando estructura para tabla tienda_carlos_picado_esteban.pedidos
@@ -211,17 +213,17 @@ CREATE TABLE IF NOT EXISTS `productos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_categoria` int(11) NOT NULL,
   `nombre` varchar(255) NOT NULL,
-  `descripcion` varchar(255) NOT NULL,
+  `descripcion` varchar(255) DEFAULT NULL,
   `precio` decimal(20,2) NOT NULL DEFAULT 0.00,
   `stock` int(11) NOT NULL,
   `impuesto` double NOT NULL DEFAULT 0,
-  `imagen` varchar(255) NOT NULL,
+  `imagen` varchar(255) DEFAULT NULL,
   `baja` tinyint(1) DEFAULT NULL,
   `fecha_alta` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`),
   KEY `id_categoria` (`id_categoria`),
   CONSTRAINT `productos_ibfk_1` FOREIGN KEY (`id_categoria`) REFERENCES `categorias` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
 
 -- Volcando datos para la tabla tienda_carlos_picado_esteban.productos: ~4 rows (aproximadamente)
 /*!40000 ALTER TABLE `productos` DISABLE KEYS */;
@@ -229,7 +231,8 @@ INSERT INTO `productos` (`id`, `id_categoria`, `nombre`, `descripcion`, `precio`
 	(1, 1, 'Traje de seda Armani H', 'Traje de hombre', 1854.45, 50, 21, 'traje_amani', 0, '2022-11-01 13:49:19'),
 	(2, 1, 'Traje de Ka\'Lium', 'Traje de mujer', 2458.00, 50, 21, 'traje_kalium', 0, '2022-11-01 11:20:53'),
 	(3, 2, 'Calcetines WinniePoo', 'Calcetines de talla pequeña', 1.76, 25, 21, 'calcetines_winniepoo', 0, '2022-11-01 13:41:46'),
-	(4, 4, 'Pantalones de Rosa Mosqueta', 'Pantalones de color rojo ideal para bodas', 568.00, 14, 21, 'pantalon_ros_mosqueta', 0, '2022-10-20 14:25:55');
+	(4, 4, 'Pantalones de Rosa Mosqueta', 'Pantalones de color rojo ideal para bodas', 568.00, 14, 21, 'pantalon_ros_mosqueta', 0, '2022-10-20 00:00:00'),
+	(5, 3, 'Prueba producto', 'Pruyeba', 125.99, 22, 21, NULL, 1, '2022-11-03 00:00:00');
 /*!40000 ALTER TABLE `productos` ENABLE KEYS */;
 
 -- Volcando estructura para tabla tienda_carlos_picado_esteban.proveedores
