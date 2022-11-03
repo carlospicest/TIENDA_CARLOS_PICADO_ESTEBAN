@@ -14,4 +14,6 @@ public interface ProductoDAO {
 	
 	public boolean updateProducto(Producto producto);
 	
+	public boolean deleteProducto(Producto producto);
+	
 }

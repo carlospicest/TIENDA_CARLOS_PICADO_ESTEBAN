@@ -11,19 +11,20 @@ public class RoleDataUtil {
 	private static HashMap<String, OpcionMenu> opcionMenuList;
 
 	/**
-	 * Se agregan todas las opciones que van a ser utilizadas por el
-	 * sistema de roles.
+	 * Se agregan todas las opciones que van a ser utilizadas por el sistema de
+	 * roles.
+	 * 
 	 * @param rol
 	 * @param opcionMenu
 	 */
-	
+
 	public static void fillOpcionMenu(Rol rol, HashMap<String, OpcionMenu> opcionMenu) {
 
 		if (rol != null && opcionMenu != null) {
 
 			userRol = rol;
 			opcionMenuList = opcionMenu;
-			
+
 		}
 
 	}
@@ -31,17 +32,23 @@ public class RoleDataUtil {
 	public static void setRol(Rol rol) {
 		userRol = rol;
 	}
-	
+
 	public static boolean isVisible(String opcionAlias) {
-		
+
 		OpcionMenu opcion = opcionMenuList.get(opcionAlias);
-		
-		if (opcion.getRol().getId() == userRol.getId()) {
-			return true;
-		} else {
+
+		if (opcion == null) {
 			return false;
+		} else {
+
+			if (opcion.getRol().getId() == userRol.getId()) {
+				return true;
+			} else {
+				return false;
+			}
+
 		}
-		
+
 	}
-	
+
 }
