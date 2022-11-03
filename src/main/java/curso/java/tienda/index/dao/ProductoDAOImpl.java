@@ -104,4 +104,25 @@ public class ProductoDAOImpl implements ProductoDAO {
 		
 	}
 
+	@Override
+	public boolean deleteProducto(Producto producto) {
+		
+		boolean result = false;
+		
+		SessionFactory sessionFactory = HibernateSession.makeSessionFactory();
+		Session session = sessionFactory.openSession();
+		
+		session.beginTransaction();
+		session.delete(producto);
+		session.getTransaction().commit();
+		
+		result = true;
+		
+		session.close();
+		sessionFactory.close();
+		
+		return result;
+		
+	}
+
 }

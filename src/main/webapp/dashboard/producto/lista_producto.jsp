@@ -39,7 +39,7 @@ HashMap<Integer, Producto> productoList = (HashMap<Integer, Producto>) request.g
 				<td><%= producto.getFecha_alta() %></td>
 				<td>
 					<a class="btn btn-success" href="producto_actualizar?producto=<%= producto.getId() %>">Modificar</a>
-					<a class="btn btn-danger" href="#">Eliminar</a>
+					<a class="btn btn-danger" href="producto_eliminar?producto=<%= producto.getId() %>">Eliminar</a>
 				</td>
 			</tr>
 			<% } %>
