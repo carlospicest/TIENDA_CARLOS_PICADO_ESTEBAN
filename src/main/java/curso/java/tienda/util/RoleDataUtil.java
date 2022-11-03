@@ -18,24 +18,21 @@ public class RoleDataUtil {
 	 * @param opcionMenu
 	 */
 	
-	public static void fillOpcionMenu(Rol rol, ArrayList<OpcionMenu> opcionMenu) {
+	public static void fillOpcionMenu(Rol rol, HashMap<String, OpcionMenu> opcionMenu) {
 
 		if (rol != null && opcionMenu != null) {
 
-			if (!opcionMenu.isEmpty()) {
-
-				for (OpcionMenu opcion : opcionMenu) {
-					opcionMenuList.put(opcion.getOpcion().getAlias(), opcion);
-				}
-
-			}
-
 			userRol = rol;
-
+			opcionMenuList = opcionMenu;
+			
 		}
 
 	}
 
+	public static void setRol(Rol rol) {
+		userRol = rol;
+	}
+	
 	public static boolean isVisible(String opcionAlias) {
 		
 		OpcionMenu opcion = opcionMenuList.get(opcionAlias);

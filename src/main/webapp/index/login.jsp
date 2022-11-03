@@ -61,23 +61,24 @@ String errorLogin = (String) request.getAttribute("errorLogin");
 										<%
 										}
 										%>
-
+										
 										<div class="form-group">
 											<label class="control-label" for="email">Email</label>
 											<div class="input-group">
 												<div class="input-group-addon">
-													<i class="at"></i>
+													<i class="bi bi-at"></i>
 												</div>
-												<input class="form-control" id="email" name="email"
-													type="text" />
+												<input class="form-control" id="email"
+													name="email" type="password" />
 											</div>
 										</div>
+										
 
 										<div class="form-group">
 											<label class="control-label" for="password">Contraseña</label>
-											<div class="input-group password-data">
+											<div class="input-group">
 												<div class="input-group-addon">
-													<i class="pw"></i>
+													<i class="bi bi-eye-fill"></i>
 												</div>
 												<input class="form-control" id="password" name="password"
 													type="password" />

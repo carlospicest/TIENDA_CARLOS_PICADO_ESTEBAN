@@ -13,7 +13,7 @@ import hibernate.HibernateSession;
 public class OpcionMenuDAOImpl implements OpcionMenuDAO {
 
 	@Override
-	public ArrayList<OpcionMenu> getOpcionMenu() {
+	public HashMap<String, OpcionMenu> getOpcionMenu() {
 		
 		SessionFactory sessionFactory = HibernateSession.makeSessionFactory();
 		Session session = sessionFactory.openSession();
@@ -25,7 +25,14 @@ public class OpcionMenuDAOImpl implements OpcionMenuDAO {
 		session.close();
 		sessionFactory.close();
 		
-		return opcionMenuList;
+		HashMap<String, OpcionMenu> opcionesMenu = new HashMap<>();
+		
+		for (OpcionMenu opcion : opcionMenuList) {
+			opcionesMenu.put(opcion.getOpcion().getAlias(), opcion);
+		}
+		
+		
+		return opcionesMenu;
 				
 	}
 

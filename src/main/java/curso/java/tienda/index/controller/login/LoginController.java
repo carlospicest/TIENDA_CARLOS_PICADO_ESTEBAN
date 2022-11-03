@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import curso.java.tienda.index.pojo.Usuario;
 import curso.java.tienda.index.service.LoginService;
+import curso.java.tienda.util.RoleDataUtil;
 import mapping.WebPath;
 
 /**
@@ -48,6 +49,7 @@ public class LoginController extends HttpServlet {
 		String password = request.getParameter("password");
 
 		if ((user = LoginService.validarCredenciales(email, password)) != null) {
+			RoleDataUtil.setRol(user.getRol());
 			request.getSession().setAttribute("userdata", user);
 			request.getRequestDispatcher(WebPath.URL.INDEX_CONTROLLER.toString()).forward(request, response);
 		} else {

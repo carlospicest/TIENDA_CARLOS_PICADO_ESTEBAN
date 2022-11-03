@@ -9,7 +9,5 @@ import curso.java.tienda.index.pojo.Usuario;
 @JsonIgnoreProperties( { "password", "salt", "fecha_alta", "baja" })
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 public abstract class UsuarioMixin extends Usuario {
-
-	@JsonProperty private RolMixin rol;
 	
 }

@@ -1,16 +1,9 @@
 package curso.java.tienda.index.service;
 
-import java.io.IOException;
-
 import com.HashCrypt;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import curso.java.tienda.index.dao.UsuarioDAOImpl;
-import curso.java.tienda.index.pojo.Rol;
 import curso.java.tienda.index.pojo.Usuario;
-import curso.java.tienda.index.pojo.mixin.RolMixin;
-import curso.java.tienda.index.pojo.mixin.UsuarioMixin;
 
 public class LoginService {
 

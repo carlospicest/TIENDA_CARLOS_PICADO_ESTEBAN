@@ -5,9 +5,7 @@ import java.io.IOException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import curso.java.tienda.index.pojo.Rol;
 import curso.java.tienda.index.pojo.Usuario;
-import curso.java.tienda.index.pojo.mixin.RolMixin;
 import curso.java.tienda.index.pojo.mixin.UsuarioMixin;
 
 public class UsuarioService {
@@ -17,7 +15,6 @@ public class UsuarioService {
 		String userDataJSON = null;
 		
 		ObjectMapper mapper = new ObjectMapper();
-		mapper.addMixIn(Rol.class, RolMixin.class);
 		mapper.addMixIn(Usuario.class, UsuarioMixin.class);
 		
 		try {
@@ -42,7 +39,6 @@ public class UsuarioService {
 	 * En este caso, se emplea para ocultar información sensible, como por ejemplo:
 	 * 	- Contraseña.
 	 *  - Salt.
-	 *  - Id del rol.
 	 *  - Fecha de alta.
  	 * @param usuario
 	 * @return
@@ -54,7 +50,6 @@ public class UsuarioService {
 		
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.addMixIn(Usuario.class, UsuarioMixin.class);
-		mapper.addMixIn(Rol.class, RolMixin.class);
 		
 		try {
 			

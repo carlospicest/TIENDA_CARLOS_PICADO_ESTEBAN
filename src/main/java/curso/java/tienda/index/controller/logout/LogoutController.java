@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import curso.java.tienda.index.dao.RolDAOImpl;
+import curso.java.tienda.util.RoleDataUtil;
 import mapping.WebPath;
 
 /**
@@ -29,6 +31,7 @@ public class LogoutController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		RoleDataUtil.setRol(new RolDAOImpl().getRol(1));
 		request.getSession().setAttribute("userdata", null);
 		request.getRequestDispatcher(WebPath.URL.INDEX_CONTROLLER.toString()).forward(request, response);
 		

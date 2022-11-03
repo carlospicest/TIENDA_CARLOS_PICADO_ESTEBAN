@@ -19,6 +19,7 @@ import curso.java.tienda.index.pojo.DetallePedido;
 import curso.java.tienda.index.pojo.OpcionMenu;
 import curso.java.tienda.index.pojo.Rol;
 import curso.java.tienda.index.pojo.Usuario;
+import curso.java.tienda.util.RoleDataUtil;
 import datos.RoleData;
 
 /**
@@ -54,28 +55,26 @@ public class RequestFilter extends HttpFilter implements Filter {
 		 */
 
 		// Comprobamos si el usuario tiene una sesión o es anónimo.
-		
+
 		Usuario user = (Usuario) ((HttpServletRequest) request).getSession().getAttribute("userdata");
 		Rol rolUser = null;
-		
+
 		if (user == null) {
 			rolUser = new RolDAOImpl().getRol(RoleData.rol.ANONIMO.getId());
-		} else {
-			rolUser = user.getRol();
 		}
-		
-		// Comprobamos si las opciones del menú ya han sido cargadas.
-		
-		HashMap<String, OpcionMenu> menuOpciones = (HashMap<String, OpcionMenu>) ((HttpServletRequest) request).getSession().getAttribute("menuOpciones");
-		
+
+		// Obtenemos las opciones de menús con sus roles.
+
+		HashMap<String, OpcionMenu> menuOpciones = (HashMap<String, OpcionMenu>) ((HttpServletRequest) request)
+				.getSession().getAttribute("menuOpciones");
+
 		if (menuOpciones == null) {
-			
-			//menuOpciones = new OpcionMenuDAO
-			
+			menuOpciones = new OpcionMenuDAOImpl().getOpcionMenu();
+			RoleDataUtil.fillOpcionMenu(rolUser, menuOpciones);
+			((HttpServletRequest) request).getSession().setAttribute("menuOpciones", menuOpciones);
 		}
-		
-		((HttpServletRequest) request).getSession().setAttribute("rolUser", rolUser);
-		
+		request.setAttribute("menuOpciones", menuOpciones);
+
 		HashMap<Integer, DetallePedido> cartList = (HashMap<Integer, DetallePedido>) ((HttpServletRequest) request)
 				.getSession().getAttribute("cart");
 
@@ -86,7 +85,7 @@ public class RequestFilter extends HttpFilter implements Filter {
 		}
 
 		// Obtenemos las opciones del menú disponibles
-		
+
 		// pass the request along the filter chain
 		chain.doFilter(request, response);
 

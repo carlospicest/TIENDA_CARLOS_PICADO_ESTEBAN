@@ -53,12 +53,21 @@ function addSimpleProductCart(idProduct, stack) {
 		},
 		success: (data) => {
 
-			if (data !== null) {
-				updateProductCart();
-				showSuccessToastr('Nuevo producto en el carrito', getProductName(idProduct) + ' x' + stack);
-			}
+			let productName = getProductName(idProduct);
+			
+			$.when(productName).done(function(data) {
+
+				// Cuando se obtenga el nombre del producto lanzamos la notificación de toastr.
+
+				if (data !== null) {
+					updateProductCart();
+					showSuccessToastr('Nuevo producto en el carrito', data.nombre + ' x' + stack);
+				}
+
+			});
 
 		}
+
 	});
 
 }
@@ -391,7 +400,7 @@ function deleteProductCart(product) {
 
 			if (data !== null) {
 				if (data.result === true) {
-					
+
 					$('.table shopping-summery, tr#' + product).remove();
 					updateProductCart();
 
@@ -432,23 +441,15 @@ function emptyHtml(data) {
 
 function getProductName(idProduct) {
 
-	let productName;
-
-	$.ajax({
+	return $.ajax({
 
 		url: 'producto_show',
 		type: 'GET',
 		data: {
 			idProduct: idProduct,
 		},
-		success: (data) => {
-			console.log(data);
-			productName = data.nombre;
-		}
 
 	});
-
-	return productName;
 
 }
 

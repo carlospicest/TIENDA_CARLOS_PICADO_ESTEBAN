@@ -40,7 +40,9 @@ public class ProductoControllerShow extends HttpServlet {
 		
 		ObjectMapper mapper = new ObjectMapper();
 		
-		String productJSON = mapper.writeValueAsString(product);
+		String productJSON = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(product);
+		
+		System.out.println(productJSON);
 		
 		PrintWriter out = response.getWriter();
 		response.setContentType("application/json");

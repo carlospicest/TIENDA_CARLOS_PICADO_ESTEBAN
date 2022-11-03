@@ -316,11 +316,18 @@ function fillProductsCatalog(products) {
 
 	if (products !== undefined && products !== null) {
 
-		products.forEach(product => paintProduct(catalogContainer, product));
+		products.forEach(product => {
+			paintProduct(catalogContainer, product);
+		});
 
 	}
 
-
+	// Evento para los botones de agregar producto.
+	
+	$('input[name="addCart"]').click(function() {
+		const idProduct = $(this).prop('id');
+		addSimpleProductCart(idProduct, 1);
+	});
 
 }
 

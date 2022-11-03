@@ -1,9 +1,11 @@
 <%@ page pageEncoding="UTF-8"
 	import="java.util.List, java.util.HashMap, curso.java.tienda.index.pojo.Usuario, datos.RoleData,
-			curso.java.tienda.index.pojo.Rol"%>
+			curso.java.tienda.index.pojo.Rol, curso.java.tienda.index.pojo.OpcionMenu,
+			curso.java.tienda.util.RoleDataUtil, datos.OpcionesMenu"%>
 <%
 	Usuario user = (Usuario) request.getSession().getAttribute("userdata");
 	Rol rol = (Rol) request.getSession().getAttribute("rolUser");
+	HashMap<String, OpcionMenu> menuOpciones = (HashMap<String, OpcionMenu>) request.getAttribute("menuOpciones");
 %>
 <!DOCTYPE html>
 <html>
@@ -27,17 +29,13 @@
 				<div class="row">
 					<div class="col-lg-4 col-md-12 col-12">
 						<!-- Top Left -->
-						<% 
-						if (user != null) {
-							if (user.getRol().getRol().toUpperCase().equals(RoleData.rol.CLIENTE.toString())) { %>
+						<% if (RoleDataUtil.isVisible(OpcionesMenu.Opcion.HEADER_BIENVENIDA_USUARIO.toString())) { %>
 						<div class="top-left">
 							<ul class="list-main">
 								<li>Bienvenid@ <%= user.getNombre() %>!</li>
 							</ul>
 						</div>
-						<% }
-						}
-						%>
+						<% } %>
 						<!--/ End Top Left -->
 					</div>
 					<div class="col-lg-8 col-md-12 col-12">
@@ -45,25 +43,28 @@
 						<div class="right-content">
 							<ul class="list-main">
 								<li><i class="ti-location-pin"></i> Store location</li>
-								<li><i class="ti-alarm-clock"></i> <a href="#">Daily
-										deal</a></li>
+								<li><i class="ti-alarm-clock"></i> <a href="#">Daily deal</a></li>
 								<%
-								if (user == null) {
+								if (RoleDataUtil.isVisible(OpcionesMenu.Opcion.HEADER_CREAR_CUENTA.toString())) {
 								%>
 								<li><i class="bi bi-person-plus-fill"></i> <a
 									href="registro">Crear cuenta</a></li>
+								<%
+								}	
+								%>
+								
+								<%
+								if (RoleDataUtil.isVisible(OpcionesMenu.Opcion.HEADER_INICIAR_SESION.toString())) {
+								%>
 								<li><i class="fa fa-user-circle-o"></i><a href="login">Iniciar
 										sesión</a></li>
+								<% } %>
+								
 								<%
-								} else {
-								if (user.getRol().getRol().toUpperCase().equals(RoleData.rol.CLIENTE.toString())) {
+								if (RoleDataUtil.isVisible(OpcionesMenu.Opcion.HEADER_CERRAR_SESION.toString())) {
 								%>
-								<li><i class="ti-power-off"></i><a href="logout">Cerrar
-										sesión</a></li>
-								<%
-								}
-								}
-								%>
+								<li><i class="ti-power-off"></i><a href="logout">Cerrar sesión</a></li>
+								<% } %>
 
 							</ul>
 						</div>
@@ -235,8 +236,8 @@
 														<li class="active"><a
 															href="<%=request.getContextPath()%>">Inicio</a></li>
 														<li><a href="catalogo">Catálogo</a></li>
-														<li><a href="carrito">Ver
-																carrito</a></li>
+														<li><a href="carrito">Ver carrito</a></li>
+														<% if (RoleDataUtil.isVisible(OpcionesMenu.Opcion.NAVBAR_OPCIONES.toString())) { %>
 														<li>
 															<div>
 																<a href="#"><i class="bi bi-list"
@@ -250,7 +251,7 @@
 																<li><a href="password">Modificar contraseña</a></li>
 															</ul>
 														</li>
-														<li><a href="contact.html">Contact Us</a></li>
+													<% } %>
 													</ul>
 												</div>
 											</div>
