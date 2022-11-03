@@ -1,6 +1,5 @@
 package curso.java.tienda.util;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import curso.java.tienda.index.pojo.OpcionMenu;
