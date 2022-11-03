@@ -8,4 +8,6 @@ public interface CategoriaDAO {
 
 	public ArrayList<Categoria> getCategorias();
 	
+	public Categoria getCategoria(int id);
+	
 }

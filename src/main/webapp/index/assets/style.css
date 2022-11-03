@@ -4704,7 +4704,7 @@ body {
 	box-shadow: 0px 0px 15px #0000001a;
 	padding: 50px;
 }
-.contact-us .form .form-group input {
+.contact-us .form .form-group input:not(input[type="checkbox"], input[type="file"]) {
 	height: 48px;
 	line-height: 48px;
 	width: 100%;

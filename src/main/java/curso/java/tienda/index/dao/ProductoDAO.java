@@ -10,4 +10,8 @@ public interface ProductoDAO {
 	
 	public Producto getProducto(int idProduct);
 	
+	public int addProducto(Producto producto);
+	
+	public boolean updateProducto(Producto producto);
+	
 }

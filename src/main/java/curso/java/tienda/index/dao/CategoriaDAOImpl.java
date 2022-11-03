@@ -29,4 +29,21 @@ public class CategoriaDAOImpl implements CategoriaDAO {
 		
 	}
 
+	@Override
+	public Categoria getCategoria(int id) {
+		
+		SessionFactory sessionFactory = HibernateSession.makeSessionFactory();
+		Session session = sessionFactory.openSession();
+
+		Transaction transaction = session.beginTransaction();
+		Query query = session.createQuery("from categorias where id = :id");
+		query.setParameter("id", id);
+		Categoria categoria = (Categoria) query.uniqueResult();
+
+		session.close();
+		sessionFactory.close();
+		
+		return categoria;
+	}
+
 }

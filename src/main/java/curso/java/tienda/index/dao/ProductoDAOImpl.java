@@ -58,4 +58,50 @@ public class ProductoDAOImpl implements ProductoDAO {
 		
 	}
 
+	@Override
+	public int addProducto(Producto producto) {
+		
+		SessionFactory sessionFactory = HibernateSession.makeSessionFactory();
+		Session session = sessionFactory.openSession();
+
+		try {
+
+			session.beginTransaction();
+
+			session.save(producto);
+
+			session.getTransaction().commit();
+
+			session.close();
+			sessionFactory.close();
+			
+		} catch (Exception e) {
+			System.out.println("[ERROR] " + ProductoDAOImpl.class.getCanonicalName() + " => " + e.getMessage());
+		}
+		
+		return producto.getId();
+		
+	}
+	
+	@Override
+	public boolean updateProducto(Producto producto) {
+		
+		boolean result = false;
+		
+		SessionFactory sessionFactory = HibernateSession.makeSessionFactory();
+		Session session = sessionFactory.openSession();
+		
+		session.beginTransaction();
+		session.update(producto);
+		session.getTransaction().commit();
+		
+		result = true;
+		
+		session.close();
+		sessionFactory.close();
+		
+		return result;
+		
+	}
+
 }
