@@ -69,7 +69,7 @@ String errorLogin = (String) request.getAttribute("errorLogin");
 													<i class="bi bi-at"></i>
 												</div>
 												<input class="form-control" id="email"
-													name="email" type="password" />
+													name="email" type="email" />
 											</div>
 										</div>
 										

@@ -36,6 +36,8 @@ $(function() {
 
 		if ($(this).attr('class').indexOf('criteria_active') === -1) {
 			$(this).addClass('criteria_active');
+		} else {
+			$(this).removeClass('criteria_active');
 		}
 
 		// Solo puede permanecer activo un criterio de ordenación.
